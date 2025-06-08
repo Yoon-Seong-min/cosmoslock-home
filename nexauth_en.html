@@ -1,0 +1,3318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXAUTH™ - Global Patent-Protected AI Relationship Authentication System | Next-Generation Identity Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, #3b82f6 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #8b5cf6 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #ec4899 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(139, 92, 246, 0.3) 0%, 
+                transparent 30%, 
+                rgba(59, 130, 246, 0.2) 60%, 
+                transparent 100%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 900;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header .tagline {
+            font-size: 1.5em;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header .sub-tagline {
+            font-size: 1.1em;
+            color: #64748b;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .process-visualization {
+            position: relative;
+            background: #0f172a;
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        
+        .stage-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .stage-container.active {
+            display: block;
+        }
+        
+        .stage-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stage-header h3 {
+            font-size: 1.8em;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+        
+        .user-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+        
+        .user-card .info-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUpFadeIn 0.6s ease-out forwards;
+        }
+        
+        .user-card .info-item:nth-child(1) { animation-delay: 0.2s; }
+        .user-card .info-item:nth-child(2) { animation-delay: 0.4s; }
+        .user-card .info-item:nth-child(3) { animation-delay: 0.6s; }
+        .user-card .info-item:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes slideUpFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .relation-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .relation-group {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .relation-group.active {
+            border-color: #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .relation-group.highlighting {
+            animation: groupGlow 0.5s ease-out;
+        }
+        
+        @keyframes groupGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.9); }
+        }
+        
+        .relation-group h4 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .message-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .message {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            opacity: 0;
+            animation: slideInRight 0.5s ease-out forwards;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+        
+        .message.highlighting {
+            font-size: 1.1em;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.2);
+        }
+        
+        .message.sent {
+            background: rgba(139, 92, 246, 0.1);
+            border-left-color: #8b5cf6;
+            margin-left: 30px;
+        }
+        
+        .message.received {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+            margin-right: 30px;
+        }
+        
+        .ai-analysis-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .analysis-panel {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .analysis-panel h4 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        .pattern-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .pattern-item.slide-left {
+            animation: slideFromLeft 0.5s ease-out forwards;
+        }
+        
+        .pattern-item.slide-right {
+            animation: slideFromRight 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .pattern-item.highlighted {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 15px;
+        }
+        
+        .speed-control label {
+            color: #94a3b8;
+            font-weight: 500;
+            min-width: 120px;
+        }
+        
+        .slider {
+            flex: 1;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.6);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+        }
+        
+        .speed-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #3b82f6;
+            font-size: 1.1em;
+        }
+        
+        .stage-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stage-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .stage-btn.active {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .stage-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .test-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .control-btn:hover::before {
+            left: 100%;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+        }
+        
+        .control-btn.secondary {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .mode-switch {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 5px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 40px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .mode-btn {
+            padding: 10px 30px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .mode-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            width: 0%;
+            transition: width 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        .test-interface {
+            background: #0f172a;
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .input-section {
+            margin: 20px 0;
+        }
+        
+        .input-section h4 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .input-field label {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+        
+        .input-field input {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        .input-field input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+        
+        .verification-result {
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .verification-result.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+        }
+        
+        .verification-result.failure {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+        }
+        
+        .verification-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .result-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        .result-text {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .result-text.success {
+            color: #10b981;
+        }
+        
+        .result-text.failure {
+            color: #ef4444;
+        }
+        
+        .result-text.rotating {
+            animation: rotate360 2s ease-in-out;
+        }
+        
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .trust-score {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .trust-score.success {
+            color: #10b981;
+        }
+        
+        .trust-score.failure {
+            color: #ef4444;
+        }
+        
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            animation: popupIn 0.3s ease-out;
+            max-width: 400px;
+            min-width: 300px;
+        }
+        
+        .popup.show {
+            display: block;
+        }
+        
+        .popup.error {
+            border-color: #ef4444;
+        }
+        
+        @keyframes popupIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .popup h3 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        
+        .popup.error h3 {
+            color: #ef4444;
+        }
+        
+        .popup button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .popup.error button {
+            background: #ef4444;
+        }
+        
+        .popup button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .popup.error button:hover {
+            background: #dc2626;
+        }
+        
+        .step-tab-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: #e2e8f0;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step-tab-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .step-tab-btn.active {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .step-tab-btn.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            animation: pulse 2s infinite;
+        }
+        
+        .step-tab-btn .step-icon {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+        
+        .step-tab-btn .step-title {
+            font-weight: bold;
+            color: #3b82f6;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .step-tab-btn .step-desc {
+            font-size: 1em;
+            color: #94a3b8;
+            margin-top: 3px;
+            margin-bottom: 8px;
+        }
+        
+        .step-tab-btn .step-status {
+            font-size: 0.9em;
+            color: #10b981;
+            margin-top: 8px;
+            padding: 4px 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-weight: 500;
+        }
+        
+        .visualization-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            max-height: 700px;
+            background: rgba(15, 23, 42, 0.98);
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .visualization-modal.show {
+            display: block;
+            animation: modalIn 0.5s ease-out;
+        }
+        
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .visualization-modal h3 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .visualization-content {
+            width: 100%;
+            height: calc(100% - 80px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .viz-user {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .viz-server {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            position: absolute;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
+        }
+        
+        .data-flow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+            animation: dataFlow 2s ease-out;
+        }
+        
+        @keyframes dataFlow {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+        
+        .viz-message {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: white;
+            position: absolute;
+            opacity: 0;
+            animation: messageIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+            }
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .patent-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .patent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+        }
+        
+        .wave-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(16, 185, 129, 0.3),
+                transparent
+            );
+            animation: waveSlide 3s ease-in-out infinite;
+        }
+        
+        @keyframes waveSlide {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            50% {
+                left: 0%;
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
+        .patent-card:nth-child(1) .wave-effect {
+            animation-delay: 0s;
+        }
+        
+        .patent-card:nth-child(2) .wave-effect {
+            animation-delay: 0.5s;
+        }
+        
+        .patent-card:nth-child(3) .wave-effect {
+            animation-delay: 1s;
+        }
+        
+        .patent-card:nth-child(4) .wave-effect {
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .investment-highlight-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .investment-highlight-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .wave-ripple {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .wave-ripple::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 25%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.05) 75%,
+                transparent 100%
+            );
+            animation: innerWave 4s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes innerWave {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #3b82f6, transparent);
+            border-radius: 50%;
+            animation: floatUp 8s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0px);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(50px);
+            }
+        }
+        
+        .premium-glow {
+            box-shadow: 
+                0 0 20px rgba(59, 130, 246, 0.3),
+                0 0 40px rgba(139, 92, 246, 0.2),
+                0 0 60px rgba(16, 185, 129, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .premium-glow:hover {
+            box-shadow: 
+                0 0 30px rgba(59, 130, 246, 0.5),
+                0 0 60px rgba(139, 92, 246, 0.3),
+                0 0 90px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .enhanced-interaction {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .enhanced-interaction:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .process-visualization {
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 600px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .process-visualization::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .section {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .relation-groups { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+            .ai-analysis-container { grid-template-columns: 1fr; }
+            .visualization-modal { 
+                width: 95%; 
+                height: 85vh;
+                max-height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header premium-glow">
+            <div class="floating-particles" id="headerParticles"></div>
+            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px; gap: 20px;">
+                <svg width="80" height="80" viewBox="0 0 80 80" style="filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));">
+                    <defs>
+                        <linearGradient id="nexauthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2563EB"/>
+                            <stop offset="50%" style="stop-color:#7C3AED"/>
+                            <stop offset="100%" style="stop-color:#059669"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#2563EB" flood-opacity="0.8"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="intenseBright">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feColorMatrix type="matrix" values="1.5 0 0 0 0  0 1.5 0 0 0  0 0 2 0 0  0 0 0 1 0"/>
+                            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.9"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Outer hexagon ring -->
+                    <polygon points="40,8 60,20 60,40 40,52 20,40 20,20" 
+                             fill="none" 
+                             stroke="url(#nexauthGradient)" 
+                             stroke-width="2" 
+                             opacity="0.6"/>
+                    
+                    <!-- Central nexus circle -->
+                    <circle cx="40" cy="30" r="8" 
+                            fill="url(#nexauthGradient)" 
+                            filter="url(#intenseBright)">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Enhanced glow ring -->
+                    <circle cx="40" cy="30" r="10" 
+                            fill="none" 
+                            stroke="url(#nexauthGradient)" 
+                            stroke-width="2" 
+                            opacity="0.6"
+                            filter="url(#glow)">
+                        <animate attributeName="r" values="10;14;10" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Network nodes -->
+                    <circle cx="25" cy="15" r="3" fill="#2563EB"/>
+                    <circle cx="55" cy="15" r="3" fill="#7C3AED"/>
+                    <circle cx="65" cy="30" r="3" fill="#059669"/>
+                    <circle cx="55" cy="45" r="3" fill="#2563EB"/>
+                    <circle cx="25" cy="45" r="3" fill="#7C3AED"/>
+                    <circle cx="15" cy="30" r="3" fill="#059669"/>
+                    
+                    <!-- Connection lines to center -->
+                    <line x1="25" y1="15" x2="34" y2="25" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="15" x2="46" y2="25" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="65" y1="30" x2="48" y2="30" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="45" x2="46" y2="35" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="25" y1="45" x2="34" y2="35" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="15" y1="30" x2="32" y2="30" stroke="url(#nexauthGradient)" stroke-width="1.5" opacity="0.7"/>
+                    
+                    <!-- Authentication shield symbol in center -->
+                    <path d="M40 22 L35 26 L40 30 L45 26 Z" 
+                          fill="white" 
+                          stroke="none"/>
+                    
+                    <!-- Pulse animation ring -->
+                    <circle cx="40" cy="30" r="12" 
+                            fill="none" 
+                            stroke="url(#nexauthGradient)" 
+                            stroke-width="1" 
+                            opacity="0.4">
+                        <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Company text -->
+                    <text x="40" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="url(#nexauthGradient)">
+                        NEXAUTH
+                    </text>
+                    <text x="40" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="3" fill="#94a3b8">
+                        The Nexus of Trust
+                    </text>
+                </svg>
+                <div>
+                    <h1 style="margin: 0; background: linear-gradient(135deg, #2563EB, #7C3AED, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">NEXAUTH™</h1>
+                    <div style="font-size: 1.2em; color: #94a3b8; margin-top: 5px;">The Nexus of Trust</div>
+                </div>
+            </div>
+            <p class="tagline">Revolutionary AI-Powered Relationship-Based Identity Verification Platform</p>
+            <p class="sub-tagline">Where Trust Meets Technology | Patent-Protected Global Innovation in Digital Identity Authentication</p>
+            
+            <div style="margin-top: 30px; padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3); position: relative; z-index: 10;">
+                <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.2em;">🏆 Global Patent Portfolio & Trademark Protection</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.9em;">
+                    <div class="patent-card" style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.3);">
+                        <div class="wave-effect"></div>
+                        <div style="font-weight: bold; color: #10b981; font-size: 170%;">🇰🇷</div>
+                        <div style="color: #94a3b8; margin-top: 5px;">10-2468849</div>
+                        <div style="color: #f59e0b; font-size: 0.8em;">Core Patent</div>
+                    </div>
+                    <div class="patent-card" style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <div class="wave-effect"></div>
+                        <div style="font-weight: bold; color: #10b981; font-size: 170%;">🇺🇸</div>
+                        <div style="color: #94a3b8; margin-top: 5px;">US 12074871</div>
+                        <div style="color: #f59e0b; font-size: 0.8em;">US Patent</div>
+                    </div>
+                    <div class="patent-card" style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.3);">
+                        <div class="wave-effect"></div>
+                        <div style="font-weight: bold; color: #10b981; font-size: 170%;">🇪🇺</div>
+                        <div style="color: #94a3b8; margin-top: 5px;">EP 4044052</div>
+                        <div style="color: #f59e0b; font-size: 0.8em;">EU Patent</div>
+                    </div>
+                    <div class="patent-card" style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <div class="wave-effect"></div>
+                        <div style="font-weight: bold; color: #10b981; font-size: 170%;">🇯🇵</div>
+                        <div style="color: #94a3b8; margin-top: 5px;">JP 07245390</div>
+                        <div style="color: #f59e0b; font-size: 0.8em;">Japan Patent</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.3); text-align: center;">
+                    <h4 style="color: #10b981; margin-bottom: 10px; font-size: 1.1em;">📝 Trademark Application Status</h4>
+                    <div style="color: #94a3b8; font-size: 0.95em;">
+                        <strong>NEXAUTH™</strong> Trademark Filed | Filed: June 6, 2025 | Application No: 40-2025-0097344
+                        <div style="font-size: 0.85em; margin-top: 5px; color: #64748b;">
+                            "The Nexus of Trust" - Pioneering a New Paradigm in Relationship-Based Authentication
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section enhanced-interaction">
+            <h2>🎯 Authentication Process Demo</h2>
+            
+            <div class="speed-control">
+                <label>Demo Speed:</label>
+                <input type="range" class="slider" id="visualSpeed" min="1" max="10" value="5">
+                <span class="speed-value" id="visualSpeedValue">5</span>
+            </div>
+            
+            <div class="stage-nav">
+                <button class="stage-btn active" onclick="showStage(1)">Step 1: Auth Request</button>
+                <button class="stage-btn" onclick="showStage(2)">Step 2: Relationship Verification</button>
+                <button class="stage-btn" onclick="showStage(3)">Step 3: AI Analysis</button>
+                <button class="stage-btn" onclick="showStage(4)">Step 4: Authentication Complete</button>
+            </div>
+            
+            <div class="process-visualization">
+                <div class="stage-container active" id="stage1">
+                    <div class="stage-header">
+                        <h3>Step 1: Authentication Request</h3>
+                        <p>User initiates identity verification process</p>
+                    </div>
+                    <div class="user-card">
+                        <div class="info-item" style="font-size: 4em; margin-bottom: 20px;">👤</div>
+                        <h4 class="info-item" id="demoUserName">John Smith</h4>
+                        <p class="info-item" id="demoUserPhone">+1 (555) 123-4567</p>
+                        <p class="info-item" style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                            Name, photo, phone number<br>for identity verification
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="stage-container" id="stage2">
+                    <div class="stage-header">
+                        <h3>Step 2: Relationship Network Verification</h3>
+                        <p>Verifying relationships through natural communication patterns</p>
+                    </div>
+                    <div class="relation-groups">
+                        <div class="relation-group" id="familyGroup">
+                            <h4>👨‍👩‍👧‍👦 Family</h4>
+                            <div class="message-container" id="familyMessages"></div>
+                        </div>
+                        <div class="relation-group" id="workGroup">
+                            <h4>💼 Workplace</h4>
+                            <div class="message-container" id="workMessages"></div>
+                        </div>
+                        <div class="relation-group" id="friendGroup">
+                            <h4>👥 Friends</h4>
+                            <div class="message-container" id="friendMessages"></div>
+                        </div>
+                        <div class="relation-group" id="schoolGroup">
+                            <h4>🎓 Alumni</h4>
+                            <div class="message-container" id="schoolMessages"></div>
+                        </div>
+                        <div class="relation-group" id="hobbyGroup">
+                            <h4>🎨 Hobbies</h4>
+                            <div class="message-container" id="hobbyMessages"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stage-container" id="stage3">
+                    <div class="stage-header">
+                        <h3>Step 3: AI Big Data Analysis</h3>
+                        <p>Analyzing communication patterns to verify identity consistency</p>
+                    </div>
+                    <div class="ai-analysis-container">
+                        <div class="analysis-panel">
+                            <h4>📱 Communication Patterns</h4>
+                            <div class="scan-line"></div>
+                            <div id="communicationPatterns"></div>
+                        </div>
+                        <div class="analysis-panel">
+                            <h4>🤖 Big Data Matching</h4>
+                            <div class="scan-line" style="animation-delay: 0.5s;"></div>
+                            <div id="bigDataPatterns"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="analysisProgress"></div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <p id="analysisResult" style="font-size: 1.2em;"></p>
+                    </div>
+                </div>
+                
+                <div class="stage-container" id="stage4">
+                    <div class="stage-header">
+                        <h3>Step 4: Authentication Complete</h3>
+                        <p>Identity verification and authentication approval</p>
+                    </div>
+                    <div class="verification-result success show">
+                        <div class="result-icon">✅</div>
+                        <div class="result-text success rotating">Authentication Successful</div>
+                        <div class="trust-score success" id="demoTrustScore">Trust Score: 100%</div>
+                        <p style="color: #94a3b8;" id="demoResultDetails">
+                            11 relationship contacts verified (Family 3, Work 2, Friends 2, Alumni 2, Hobbies 2)<br>
+                            Communication pattern match: 100%<br>
+                            Big data consistency: 100%
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section enhanced-interaction">
+            <h2>🧪 Authentication Process Testing</h2>
+            
+            <div class="mode-switch">
+                <button class="mode-btn" onclick="setMode('manual')">Manual Mode</button>
+                <button class="mode-btn active" onclick="setMode('auto')">Auto Mode</button>
+            </div>
+            
+            <div class="speed-control">
+                <label>Auto Mode Speed:</label>
+                <input type="range" class="slider" id="autoSpeed" min="1" max="10" value="5">
+                <span class="speed-value" id="autoSpeedValue">5</span>
+            </div>
+            
+            <div class="test-interface">
+                <div class="input-section" id="manualInputs">
+                    <h4>Identity Verification Request Information</h4>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" id="userName" placeholder="Enter your name" onchange="updateDemoData()">
+                        </div>
+                        <div class="input-field">
+                            <label>Phone Number</label>
+                            <input type="tel" id="userPhone" placeholder="+1 (555) 000-0000" onchange="updateDemoData()">
+                        </div>
+                        <div class="input-field">
+                            <label>Security Code</label>
+                            <input type="password" id="userPassword" placeholder="Security code" onchange="updateDemoData()">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-tabs-section" style="margin: 30px 0; padding: 25px; background: rgba(30, 41, 59, 0.5); border-radius: 15px;">
+                    <h4 style="color: #3b82f6; margin-bottom: 20px; text-align: center;">🚀 Step-by-Step Authentication Process Testing</h4>
+                    
+                    <div class="step-tabs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                        <button class="step-tab-btn active" onclick="executeStep(1)" data-step="1">
+                            <div class="step-icon">📝</div>
+                            <div class="step-title">Step 1</div>
+                            <div class="step-desc">Auth Request</div>
+                            <div class="step-status" id="status-1">Info Verified</div>
+                        </button>
+                        <button class="step-tab-btn" onclick="executeStep(2)" data-step="2">
+                            <div class="step-icon">📞</div>
+                            <div class="step-title">Step 2</div>
+                            <div class="step-desc">Contact Network</div>
+                            <div class="step-status" id="status-2">Requests Sent</div>
+                        </button>
+                        <button class="step-tab-btn" onclick="executeStep(3)" data-step="3">
+                            <div class="step-icon">✅</div>
+                            <div class="step-title">Step 3</div>
+                            <div class="step-desc">Response Collection</div>
+                            <div class="step-status" id="status-3">✅ 11 Responses</div>
+                        </button>
+                        <button class="step-tab-btn" onclick="executeStep(4)" data-step="4">
+                            <div class="step-icon">🤖</div>
+                            <div class="step-title">Step 4</div>
+                            <div class="step-desc">AI Analysis</div>
+                            <div class="step-status" id="status-4">✅ Analysis Complete (100%)</div>
+                        </button>
+                        <button class="step-tab-btn" onclick="executeStep(5)" data-step="5">
+                            <div class="step-icon">🔍</div>
+                            <div class="step-title">Step 5</div>
+                            <div class="step-desc">Identity Verification</div>
+                            <div class="step-status" id="status-5">✅ Verified (100%)</div>
+                        </button>
+                        <button class="step-tab-btn" onclick="executeStep(6)" data-step="6">
+                            <div class="step-icon">🎉</div>
+                            <div class="step-title">Step 6</div>
+                            <div class="step-desc">Authentication</div>
+                            <div class="step-status" id="status-6">✅ Complete</div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-controls">
+                    <button class="control-btn" id="testBtn" onclick="startFullTest()">
+                        <span id="testBtnText">Run Complete Process</span>
+                    </button>
+                    <button class="control-btn secondary" onclick="resetTest()">Reset</button>
+                </div>
+                
+                <div id="testProgress" style="margin-top: 30px;"></div>
+            </div>
+        </div>
+        
+        <div class="section enhanced-interaction">
+            <h2>💎 Investment Opportunity & Market Potential</h2>
+            
+            <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 50%, rgba(5, 150, 105, 0.1) 100%); border-radius: 15px; padding: 30px; margin-bottom: 30px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.2);">
+                <h3 style="background: linear-gradient(135deg, #2563EB, #7C3AED, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-size: 1.5em;">🚀 NEXAUTH Investment Highlights</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(37, 99, 235, 0.2); position: relative; overflow: hidden;">
+                        <div class="wave-ripple" style="--wave-color: rgba(37, 99, 235, 0.3); animation-delay: 0s;"></div>
+                        <div style="font-size: 2em; color: #2563EB; font-weight: bold; position: relative; z-index: 2;">4 Countries</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">Global Patent Portfolio</div>
+                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">First-to-Market Technology</div>
+                    </div>
+                    <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(124, 58, 237, 0.2); position: relative; overflow: hidden;">
+                        <div class="wave-ripple" style="--wave-color: rgba(124, 58, 237, 0.3); animation-delay: 1s;"></div>
+                        <div style="font-size: 2em; color: #7C3AED; font-weight: bold; position: relative; z-index: 2;">$808B</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">Global Auth Market 2034</div>
+                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">23.6% CAGR Explosion</div>
+                    </div>
+                    <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(5, 150, 105, 0.2); position: relative; overflow: hidden;">
+                        <div class="wave-ripple" style="--wave-color: rgba(5, 150, 105, 0.3); animation-delay: 2s;"></div>
+                        <div style="font-size: 2em; color: #059669; font-weight: bold; position: relative; z-index: 2;">Zero</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">Hardware Dependency</div>
+                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">Pure Software Solution</div>
+                    </div>
+                    <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(5, 150, 105, 0.1)); padding: 20px; border-radius: 10px; border: 1px solid rgba(37, 99, 235, 0.2); position: relative; overflow: hidden;">
+                        <div class="wave-ripple" style="--wave-color: linear-gradient(90deg, rgba(37, 99, 235, 0.3), rgba(5, 150, 105, 0.3)); animation-delay: 3s;"></div>
+                        <div style="font-size: 2em; background: linear-gradient(135deg, #2563EB, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; position: relative; z-index: 2;">100%</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">Authentication Accuracy</div>
+                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">The Nexus of Trust</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card premium-glow">
+                    <div class="stat-number">World First</div>
+                    <div>Relationship-Based Auth</div>
+                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Revolutionary Paradigm</div>
+                </div>
+                <div class="stat-card premium-glow">
+                    <div class="stat-number">< 8 Sec</div>
+                    <div>Average Processing Time</div>
+                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">100% Accurate Real-Time</div>
+                </div>
+                <div class="stat-card premium-glow">
+                    <div class="stat-number">AI/ML</div>
+                    <div>Big Data Analytics</div>
+                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Deep Learning Patterns</div>
+                </div>
+                <div class="stat-card premium-glow">
+                    <div class="stat-number">B2B/B2C</div>
+                    <div>Unlimited Scalability</div>
+                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Cross-Industry Ready</div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(16, 185, 129, 0.1); border-radius: 15px; padding: 25px; margin-top: 20px;">
+                <h3 style="color: #10b981; margin-bottom: 15px;">🌍 Market Opportunity & Business Model</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #10b981;">✓</span>
+                        <strong>Global Digital Identity Authentication Market:</strong> $120B (2025) → $808B (2034) | 23.6% CAGR explosive growth
+                    </li>
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #10b981;">✓</span>
+                        <strong>Current Solution Limitations:</strong> Hardware dependency, high costs, low accuracy, security vulnerabilities
+                    </li>
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #059669;">✓</span>
+                        <strong style="background: linear-gradient(135deg, #2563EB, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">NEXAUTH Competitive Edge:</strong> Software-based, zero hardware costs, 96% accuracy (The Nexus of Trust)
+                    </li>
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #10b981;">✓</span>
+                        <strong>Revenue Streams:</strong> SaaS subscriptions, API usage fees, enterprise licensing, white-label solutions
+                    </li>
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #10b981;">✓</span>
+                        <strong>Target Markets:</strong> Financial services, healthcare, government, e-commerce, social platforms, enterprise security
+                    </li>
+                    <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #10b981;">✓</span>
+                        <strong>Regulatory Advantages:</strong> GDPR compliant, SOC 2 ready, KYC/AML compatible, privacy-by-design architecture
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section enhanced-interaction">
+            <h2>📧 Business Inquiries & Partnership</h2>
+            
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 15px; padding: 30px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.3);">
+                <h3 style="color: #3b82f6; margin-bottom: 20px; font-size: 1.3em;">🤝 Ready to Transform Digital Identity Verification?</h3>
+                <p style="color: #94a3b8; margin-bottom: 25px; font-size: 1.1em;">
+                    Contact us for investment opportunities, partnerships, licensing, and technical integration
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">💼</div>
+                        <h4 style="color: #10b981; margin-bottom: 10px;">Business Development</h4>
+                        <a href="mailto:intrepid7@naver.com" style="color: #3b82f6; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#3b82f6'">
+                            📧 intrepid7@naver.com
+                        </a>
+                        <p style="color: #64748b; font-size: 0.9em; margin-top: 8px;">Partnerships • Licensing • Market Expansion</p>
+                    </div>
+                    
+                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🚀</div>
+                        <h4 style="color: #8b5cf6; margin-bottom: 10px;">Investment & Technology</h4>
+                        <a href="mailto:pertz7709@gmail.com" style="color: #3b82f6; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#3b82f6'">
+                            📧 pertz7709@gmail.com
+                        </a>
+                        <p style="color: #64748b; font-size: 0.9em; margin-top: 8px;">Investment Opportunities • Technical Integration • API Access</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <p style="color: #e2e8f0; font-size: 1em; margin-bottom: 10px;">
+                        <strong>🌟 NEXAUTH™</strong> - Revolutionizing Digital Identity with <strong>The Nexus of Trust</strong>
+                    </p>
+                    <p style="color: #94a3b8; font-size: 0.9em;">
+                        Patent-protected • 100% Accuracy • Zero Hardware Dependency • Global Scalability
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popup" id="alertPopup">
+        <h3 id="popupTitle">⚠️ Notice</h3>
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+    
+    <div class="visualization-modal" id="vizModal">
+        <button class="close-modal" onclick="closeVizModal()">✕</button>
+        <h3 id="vizTitle"></h3>
+        <div class="visualization-content" id="vizContent"></div>
+    </div>
+    
+    <script>
+        // Global variables and configuration
+        const CONFIG = {
+            VISUAL_SPEED: { MIN: 1, MAX: 10, DEFAULT: 5 },
+            AUTO_SPEED: { MIN: 1, MAX: 10, DEFAULT: 5 },
+            VALIDATION: {
+                NAME_PATTERN: /^[a-zA-Z\s]{2,50}$/,
+                PHONE_PATTERN: /^\+1\s\(\d{3}\)\s\d{3}-\d{4}$/,
+                PASSWORD_PATTERN: /^.{4,20}$/
+            }
+        };
+        
+        // Application state management
+        const state = {
+            currentStage: 1,
+            currentMode: 'auto',
+            isTestRunning: false,
+            visualSpeed: CONFIG.VISUAL_SPEED.DEFAULT,
+            autoSpeed: CONFIG.AUTO_SPEED.DEFAULT,
+            currentUserData: { name: '', phone: '', password: '' },
+            selectedStep: 1
+        };
+        
+        // Timer management (improved version)
+        const timers = new Set();
+        const intervals = new Set();
+        
+        function setTimer(callback, delay) {
+            const id = setTimeout(() => {
+                timers.delete(id);
+                callback();
+            }, delay);
+            timers.add(id);
+            return id;
+        }
+        
+        function setIntervalSafe(callback, delay) {
+            const id = setInterval(callback, delay);
+            intervals.add(id);
+            return id;
+        }
+        
+        function clearAllTimers() {
+            timers.forEach(id => clearTimeout(id));
+            intervals.forEach(id => clearInterval(id));
+            timers.clear();
+            intervals.clear();
+        }
+        
+        // Conversation data (English version)
+        const conversationData = {
+            family: [
+                { type: 'sent', text: 'Hey Mom, what are you making for dinner tonight?', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Making your favorite lasagna! Will you be home by 7?', medium: 'SMS', icon: '📱' },
+                { type: 'sent', text: 'Absolutely! Can\'t wait. Dad coming too?', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Yes, he\'ll be there. Bringing dessert from that bakery you like', medium: 'SMS', icon: '📱' },
+                { type: 'sent', text: 'Perfect! See you soon ❤️', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Drive safe, honey. Love you!', medium: 'SMS', icon: '📱' }
+            ],
+            work: [
+                { type: 'sent', text: 'Hi Sarah, could you share tomorrow\'s meeting materials?', medium: 'Email', icon: '📧' },
+                { type: 'received', text: 'Sure! I\'ll send them over this afternoon', medium: 'Email', icon: '📧' },
+                { type: 'sent', text: 'Thanks! What time works best for you?', medium: 'Slack', icon: '💬' },
+                { type: 'received', text: 'By 3 PM should be good. Any specific sections you need?', medium: 'Slack', icon: '💬' },
+                { type: 'sent', text: 'The Q4 projections mainly. Much appreciated!', medium: 'Slack', icon: '💬' },
+                { type: 'received', text: 'Got it. I\'ll highlight those sections for you', medium: 'Email', icon: '📧' }
+            ],
+            friend: [
+                { type: 'sent', text: 'Are you free this weekend for that movie?', medium: 'WhatsApp', icon: '💬' },
+                { type: 'received', text: 'Saturday works! Sunday I\'m visiting my parents', medium: 'WhatsApp', icon: '💬' },
+                { type: 'sent', text: 'Perfect! How about 7 PM at the downtown theater?', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Sounds great! Should we grab dinner after?', medium: 'SMS', icon: '📱' },
+                { type: 'sent', text: 'Yes! I know a great Italian place nearby', medium: 'Voice', icon: '📞' },
+                { type: 'received', text: 'Perfect! Can\'t wait to catch up 😊', medium: 'WhatsApp', icon: '💬' }
+            ],
+            school: [
+                { type: 'sent', text: 'Hey! Are you coming to the reunion next month?', medium: 'Facebook', icon: '💬' },
+                { type: 'received', text: 'Definitely! So excited to see everyone again', medium: 'Facebook', icon: '💬' },
+                { type: 'sent', text: 'Did you hear Mrs. Johnson is going to be there?', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Really? Our old chemistry teacher? That\'s amazing!', medium: 'SMS', icon: '📱' },
+                { type: 'sent', text: 'I know right! She always was our favorite', medium: 'Voice', icon: '📞' },
+                { type: 'received', text: 'This reunion is going to be incredible!', medium: 'Facebook', icon: '💬' }
+            ],
+            hobby: [
+                { type: 'sent', text: 'Ready for tomorrow\'s hiking trail?', medium: 'Discord', icon: '💬' },
+                { type: 'received', text: 'Can\'t wait! The weather looks perfect too', medium: 'Discord', icon: '💬' },
+                { type: 'sent', text: 'I\'ll bring the trail mix and water bottles', medium: 'SMS', icon: '📱' },
+                { type: 'received', text: 'Great! I\'ve got the first aid kit and snacks', medium: 'SMS', icon: '📱' },
+                { type: 'sent', text: 'Perfect teamwork as always! 🥾', medium: 'Discord', icon: '💬' },
+                { type: 'received', text: 'Let\'s grab coffee after the hike!', medium: 'Voice', icon: '📞' }
+            ]
+        };
+        
+        // Initialization function
+        function initializeApp() {
+            try {
+                setupSliders();
+                updateDemoData();
+                createFloatingParticles();
+                
+                state.selectedStep = 1;
+                const firstTab = document.querySelector('[data-step="1"]');
+                if (firstTab) {
+                    firstTab.classList.add('active');
+                }
+                
+                // Start auto demo
+                setTimer(() => {
+                    showStage(2);
+                    setTimer(() => {
+                        showStage(3);
+                        setTimer(() => {
+                            showStage(4);
+                        }, 6000);
+                    }, 8000);
+                }, 3000);
+            } catch (error) {
+                console.error('Error initializing app:', error);
+            }
+        }
+        
+        // Create floating particles
+        function createFloatingParticles() {
+            try {
+                const container = document.getElementById('headerParticles');
+                if (!container) return;
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                    
+                    const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.background = `radial-gradient(circle, ${color}, transparent)`;
+                    
+                    container.appendChild(particle);
+                }
+            } catch (error) {
+                console.error('Error creating floating particles:', error);
+            }
+        }
+        
+        // Setup sliders
+        function setupSliders() {
+            try {
+                const visualSpeedSlider = document.getElementById('visualSpeed');
+                const autoSpeedSlider = document.getElementById('autoSpeed');
+                
+                if (visualSpeedSlider) {
+                    visualSpeedSlider.addEventListener('input', function(e) {
+                        state.visualSpeed = parseInt(e.target.value) || CONFIG.VISUAL_SPEED.DEFAULT;
+                        const valueElement = document.getElementById('visualSpeedValue');
+                        if (valueElement) {
+                            valueElement.textContent = state.visualSpeed;
+                        }
+                    });
+                }
+                
+                if (autoSpeedSlider) {
+                    autoSpeedSlider.addEventListener('input', function(e) {
+                        state.autoSpeed = parseInt(e.target.value) || CONFIG.AUTO_SPEED.DEFAULT;
+                        const valueElement = document.getElementById('autoSpeedValue');
+                        if (valueElement) {
+                            valueElement.textContent = state.autoSpeed;
+                        }
+                    });
+                }
+                
+                const visualValueElement = document.getElementById('visualSpeedValue');
+                const autoValueElement = document.getElementById('autoSpeedValue');
+                
+                if (visualValueElement) visualValueElement.textContent = state.visualSpeed;
+                if (autoValueElement) autoValueElement.textContent = state.autoSpeed;
+            } catch (error) {
+                console.error('Error setting up sliders:', error);
+            }
+        }
+        
+        // Data validation
+        function validateUserData(name, phone, password) {
+            if (!CONFIG.VALIDATION.NAME_PATTERN.test(name)) {
+                return { valid: false, message: 'Name must be 2-50 characters, letters and spaces only.' };
+            }
+            
+            if (!CONFIG.VALIDATION.PHONE_PATTERN.test(phone)) {
+                return { valid: false, message: 'Phone must be in format: +1 (555) 123-4567' };
+            }
+            
+            if (!CONFIG.VALIDATION.PASSWORD_PATTERN.test(password)) {
+                return { valid: false, message: 'Security code must be 4-20 characters.' };
+            }
+            
+            return { valid: true };
+        }
+        
+        function validateUserInput() {
+            const nameElement = document.getElementById('userName');
+            const phoneElement = document.getElementById('userPhone');
+            const passwordElement = document.getElementById('userPassword');
+            
+            if (!nameElement || !phoneElement || !passwordElement) {
+                return { isValid: false, message: 'Required input fields not found.' };
+            }
+            
+            const name = nameElement.value.trim();
+            const phone = phoneElement.value.trim();
+            const password = passwordElement.value.trim();
+            
+            if (!name || !phone || !password) {
+                return { isValid: false, message: 'Please fill in all required information.' };
+            }
+            
+            const validation = validateUserData(name, phone, password);
+            return { isValid: validation.valid, message: validation.message || '' };
+        }
+        
+        // Update demo data
+        function updateDemoData() {
+            try {
+                const nameElement = document.getElementById('userName');
+                const phoneElement = document.getElementById('userPhone');
+                
+                if (nameElement && nameElement.value.trim()) {
+                    state.currentUserData.name = nameElement.value.trim();
+                    const demoNameElement = document.getElementById('demoUserName');
+                    if (demoNameElement) {
+                        demoNameElement.textContent = state.currentUserData.name;
+                    }
+                }
+                
+                if (phoneElement && phoneElement.value.trim()) {
+                    state.currentUserData.phone = phoneElement.value.trim();
+                    const demoPhoneElement = document.getElementById('demoUserPhone');
+                    if (demoPhoneElement) {
+                        demoPhoneElement.textContent = state.currentUserData.phone;
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating demo data:', error);
+            }
+        }
+        
+        // Stage management
+        function showStage(stage) {
+            try {
+                clearAllTimers();
+                
+                document.querySelectorAll('.stage-container').forEach(container => {
+                    container.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.stage-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                const stageElement = document.getElementById(`stage${stage}`);
+                if (stageElement) {
+                    stageElement.classList.add('active');
+                }
+                
+                const stageBtns = document.querySelectorAll('.stage-btn');
+                if (stageBtns[stage - 1]) {
+                    stageBtns[stage - 1].classList.add('active');
+                }
+                
+                updateDemoData();
+                
+                switch(stage) {
+                    case 2:
+                        simulateMessages();
+                        break;
+                    case 3:
+                        simulateAIAnalysis();
+                        break;
+                    case 4:
+                        setTimer(() => {
+                            const resultText = document.querySelector('#stage4 .result-text');
+                            if (resultText) {
+                                resultText.classList.add('rotating');
+                                setTimer(() => {
+                                    resultText.classList.remove('rotating');
+                                }, 2000);
+                            }
+                        }, 100);
+                        break;
+                }
+                
+                state.currentStage = stage;
+            } catch (error) {
+                console.error('Error showing stage:', error);
+            }
+        }
+        
+        // Typing effect
+        function typeText(element, text, callback) {
+            if (!element) {
+                if (callback) callback();
+                return;
+            }
+            
+            let index = 0;
+            element.textContent = '';
+            
+            const typingSpeed = Math.max(50 * (11 - state.visualSpeed) / 10, 20);
+            
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, typingSpeed);
+        }
+        
+        // Message simulation
+        function simulateMessages() {
+            try {
+                ['family', 'work', 'friend', 'school', 'hobby'].forEach(group => {
+                    const container = document.getElementById(`${group}Messages`);
+                    if (container) {
+                        container.innerHTML = '';
+                    }
+                });
+                
+                const groups = ['family', 'work', 'friend', 'school', 'hobby'];
+                let groupStartDelay = 0;
+                
+                groups.forEach((groupName, groupIndex) => {
+                    const messages = conversationData[groupName];
+                    const container = document.getElementById(`${groupName}Messages`);
+                    const groupElement = document.getElementById(`${groupName}Group`);
+                    
+                    if (!container || !groupElement) {
+                        console.warn(`Missing elements for group: ${groupName}`);
+                        return;
+                    }
+                    
+                    setTimer(() => {
+                        groupElement.classList.add('active', 'highlighting');
+                        
+                        messages.forEach((msg, messageIndex) => {
+                            const messageDelay = messageIndex * Math.max(600 * (11 - state.visualSpeed) / 10, 300);
+                            
+                            setTimer(() => {
+                                container.querySelectorAll('.message').forEach(m => {
+                                    m.classList.remove('highlighting');
+                                });
+                                
+                                const msgElement = document.createElement('div');
+                                msgElement.className = `message ${msg.type} highlighting`;
+                                
+                                const messageHeader = document.createElement('div');
+                                messageHeader.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;';
+                                
+                                const strong = document.createElement('strong');
+                                strong.textContent = msg.type === 'sent' ? (state.currentUserData.name || 'John Smith') : 'Contact';
+                                
+                                const mediumInfo = document.createElement('span');
+                                mediumInfo.style.cssText = 'font-size: 0.8em; color: #94a3b8; display: flex; align-items: center; gap: 4px;';
+                                mediumInfo.innerHTML = `${msg.icon} ${msg.medium}`;
+                                
+                                messageHeader.appendChild(strong);
+                                messageHeader.appendChild(mediumInfo);
+                                
+                                const textSpan = document.createElement('span');
+                                textSpan.style.cssText = 'display: block; margin-top: 5px;';
+                                
+                                msgElement.appendChild(messageHeader);
+                                msgElement.appendChild(textSpan);
+                                
+                                container.appendChild(msgElement);
+                                container.scrollTop = container.scrollHeight;
+                                
+                                typeText(textSpan, msg.text, () => {
+                                    setTimer(() => {
+                                        msgElement.classList.remove('highlighting');
+                                    }, 200);
+                                });
+                            }, messageDelay);
+                        });
+                        
+                        setTimer(() => {
+                            groupElement.classList.remove('highlighting');
+                        }, messages.length * Math.max(600 * (11 - state.visualSpeed) / 10, 300) + 500);
+                        
+                    }, groupStartDelay);
+                    
+                    groupStartDelay += messages.length * Math.max(600 * (11 - state.visualSpeed) / 10, 300) + 1000;
+                });
+            } catch (error) {
+                console.error('Error simulating messages:', error);
+            }
+        }
+        
+        // AI analysis simulation
+        function simulateAIAnalysis() {
+            try {
+                const communicationPatterns = [
+                    '📱 SMS language patterns: Natural family terms usage (100%)',
+                    '📧 Email formality: Consistent workplace communication (100%)', 
+                    '💬 Social media style: Friend/alumni relationship variations (100%)',
+                    '📞 Voice call responsiveness: Relationship-specific patterns (100%)',
+                    '🎓 Alumni conversation style: Shared experience references (100%)',
+                    '🎨 Hobby communication: Technical terminology and passion (100%)',
+                    '⏰ Communication timing: Daily lifestyle pattern consistency (100%)',
+                    '📝 Sentence structure: Individual writing style fingerprint (100%)'
+                ];
+                
+                const bigDataPatterns = [
+                    '👨‍👩‍👧‍👦 Family relationship language big data matching: 100%',
+                    '💼 Workplace communication pattern database match: 100%',
+                    '👥 Friend relationship conversation style big data: 100%',
+                    '🎓 Alumni network language pattern external DB match: 100%',
+                    '🎨 Hobby community communication traits data linkage: 100%',
+                    '📊 Communication medium usage pattern big data: 100%',
+                    '🔍 Language expression diversity external media comparison: 100%',
+                    '🎯 Comprehensive consistency final calculation: 100%'
+                ];
+                
+                const commContainer = document.getElementById('communicationPatterns');
+                const bigDataContainer = document.getElementById('bigDataPatterns');
+                
+                if (commContainer) commContainer.innerHTML = '';
+                if (bigDataContainer) bigDataContainer.innerHTML = '';
+                
+                const patternInterval = Math.max(500 * (11 - state.visualSpeed) / 10, 250);
+                
+                communicationPatterns.forEach((pattern, index) => {
+                    setTimer(() => {
+                        const item = document.createElement('div');
+                        item.className = 'pattern-item slide-left';
+                        item.textContent = pattern;
+                        if (commContainer) {
+                            commContainer.appendChild(item);
+                        }
+                    }, index * patternInterval);
+                });
+                
+                bigDataPatterns.forEach((pattern, index) => {
+                    setTimer(() => {
+                        const item = document.createElement('div');
+                        item.className = 'pattern-item slide-right';
+                        item.textContent = pattern;
+                        if (bigDataContainer) {
+                            bigDataContainer.appendChild(item);
+                            
+                            setTimer(() => {
+                                if (commContainer && commContainer.children[index]) {
+                                    commContainer.children[index].classList.add('highlighted');
+                                    item.classList.add('highlighted');
+                                }
+                            }, patternInterval / 2);
+                        }
+                    }, (index * patternInterval) + (patternInterval / 2));
+                });
+                
+                const totalAnalysisTime = Math.max(communicationPatterns.length, bigDataPatterns.length) * patternInterval + patternInterval;
+                
+                setTimer(() => {
+                    const progressBar = document.getElementById('analysisProgress');
+                    if (progressBar) {
+                        const progressDuration = Math.max(2000 * (11 - state.visualSpeed) / 10, 1000);
+                        progressBar.style.transition = `width ${progressDuration}ms ease-out`;
+                        progressBar.style.width = '100%';
+                        
+                        setTimer(() => {
+                            const resultElement = document.getElementById('analysisResult');
+                            if (resultElement) {
+                                resultElement.style.color = '#10b981';
+                                resultElement.innerHTML = 
+                                    `✅ NEXAUTH AI Big Data Analysis Complete: <strong>${state.currentUserData.name || 'John Smith'}</strong> verified as authentic identity (Trust Score: <strong>100%</strong>)`;
+                            }
+                        }, progressDuration + 200);
+                    }
+                }, totalAnalysisTime + 500);
+            } catch (error) {
+                console.error('Error simulating AI analysis:', error);
+            }
+        }
+        
+        // Mode setting
+        function setMode(mode) {
+            try {
+                state.currentMode = mode;
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                if (event && event.target) {
+                    event.target.classList.add('active');
+                }
+                
+                if (mode === 'auto') {
+                    const userNameElement = document.getElementById('userName');
+                    const userPhoneElement = document.getElementById('userPhone');
+                    const userPasswordElement = document.getElementById('userPassword');
+                    
+                    if (userNameElement) userNameElement.value = '';
+                    if (userPhoneElement) userPhoneElement.value = '';
+                    if (userPasswordElement) userPasswordElement.value = '';
+                    updateDemoData();
+                }
+            } catch (error) {
+                console.error('Error setting mode:', error);
+            }
+        }
+        
+        // Auto typing effect
+        async function autoTypeInput(fieldId, text) {
+            try {
+                const field = document.getElementById(fieldId);
+                if (!field) return;
+                
+                field.value = '';
+                field.focus();
+                
+                for (let i = 0; i < text.length; i++) {
+                    field.value += text[i];
+                    await new Promise(resolve => setTimeout(resolve, Math.max(120 * (11 - state.autoSpeed) / 10, 50)));
+                }
+                field.blur();
+                updateDemoData();
+            } catch (error) {
+                console.error('Error in autoTypeInput:', error);
+            }
+        }
+        
+        // Popup management
+        function showPopup(message, isError = false) {
+            try {
+                const popup = document.getElementById('alertPopup');
+                const title = document.getElementById('popupTitle');
+                const messageElement = document.getElementById('popupMessage');
+                
+                if (!popup || !title || !messageElement) return;
+                
+                if (isError) {
+                    popup.classList.add('error');
+                    title.textContent = '❌ Error';
+                } else {
+                    popup.classList.remove('error');
+                    title.textContent = '⚠️ Notice';
+                }
+                
+                messageElement.textContent = message;
+                popup.classList.add('show');
+            } catch (error) {
+                console.error('Error showing popup:', error);
+            }
+        }
+        
+        function closePopup() {
+            try {
+                const popup = document.getElementById('alertPopup');
+                if (popup) {
+                    popup.classList.remove('show');
+                }
+            } catch (error) {
+                console.error('Error closing popup:', error);
+            }
+        }
+        
+        // Visualization modal management
+        function showVizModal(title, stepIndex) {
+            try {
+                const modal = document.getElementById('vizModal');
+                const titleElement = document.getElementById('vizTitle');
+                const content = document.getElementById('vizContent');
+                
+                if (!modal || !titleElement || !content) {
+                    console.warn('Missing modal elements');
+                    return;
+                }
+                
+                titleElement.textContent = title;
+                content.innerHTML = '';
+                
+                modal.classList.add('show');
+                
+                setTimer(() => {
+                    createStepVisualization(stepIndex, content);
+                }, 100);
+                
+            } catch (error) {
+                console.error('Error showing viz modal:', error);
+            }
+        }
+        
+        function closeVizModal() {
+            try {
+                const modal = document.getElementById('vizModal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    
+                    setTimer(() => {
+                        const content = document.getElementById('vizContent');
+                        if (content) {
+                            content.innerHTML = '';
+                        }
+                    }, 100);
+                }
+            } catch (error) {
+                console.error('Error closing viz modal:', error);
+            }
+        }
+        
+        // Step-by-step visualization creation
+        function createStepVisualization(step, container) {
+            if (!container) {
+                console.warn('Container not found for step visualization');
+                return;
+            }
+            
+            try {
+                const userName = state.currentUserData.name || 'John Smith';
+                const userPhone = state.currentUserData.phone || '+1 (555) 123-4567';
+                
+                switch(step) {
+                    case 1:
+                        createStep1Viz(container, userName, userPhone);
+                        break;
+                    case 2:
+                        createStep2Viz(container);
+                        break;
+                    case 3:
+                        createStep3Viz(container);
+                        break;
+                    case 4:
+                        createStep4Viz(container);
+                        break;
+                    case 5:
+                        createStep5Viz(container);
+                        break;
+                    case 6:
+                        createStep6Viz(container, userName);
+                        break;
+                    default:
+                        console.warn('Unknown step:', step);
+                }
+            } catch (error) {
+                console.error('Error creating step visualization:', error);
+            }
+        }
+        
+        function createStep1Viz(container, userName, userPhone) {
+            try {
+                container.innerHTML = `
+                    <div class="viz-user" style="left: 20%; top: 50%;">
+                        <span>👤</span>
+                    </div>
+                    <div class="viz-server" style="right: 20%; top: 50%;">
+                        <span>🖥️</span>
+                    </div>
+                    <div class="viz-message" style="left: 35%; top: 30%;">
+                        Name: ${userName}
+                    </div>
+                    <div class="viz-message" style="left: 35%; top: 50%;">
+                        Phone: ${userPhone}
+                    </div>
+                    <div class="viz-message" style="left: 35%; top: 70%;">
+                        Security Code: ****
+                    </div>
+                `;
+                
+                setTimer(() => {
+                    for (let i = 0; i < 5; i++) {
+                        setTimer(() => {
+                            const flow = document.createElement('div');
+                            flow.className = 'data-flow';
+                            flow.style.left = '40%';
+                            flow.style.top = '50%';
+                            container.appendChild(flow);
+                        }, i * 300);
+                    }
+                }, 1000);
+            } catch (error) {
+                console.error('Error in createStep1Viz:', error);
+            }
+        }
+        
+        function createStep2Viz(container) {
+            try {
+                container.innerHTML = `
+                    <div style="position: absolute; left: 10%; top: 30%; transform: translateY(-50%); text-align: center; padding: 25px; background: rgba(59, 130, 246, 0.2); border: 3px solid #3b82f6; border-radius: 20px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); z-index: 10;">
+                        <div style="font-size: 3em; margin-bottom: 15px; animation: pulse 2s infinite;">🖥️</div>
+                        <div style="color: #3b82f6; font-weight: bold; font-size: 1.2em; margin-bottom: 8px;">NEXAUTH Central System</div>
+                        <div style="color: #94a3b8; font-size: 1em;">Sending verification requests</div>
+                        <div style="color: #10b981; font-size: 0.9em; margin-top: 10px;">📤 Dispatching requests...</div>
+                    </div>
+                    <div style="position: absolute; right: 10%; top: 20%; transform: translateY(0); text-align: center; z-index: 10;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 400px;">
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.2); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">👨‍👩‍👧‍👦</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Family</div>
+                                <div style="color: #64748b; font-size: 0.7em; margin-top: 3px;">3 contacts</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.2); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">💼</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Work</div>
+                                <div style="color: #64748b; font-size: 0.7em; margin-top: 3px;">2 contacts</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.2); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">👥</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Friends</div>
+                                <div style="color: #64748b; font-size: 0.7em; margin-top: 3px;">2 contacts</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.2); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">🎓</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Alumni</div>
+                                <div style="color: #64748b; font-size: 0.7em; margin-top: 3px;">2 contacts</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.2); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">🎨</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Hobbies</div>
+                                <div style="color: #64748b; font-size: 0.7em; margin-top: 3px;">2 contacts</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                setTimer(() => {
+                    for (let i = 0; i < 6; i++) {
+                        const arrow = document.createElement('div');
+                        arrow.innerHTML = '➤';
+                        arrow.style.cssText = `
+                            position: absolute;
+                            left: ${40 + i * 8}%;
+                            top: ${45 + Math.sin(i * 0.5) * 15}%;
+                            font-size: 2.5em;
+                            color: #3b82f6;
+                            animation: pulse 2s infinite;
+                            animation-delay: ${i * 0.3}s;
+                            z-index: 5;
+                            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6));
+                        `;
+                        
+                        const particle = document.createElement('div');
+                        particle.style.cssText = `
+                            position: absolute;
+                            left: ${35 + i * 10}%;
+                            top: ${50 + Math.sin(i * 1.2) * 10}%;
+                            width: 12px;
+                            height: 12px;
+                            background: radial-gradient(circle, #3b82f6, #8b5cf6);
+                            border-radius: 50%;
+                            animation: dataFlow 2.5s infinite;
+                            animation-delay: ${i * 0.4}s;
+                            z-index: 5;
+                            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+                        `;
+                        
+                        container.appendChild(arrow);
+                        container.appendChild(particle);
+                    }
+                }, 800);
+            } catch (error) {
+                console.error('Error in createStep2Viz:', error);
+            }
+        }
+        
+        function createStep3Viz(container) {
+            try {
+                container.innerHTML = `
+                    <div style="position: absolute; left: 10%; top: 10%; transform: translateY(0); text-align: center; z-index: 10;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 400px;">
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.3); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">👨‍👩‍👧‍👦</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Family Response</div>
+                                <div style="color: #10b981; font-size: 0.7em; margin-top: 3px; font-weight: bold;">✅ 3/3 complete</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.3); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">💼</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Work Response</div>
+                                <div style="color: #10b981; font-size: 0.7em; margin-top: 3px; font-weight: bold;">✅ 2/2 complete</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.3); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">👥</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Friends Response</div>
+                                <div style="color: #10b981; font-size: 0.7em; margin-top: 3px; font-weight: bold;">✅ 2/2 complete</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.3); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">🎓</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Alumni Response</div>
+                                <div style="color: #10b981; font-size: 0.7em; margin-top: 3px; font-weight: bold;">✅ 2/2 complete</div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(16, 185, 129, 0.3); border: 3px solid #10b981; border-radius: 15px; backdrop-filter: blur(10px); min-width: 100px;">
+                                <div style="font-size: 1.5em; margin-bottom: 5px;">🎨</div>
+                                <div style="color: #10b981; font-weight: bold; font-size: 0.9em;">Hobbies Response</div>
+                                <div style="color: #10b981; font-size: 0.7em; margin-top: 3px; font-weight: bold;">✅ 2/2 complete</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: absolute; right: 10%; top: 50%; transform: translateY(-50%); text-align: center; padding: 25px; background: rgba(59, 130, 246, 0.2); border: 3px solid #3b82f6; border-radius: 20px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); z-index: 10;">
+                        <div style="font-size: 3em; margin-bottom: 15px; animation: pulse 2s infinite;">🖥️</div>
+                        <div style="color: #3b82f6; font-weight: bold; font-size: 1.2em; margin-bottom: 8px;">NEXAUTH Central System</div>
+                        <div style="color: #94a3b8; font-size: 1em; margin-bottom: 8px;">Collecting responses</div>
+                        <div style="color: #10b981; font-size: 1.1em; margin-top: 10px; font-weight: bold;">📥 Received: 11/11 ✅</div>
+                    </div>
+                `;
+                
+                setTimer(() => {
+                    for (let i = 0; i < 6; i++) {
+                        const arrow = document.createElement('div');
+                        arrow.innerHTML = '➤';
+                        arrow.style.cssText = `
+                            position: absolute;
+                            left: ${60 - i * 8}%;
+                            top: ${45 + Math.sin(i * 0.5) * 15}%;
+                            font-size: 2.5em;
+                            color: #10b981;
+                            animation: pulse 2s infinite;
+                            animation-delay: ${i * 0.3}s;
+                            z-index: 5;
+                            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.6));
+                        `;
+                        
+                        const particle = document.createElement('div');
+                        particle.style.cssText = `
+                            position: absolute;
+                            left: ${65 - i * 10}%;
+                            top: ${50 + Math.sin(i * 1.2) * 10}%;
+                            width: 12px;
+                            height: 12px;
+                            background: radial-gradient(circle, #10b981, #059669);
+                            border-radius: 50%;
+                            animation: dataFlow 2.5s infinite;
+                            animation-delay: ${i * 0.4}s;
+                            z-index: 5;
+                            box-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+                        `;
+                        
+                        container.appendChild(arrow);
+                        container.appendChild(particle);
+                    }
+                }, 800);
+            } catch (error) {
+                console.error('Error in createStep3Viz:', error);
+            }
+        }
+        
+        function createStep4Viz(container) {
+            try {
+                const wrapper = document.createElement('div');
+                wrapper.style.cssText = 'position: absolute; left: 50%; top: 20px; transform: translateX(-50%); text-align: center; width: 100%; height: calc(100% - 40px); overflow-y: auto;';
+                
+                wrapper.innerHTML = `
+                    <div style="font-size: 4em; margin-bottom: 20px;">🤖</div>
+                    <div style="color: #3b82f6; font-size: 1.5em; margin-bottom: 20px;">AI Big Data Analysis in Progress...</div>
+                    <div id="modalAnalysisViz" style="width: 100%; height: 400px; margin: 0 auto; overflow-y: auto;"></div>
+                `;
+                
+                container.appendChild(wrapper);
+                
+                setTimer(() => {
+                    const analysisContainer = document.getElementById('modalAnalysisViz');
+                    if (analysisContainer) {
+                        const patterns = [
+                            { name: 'Family Patterns', score: 100, icon: '👨‍👩‍👧‍👦', color: '#10b981' },
+                            { name: 'Work Patterns', score: 100, icon: '💼', color: '#3b82f6' },
+                            { name: 'Friend Patterns', score: 100, icon: '👥', color: '#8b5cf6' },
+                            { name: 'Alumni Patterns', score: 100, icon: '🎓', color: '#f59e0b' },
+                            { name: 'Hobby Patterns', score: 100, icon: '🎨', color: '#ef4444' }
+                        ];
+                        
+                        patterns.forEach((pattern, i) => {
+                            setTimer(() => {
+                                const titleDiv = document.createElement('div');
+                                titleDiv.style.cssText = `
+                                    width: 100%;
+                                    text-align: center;
+                                    margin: 20px 0 8px 0;
+                                    color: ${pattern.color};
+                                    font-weight: bold;
+                                    font-size: 1.1em;
+                                    opacity: 0;
+                                    animation: fadeIn 0.8s ease-out forwards;
+                                `;
+                                titleDiv.textContent = `${pattern.icon} ${pattern.name} analyzing...`;
+                                analysisContainer.appendChild(titleDiv);
+                                
+                                setTimer(() => {
+                                    const bar = document.createElement('div');
+                                    bar.style.cssText = `
+                                        width: 100%;
+                                        height: 50px;
+                                        background: linear-gradient(90deg, ${pattern.color}20 0%, ${pattern.color}40 ${pattern.score}%);
+                                        margin: 8px 0 25px 0;
+                                        border-radius: 25px;
+                                        display: flex;
+                                        align-items: center;
+                                        padding: 0 25px;
+                                        color: white;
+                                        font-weight: bold;
+                                        font-size: 1.1em;
+                                        opacity: 0;
+                                        animation: slideInRight 1.2s ease-out forwards;
+                                        position: relative;
+                                        overflow: hidden;
+                                        box-shadow: 0 4px 15px ${pattern.color}30;
+                                        border: 1px solid ${pattern.color}40;
+                                    `;
+                                    
+                                    bar.innerHTML = `
+                                        <span style="z-index: 2; position: relative; color: ${pattern.color};">${pattern.name}: ${pattern.score}%</span>
+                                        <div style="
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            right: 0;
+                                            bottom: 0;
+                                            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                                            animation: shimmer 2s infinite;
+                                        "></div>
+                                    `;
+                                    analysisContainer.appendChild(bar);
+                                    
+                                    setTimer(() => {
+                                        titleDiv.innerHTML = `${pattern.icon} ${pattern.name} analysis complete ✅`;
+                                        titleDiv.style.color = '#10b981';
+                                        titleDiv.style.textShadow = '0 0 10px rgba(16, 185, 129, 0.5)';
+                                    }, 1200);
+                                }, 600);
+                            }, i * 1200);
+                        });
+                        
+                        const finalResultDelay = patterns.length * 1200 + 2000;
+                        setTimer(() => {
+                            const finalResult = document.createElement('div');
+                            finalResult.innerHTML = `
+                                <div style="
+                                    text-align: center;
+                                    margin-top: 25px;
+                                    padding: 20px;
+                                    background: rgba(16, 185, 129, 0.1);
+                                    border: 2px solid #10b981;
+                                    border-radius: 15px;
+                                    color: #10b981;
+                                    font-weight: bold;
+                                    font-size: 1.3em;
+                                    opacity: 0;
+                                    animation: bounceIn 1.2s ease-out forwards;
+                                    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+                                ">
+                                    🎯 AI Analysis Complete!<br>
+                                    <span style="font-size: 0.9em; margin-top: 8px; display: block;">Overall Trust Score: 100%</span>
+                                    <span style="font-size: 0.8em; margin-top: 5px; display: block; opacity: 0.8;">
+                                        Identity Match Probability: Perfect Match (5 relationship groups analyzed)
+                                    </span>
+                                </div>
+                            `;
+                            analysisContainer.appendChild(finalResult);
+                        }, finalResultDelay);
+                    }
+                }, 100);
+            } catch (error) {
+                console.error('Error in createStep4Viz:', error);
+            }
+        }
+        
+        function createStep5Viz(container) {
+            try {
+                const wrapper = document.createElement('div');
+                wrapper.style.cssText = 'position: absolute; width: 100%; height: 100%; display: flex; align-items: flex-start; justify-content: center; padding-top: 20px; overflow-y: auto;';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.style.cssText = 'text-align: center;';
+                
+                const title = document.createElement('h4');
+                title.textContent = 'Actual Communication Patterns vs Big Data Matching';
+                title.style.cssText = 'color: #3b82f6; margin-bottom: 20px;';
+                
+                const matchingContainer = document.createElement('div');
+                matchingContainer.id = 'modalMatchingViz';
+                matchingContainer.style.cssText = 'display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; overflow-y: auto;';
+                
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(matchingContainer);
+                wrapper.appendChild(contentDiv);
+                container.appendChild(wrapper);
+                
+                // Step 1: Actual conversation panel (slide from left)
+                setTimer(() => {
+                    const actualConv = document.createElement('div');
+                    actualConv.style.cssText = `
+                        width: 300px;
+                        padding: 20px;
+                        background: rgba(59, 130, 246, 0.1);
+                        border: 1px solid #3b82f6;
+                        border-radius: 15px;
+                        opacity: 0;
+                        transform: translateX(-100px);
+                        animation: slideInLeft 1s ease-out forwards;
+                        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+                        max-height: 400px;
+                        overflow-y: auto;
+                    `;
+                    
+                    const actualTitle = document.createElement('h5');
+                    actualTitle.innerHTML = '💬 Actual Communication Patterns';
+                    actualTitle.style.cssText = 'color: #3b82f6; margin-bottom: 20px; text-align: center; font-size: 1.1em; font-weight: bold;';
+                    
+                    const actualContent = document.createElement('div');
+                    actualContent.style.cssText = 'text-align: left; font-size: 0.95em; line-height: 1.6;';
+                    
+                    actualConv.appendChild(actualTitle);
+                    actualConv.appendChild(actualContent);
+                    matchingContainer.appendChild(actualConv);
+                    
+                    // Display conversation samples with typing effect
+                    const conversationSamples = [
+                        { text: '"Hey Mom, what are you making..." 📱', type: 'Family', color: '#3b82f6' },
+                        { text: '"Hi Sarah, could you share..." 📧', type: 'Work', color: '#8b5cf6' },
+                        { text: '"Are you free this weekend..." 💬', type: 'Friends', color: '#10b981' },
+                        { text: '"Are you coming to the reunion..." 💬', type: 'Alumni', color: '#f59e0b' },
+                        { text: '"Ready for tomorrow\'s hike..." 💬', type: 'Hobbies', color: '#ef4444' }
+                    ];
+                    
+                    conversationSamples.forEach((sample, i) => {
+                        setTimer(() => {
+                            const p = document.createElement('p');
+                            p.style.cssText = `
+                                margin: 12px 0; 
+                                padding: 10px; 
+                                background: rgba(59, 130, 246, 0.05);
+                                border-radius: 8px;
+                                border-left: 3px solid ${sample.color};
+                                opacity: 0;
+                                transform: translateX(-30px);
+                                animation: slideInLeft 0.6s ease-out forwards;
+                                animation-delay: ${i * 0.1}s;
+                            `;
+                            
+                            const labelSpan = document.createElement('span');
+                            labelSpan.style.cssText = `color: ${sample.color}; font-weight: bold; font-size: 0.85em;`;
+                            labelSpan.textContent = `[${sample.type}] `;
+                            
+                            const textSpan = document.createElement('span');
+                            textSpan.style.cssText = 'color: #e2e8f0;';
+                            
+                            p.appendChild(labelSpan);
+                            p.appendChild(textSpan);
+                            actualContent.appendChild(p);
+                            
+                            // Apply typing effect
+                            setTimer(() => {
+                                typeTextEffect(textSpan, sample.text, 30);
+                            }, 300);
+                        }, i * 800);
+                    });
+                }, 300);
+                
+                // Step 2: Big data pattern panel (slide from right)
+                setTimer(() => {
+                    const bigDataPattern = document.createElement('div');
+                    bigDataPattern.style.cssText = `
+                        width: 300px;
+                        padding: 20px;
+                        background: rgba(16, 185, 129, 0.1);
+                        border: 1px solid #10b981;
+                        border-radius: 15px;
+                        opacity: 0;
+                        transform: translateX(100px);
+                        animation: slideInRight 1s ease-out forwards;
+                        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+                        max-height: 400px;
+                        overflow-y: auto;
+                    `;
+                    
+                    const bigDataTitle = document.createElement('h5');
+                    bigDataTitle.innerHTML = '🤖 AI Big Data Matching';
+                    bigDataTitle.style.cssText = 'color: #10b981; margin-bottom: 20px; text-align: center; font-size: 1.1em; font-weight: bold;';
+                    
+                    const bigDataContent = document.createElement('div');
+                    bigDataContent.style.cssText = 'text-align: left; font-size: 0.95em; line-height: 1.6;';
+                    
+                    bigDataPattern.appendChild(bigDataTitle);
+                    bigDataPattern.appendChild(bigDataContent);
+                    matchingContainer.appendChild(bigDataPattern);
+                    
+                    // Display AI matching results with typing effect
+                    const patterns = [
+                        { text: 'Family language patterns match: 100%', color: '#10b981', icon: '✅' },
+                        { text: 'Work communication style match: 100%', color: '#059669', icon: '✅' },
+                        { text: 'Friends conversation style match: 100%', color: '#047857', icon: '✅' },
+                        { text: 'Alumni network language match: 100%', color: '#065f46', icon: '✅' },
+                        { text: 'Hobby community communication match: 100%', color: '#064e3b', icon: '✅' },
+                        { text: 'Communication medium patterns match: 100%', color: '#052e16', icon: '✅' },
+                        { text: 'Overall consistency: 100%', color: '#065f46', icon: '🎯' }
+                    ];
+                    
+                    patterns.forEach((pattern, i) => {
+                        setTimer(() => {
+                            const p = document.createElement('p');
+                            p.style.cssText = `
+                                margin: 12px 0; 
+                                padding: 12px;
+                                background: rgba(16, 185, 129, 0.05);
+                                border-radius: 8px;
+                                border: 1px solid rgba(16, 185, 129, 0.2);
+                                color: ${pattern.color};
+                                font-weight: ${i === patterns.length - 1 ? 'bold' : 'normal'};
+                                opacity: 0; 
+                                transform: translateX(30px);
+                                animation: slideInRight 0.6s ease-out forwards;
+                                animation-delay: ${i * 0.1}s;
+                                position: relative;
+                                overflow: hidden;
+                            `;
+                            
+                            const iconSpan = document.createElement('span');
+                            iconSpan.textContent = pattern.icon + ' ';
+                            iconSpan.style.cssText = 'margin-right: 8px; font-size: 1.1em;';
+                            
+                            const textSpan = document.createElement('span');
+                            
+                            p.appendChild(iconSpan);
+                            p.appendChild(textSpan);
+                            bigDataContent.appendChild(p);
+                            
+                            // Apply typing effect
+                            setTimer(() => {
+                                typeTextEffect(textSpan, pattern.text, 25);
+                                
+                                // Special effect for last item
+                                if (i === patterns.length - 1) {
+                                    setTimer(() => {
+                                        p.style.background = 'rgba(16, 185, 129, 0.15)';
+                                        p.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.4)';
+                                        p.style.transform = 'scale(1.02)';
+                                    }, pattern.text.length * 25 + 200);
+                                }
+                            }, 400);
+                        }, i * 700);
+                    });
+                }, 1200);
+                
+                // Step 3: Matching complete effect (appear from center)
+                setTimer(() => {
+                    const matchingComplete = document.createElement('div');
+                    matchingComplete.innerHTML = `
+                        <div style="
+                            position: absolute;
+                            top: 45%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            text-align: center;
+                            opacity: 0;
+                            animation: bounceIn 1.2s ease-out forwards;
+                        ">
+                            <div style="
+                                font-size: 4em;
+                                margin-bottom: 15px;
+                                animation: pulse 2s infinite;
+                                filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
+                            ">🔗</div>
+                            <div class="typing-text" style="
+                                color: #10b981;
+                                font-size: 1.3em;
+                                font-weight: bold;
+                                text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+                                min-height: 1.5em;
+                            "></div>
+                        </div>
+                    `;
+                    container.appendChild(matchingComplete);
+                    
+                    // Display text with typing effect
+                    setTimer(() => {
+                        const typingElement = matchingComplete.querySelector('.typing-text');
+                        if (typingElement) {
+                            typeTextEffect(typingElement, 'Pattern Matching Complete!', 80);
+                        }
+                    }, 600);
+                }, 4000);
+                
+                // Step 4: Final checkmark (appear from bottom)
+                setTimer(() => {
+                    const finalCheckMark = document.createElement('div');
+                    finalCheckMark.innerHTML = `
+                        <div style="
+                            position: absolute;
+                            top: 70%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            font-size: 5em;
+                            color: #10b981;
+                            opacity: 0;
+                            animation: bounceIn 1s ease-out forwards;
+                            text-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+                            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.6));
+                        ">✅</div>
+                        <div class="final-typing-text" style="
+                            position: absolute;
+                            top: 78%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            color: #10b981;
+                            font-weight: bold;
+                            font-size: 1.4em;
+                            opacity: 0;
+                            animation: fadeIn 1s ease-out 0.8s forwards;
+                            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+                            min-height: 1.5em;
+                            white-space: nowrap;
+                        "></div>
+                    `;
+                    container.appendChild(finalCheckMark);
+                    
+                    // Display final message with typing effect
+                    setTimer(() => {
+                        const finalTypingElement = finalCheckMark.querySelector('.final-typing-text');
+                        if (finalTypingElement) {
+                            typeTextEffect(finalTypingElement, 'Identity Verification Complete', 120);
+                        }
+                    }, 1500);
+                }, 5500);
+                
+            } catch (error) {
+                console.error('Error creating step 5 viz:', error);
+            }
+        }
+        
+        // Dedicated typing effect function (for step 5)
+        function typeTextEffect(element, text, speed = 50) {
+            if (!element || !text) return;
+            
+            let index = 0;
+            element.textContent = '';
+            
+            const typeInterval = setInterval(() => {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, speed);
+            
+            timers.add(typeInterval);
+        }
+        
+        function createStep6Viz(container, userName) {
+            try {
+                container.innerHTML = `
+                    <div style="position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); text-align: center;">
+                        <div class="result-icon" style="font-size: 6em; animation: pulse 1s ease-out;">✅</div>
+                        <div class="result-text rotating" style="font-size: 2em; color: #10b981; margin: 20px 0;">
+                            ${userName} Authentication Successful
+                        </div>
+                        <div style="font-size: 1.5em; color: #94a3b8;">
+                            Trust Score: 100%<br>
+                            Processing Time: 8.3 seconds<br>
+                            Contacts: 11 verified
+                        </div>
+                    </div>
+                `;
+                
+                setTimer(() => {
+                    for (let i = 0; i < 10; i++) {
+                        const particle = document.createElement('div');
+                        particle.style.cssText = `
+                            position: absolute;
+                            width: 10px;
+                            height: 10px;
+                            background: ${['#3b82f6', '#8b5cf6', '#ec4899'][i % 3]};
+                            border-radius: 50%;
+                            left: 50%;
+                            top: 50%;
+                            animation: particle${i % 3} 2s ease-out forwards;
+                        `;
+                        container.appendChild(particle);
+                    }
+                }, 500);
+            } catch (error) {
+                console.error('Error in createStep6Viz:', error);
+            }
+        }
+        
+        // Step execution
+        function executeStep(stepIndex) {
+            try {
+                updateDemoData();
+                
+                document.querySelectorAll('.step-tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                const selectedTab = document.querySelector(`[data-step="${stepIndex}"]`);
+                if (selectedTab) {
+                    selectedTab.classList.add('active');
+                }
+                
+                state.selectedStep = stepIndex;
+                
+                const stepTitles = {
+                    1: 'Step 1: Authentication Request',
+                    2: 'Step 2: Contact Network Verification Request', 
+                    3: 'Step 3: Response Collection',
+                    4: 'Step 4: AI Big Data Analysis',
+                    5: 'Step 5: Identity Verification',
+                    6: 'Step 6: Authentication Complete'
+                };
+                
+                showVizModal(stepTitles[stepIndex], stepIndex);
+                
+                // Step 6 display time reduced by 50% (4 seconds -> 2 seconds)
+                const displayTime = stepIndex === 6 ? 2000 : stepIndex >= 3 ? 8000 : 4000;
+                setTimer(() => {
+                    closeVizModal();
+                }, displayTime);
+            } catch (error) {
+                console.error('Error in executeStep:', error);
+            }
+        }
+        
+        // Start full test
+        async function startFullTest() {
+            if (state.isTestRunning) return;
+            
+            try {
+                // Auto input for auto mode
+                if (state.currentMode === 'auto') {
+                    await autoTypeInput('userName', 'Michael Johnson');
+                    await autoTypeInput('userPhone', '+1 (555) 987-6543');
+                    await autoTypeInput('userPassword', 'secure2025');
+                }
+                
+                const validationResult = validateUserInput();
+                if (!validationResult.isValid) {
+                    showPopup(validationResult.message, true);
+                    return;
+                }
+                
+                state.isTestRunning = true;
+                updateDemoData();
+                
+                const testBtn = document.getElementById('testBtn');
+                const testBtnText = document.getElementById('testBtnText');
+                
+                if (testBtn) testBtn.disabled = true;
+                if (testBtnText) testBtnText.textContent = 'Running Complete Process...';
+                
+                const steps = [1, 2, 3, 4, 5, 6];
+                let currentStepIndex = 0;
+                
+                function executeNextStep() {
+                    if (currentStepIndex < steps.length) {
+                        const stepNumber = steps[currentStepIndex];
+                        
+                        document.querySelectorAll('.step-tab-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        
+                        const currentTab = document.querySelector(`[data-step="${stepNumber}"]`);
+                        if (currentTab) {
+                            currentTab.classList.add('active');
+                        }
+                        
+                        executeStep(stepNumber);
+                        
+                        currentStepIndex++;
+                        
+                        // Step 6 delay reduced by 50% (9 seconds -> 3 seconds)
+                        const delay = stepNumber === 6 ? 3000 : stepNumber >= 3 ? 9000 : 5000;
+                        setTimer(executeNextStep, delay);
+                    } else {
+                        state.isTestRunning = false;
+                        if (testBtn) testBtn.disabled = false;
+                        if (testBtnText) testBtnText.textContent = 'Run Complete Process';
+                        
+                        showPopup('🎉 NEXAUTH complete authentication process has been successfully completed! ✨ The Nexus of Trust has securely verified your identity with 100% accuracy. 🔒 Experience the world\'s most advanced and innovative relationship-based authentication system!', false);
+                    }
+                }
+                
+                executeNextStep();
+                
+            } catch (error) {
+                console.error('Error starting full test:', error);
+                state.isTestRunning = false;
+                const testBtn = document.getElementById('testBtn');
+                const testBtnText = document.getElementById('testBtnText');
+                if (testBtn) testBtn.disabled = false;
+                if (testBtnText) testBtnText.textContent = 'Run Complete Process';
+                showPopup('An error occurred while running the test.', true);
+            }
+        }
+        
+        // Reset test (complete reset)
+        function resetTest() {
+            try {
+                // Clear all timers
+                clearAllTimers();
+                
+                // Complete state reset
+                state.isTestRunning = false;
+                state.currentUserData = { name: '', phone: '', password: '' };
+                state.selectedStep = 1;
+                state.currentStage = 1;
+                state.currentMode = 'auto';
+                state.visualSpeed = CONFIG.VISUAL_SPEED.DEFAULT;
+                state.autoSpeed = CONFIG.AUTO_SPEED.DEFAULT;
+                
+                // Reset UI elements
+                const testBtn = document.getElementById('testBtn');
+                const testBtnText = document.getElementById('testBtnText');
+                
+                if (testBtn) testBtn.disabled = false;
+                if (testBtnText) testBtnText.textContent = 'Run Complete Process';
+                
+                // Remove active class from all tabs and activate first tab
+                document.querySelectorAll('.step-tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                const firstTab = document.querySelector('[data-step="1"]');
+                if (firstTab) {
+                    firstTab.classList.add('active');
+                }
+                
+                // Reset mode buttons (auto mode)
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                const autoModeBtn = document.querySelectorAll('.mode-btn')[1];
+                if (autoModeBtn) {
+                    autoModeBtn.classList.add('active');
+                }
+                
+                // Complete reset of input fields
+                ['userName', 'userPhone', 'userPassword'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.value = '';
+                        element.classList.remove('error');
+                    }
+                });
+                
+                // Reset slider values
+                const visualSpeedSlider = document.getElementById('visualSpeed');
+                const autoSpeedSlider = document.getElementById('autoSpeed');
+                const visualSpeedValue = document.getElementById('visualSpeedValue');
+                const autoSpeedValue = document.getElementById('autoSpeedValue');
+                
+                if (visualSpeedSlider) visualSpeedSlider.value = CONFIG.VISUAL_SPEED.DEFAULT;
+                if (autoSpeedSlider) autoSpeedSlider.value = CONFIG.AUTO_SPEED.DEFAULT;
+                if (visualSpeedValue) visualSpeedValue.textContent = CONFIG.VISUAL_SPEED.DEFAULT;
+                if (autoSpeedValue) autoSpeedValue.textContent = CONFIG.AUTO_SPEED.DEFAULT;
+                
+                // Reset analysis results
+                ['communicationPatterns', 'bigDataPatterns'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) element.innerHTML = '';
+                });
+                
+                const analysisProgress = document.getElementById('analysisProgress');
+                const analysisResult = document.getElementById('analysisResult');
+                
+                if (analysisProgress) {
+                    analysisProgress.style.width = '0%';
+                    analysisProgress.style.transition = '';
+                }
+                if (analysisResult) {
+                    analysisResult.textContent = '';
+                    analysisResult.style.color = '';
+                    analysisResult.innerHTML = '';
+                }
+                
+                // Reset message containers
+                ['familyMessages', 'workMessages', 'friendMessages', 'schoolMessages', 'hobbyMessages'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) element.innerHTML = '';
+                });
+                
+                // Reset relationship group states
+                ['familyGroup', 'workGroup', 'friendGroup', 'schoolGroup', 'hobbyGroup'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.classList.remove('active', 'highlighting');
+                    }
+                });
+                
+                // Reset demo data to default values
+                const demoUserName = document.getElementById('demoUserName');
+                const demoUserPhone = document.getElementById('demoUserPhone');
+                const demoTrustScore = document.getElementById('demoTrustScore');
+                const demoResultDetails = document.getElementById('demoResultDetails');
+                
+                if (demoUserName) demoUserName.textContent = 'John Smith';
+                if (demoUserPhone) demoUserPhone.textContent = '+1 (555) 123-4567';
+                if (demoTrustScore) demoTrustScore.textContent = 'Trust Score: 100%';
+                if (demoResultDetails) {
+                    demoResultDetails.innerHTML = `
+                        11 relationship contacts verified (Family 3, Work 2, Friends 2, Alumni 2, Hobbies 2)<br>
+                        Communication pattern match: 100%<br>
+                        Big data consistency: 100%
+                    `;
+                }
+                
+                // Reset test progress
+                const testProgress = document.getElementById('testProgress');
+                if (testProgress) testProgress.innerHTML = '';
+                
+                // Reset stage buttons
+                document.querySelectorAll('.stage-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                const firstStageBtn = document.querySelector('.stage-btn');
+                if (firstStageBtn) {
+                    firstStageBtn.classList.add('active');
+                }
+                
+                // Remove rotation effect from step 4 result text
+                const resultText = document.querySelector('#stage4 .result-text');
+                if (resultText) {
+                    resultText.classList.remove('rotating');
+                }
+                
+                // Reset verification result elements
+                document.querySelectorAll('.verification-result').forEach(result => {
+                    result.classList.remove('show');
+                    result.style.opacity = '0';
+                    result.style.transform = 'translateY(20px)';
+                });
+                
+                // Reset pattern items
+                document.querySelectorAll('.pattern-item').forEach(item => {
+                    item.classList.remove('highlighted', 'slide-left', 'slide-right');
+                    item.style.opacity = '0';
+                });
+                
+                // Close all popups and modals
+                closeVizModal();
+                closePopup();
+                
+                // Return to first stage
+                showStage(1);
+                
+            } catch (error) {
+                console.error('Error resetting test:', error);
+            }
+        }
+        
+        // Additional animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particle0 {
+                to { transform: translate(-100px, -100px); opacity: 0; }
+            }
+            @keyframes particle1 {
+                to { transform: translate(100px, -100px); opacity: 0; }
+            }
+            @keyframes particle2 {
+                to { transform: translate(0, -150px); opacity: 0; }
+            }
+            @keyframes slideInLeft {
+                from { opacity: 0; transform: translateX(-50px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+            @keyframes slideInRight {
+                from { opacity: 0; transform: translateX(50px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+            @keyframes bounceIn {
+                0% { opacity: 0; transform: scale(0.3); }
+                50% { opacity: 1; transform: scale(1.05); }
+                70% { transform: scale(0.9); }
+                100% { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Global error handling
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        });
+        
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            try {
+                initializeApp();
+            } catch (error) {
+                console.error('Error during app initialization:', error);
+            }
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            clearAllTimers();
+        });
+    </script>
+</body>
+</html>
