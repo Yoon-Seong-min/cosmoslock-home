@@ -1,0 +1,3073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS LOCK - 차세대 분산 보안 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #475569 75%, 
+                #64748b 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* 초기화 버튼 */
+        .reset-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            padding: 10px 18px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,65,108,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,65,108,0.4);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(145deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.9) 50%, 
+                rgba(51, 65, 85, 0.85) 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, 
+                rgba(79, 70, 229, 0.1) 0%, 
+                rgba(124, 58, 237, 0.05) 50%, 
+                rgba(59, 130, 246, 0.08) 100%);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+
+        /* 별똥별 흐르는 효과 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                /* 큰 별들 */
+                radial-gradient(3px 3px at 15% 25%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 35% 45%, rgba(147, 197, 253, 0.8), transparent),
+                radial-gradient(3px 3px at 55% 65%, rgba(196, 181, 253, 0.9), transparent),
+                radial-gradient(2px 2px at 75% 85%, rgba(165, 243, 252, 0.8), transparent),
+                radial-gradient(3px 3px at 25% 55%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(2px 2px at 45% 75%, rgba(147, 197, 253, 0.9), transparent),
+                radial-gradient(3px 3px at 65% 15%, rgba(196, 181, 253, 0.6), transparent),
+                radial-gradient(2px 2px at 85% 35%, rgba(165, 243, 252, 0.8), transparent),
+                
+                /* 중간 별들 */
+                radial-gradient(1.5px 1.5px at 10% 40%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 30% 60%, rgba(147, 197, 253, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 50% 80%, rgba(196, 181, 253, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 70% 20%, rgba(165, 243, 252, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 90% 40%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(1.5px 1.5px at 20% 70%, rgba(147, 197, 253, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 40% 90%, rgba(196, 181, 253, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 60% 30%, rgba(165, 243, 252, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 80% 50%, rgba(255, 255, 255, 0.7), transparent),
+                
+                /* 작은 별들 */
+                radial-gradient(1px 1px at 12% 32%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(1px 1px at 18% 52%, rgba(147, 197, 253, 0.5), transparent),
+                radial-gradient(1px 1px at 28% 72%, rgba(196, 181, 253, 0.6), transparent),
+                radial-gradient(1px 1px at 38% 12%, rgba(165, 243, 252, 0.5), transparent),
+                radial-gradient(1px 1px at 48% 42%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 58% 62%, rgba(147, 197, 253, 0.6), transparent),
+                radial-gradient(1px 1px at 68% 82%, rgba(196, 181, 253, 0.5), transparent),
+                radial-gradient(1px 1px at 78% 22%, rgba(165, 243, 252, 0.6), transparent),
+                radial-gradient(1px 1px at 88% 42%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 22% 62%, rgba(147, 197, 253, 0.5), transparent),
+                radial-gradient(1px 1px at 42% 82%, rgba(196, 181, 253, 0.6), transparent),
+                radial-gradient(1px 1px at 62% 22%, rgba(165, 243, 252, 0.5), transparent),
+                radial-gradient(1px 1px at 82% 62%, rgba(255, 255, 255, 0.6), transparent);
+            
+            animation: starsFlow 20s linear infinite, starsSparkle 4s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes starsFlow {
+            0% {
+                transform: translate(-100%, -100%) rotate(0deg);
+            }
+            100% {
+                transform: translate(50%, 50%) rotate(0deg);
+            }
+        }
+
+        @keyframes starsSparkle {
+            0% {
+                opacity: 0.6;
+                filter: brightness(1) drop-shadow(0 0 3px rgba(255,255,255,0.3));
+            }
+            25% {
+                opacity: 0.9;
+                filter: brightness(1.4) drop-shadow(0 0 8px rgba(147,197,253,0.4));
+            }
+            50% {
+                opacity: 1;
+                filter: brightness(1.6) drop-shadow(0 0 12px rgba(196,181,253,0.5));
+            }
+            75% {
+                opacity: 0.8;
+                filter: brightness(1.3) drop-shadow(0 0 6px rgba(165,243,252,0.4));
+            }
+            100% {
+                opacity: 0.7;
+                filter: brightness(1.1) drop-shadow(0 0 4px rgba(255,255,255,0.3));
+            }
+        }
+
+        /* 프리미엄 제목 스타일 */
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .main-title {
+            color: #3b82f6;
+            text-shadow: 
+                0 2px 4px rgba(0,0,0,0.4),
+                0 0 40px rgba(59,130,246,0.3),
+                0 0 60px rgba(59,130,246,0.5),
+                0 0 80px rgba(59,130,246,0.3);
+            filter: drop-shadow(0 0 20px rgba(59,130,246,0.4));
+            animation: gentleGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sub-title {
+            font-size: 0.7em;
+            color: #3b82f6;
+            text-shadow: 
+                0 2px 4px rgba(0,0,0,0.4),
+                0 0 40px rgba(59,130,246,0.3);
+            filter: drop-shadow(0 0 20px rgba(59,130,246,0.4));
+        }
+
+        @keyframes gentleGlow {
+            0% {
+                text-shadow: 
+                    0 2px 4px rgba(0,0,0,0.4),
+                    0 0 40px rgba(59,130,246,0.3),
+                    0 0 60px rgba(59,130,246,0.4),
+                    0 0 80px rgba(59,130,246,0.2);
+                filter: drop-shadow(0 0 20px rgba(59,130,246,0.4));
+            }
+            100% {
+                text-shadow: 
+                    0 2px 4px rgba(0,0,0,0.4),
+                    0 0 40px rgba(59,130,246,0.5),
+                    0 0 60px rgba(59,130,246,0.7),
+                    0 0 80px rgba(59,130,246,0.4),
+                    0 0 100px rgba(59,130,246,0.3);
+                filter: drop-shadow(0 0 30px rgba(59,130,246,0.6));
+            }
+        }
+
+
+
+        .subtitle {
+            color: rgba(226,232,240,0.9);
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 프리미엄 특허 배지 */
+        .patent-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 35px 0 40px 0;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .patent-badge {
+            background: linear-gradient(145deg, 
+                rgba(15, 23, 42, 0.98) 0%, 
+                rgba(30, 41, 59, 0.95) 50%,
+                rgba(51, 65, 85, 0.92) 100%);
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(20px);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 
+                0 8px 32px rgba(15, 23, 42, 0.4),
+                0 4px 16px rgba(59, 130, 246, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(148, 163, 184, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(255, 255, 255, 0.3);
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+        }
+
+        .patent-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, 
+                rgba(59, 130, 246, 0.15) 0%, 
+                rgba(139, 92, 246, 0.1) 50%,
+                rgba(6, 182, 212, 0.08) 100%);
+            border-radius: 18px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .patent-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.25), 
+                transparent);
+            transition: left 0.7s ease;
+        }
+
+        .patent-badge:hover::before {
+            opacity: 1;
+        }
+
+        .patent-badge:hover::after {
+            left: 100%;
+        }
+
+        .patent-badge:hover {
+            transform: translateY(-4px) scale(1.03);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 
+                0 12px 40px rgba(15, 23, 42, 0.5),
+                0 8px 25px rgba(59, 130, 246, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -1px 0 rgba(148, 163, 184, 0.3);
+            color: #ffffff;
+            text-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(59, 130, 246, 0.3);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, 
+                rgba(30, 41, 59, 0.8) 0%, 
+                rgba(51, 65, 85, 0.6) 100%);
+            padding: 24px;
+            border-radius: 18px;
+            text-align: center;
+            color: #e2e8f0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                #3b82f6, 
+                #8b5cf6, 
+                #06b6d4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            border-color: rgba(148, 163, 184, 0.4);
+        }
+
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, 
+                #f1f5f9 0%, 
+                #cbd5e1 50%, 
+                #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .section {
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.98) 0%, 
+                rgba(248,250,252,0.95) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.08),
+                0 8px 25px rgba(0,0,0,0.04),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(226,232,240,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .section h2 {
+            color: #1e293b;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #334155, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 35px;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            padding: 18px 36px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .mode-btn:hover::before {
+            left: 100%;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, 
+                #1e293b 0%, 
+                #334155 50%, 
+                #475569 100%);
+            color: #e2e8f0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 30px rgba(0,0,0,0.3),
+                0 6px 15px rgba(30,41,59,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            border: 1px solid rgba(148,163,184,0.3);
+        }
+
+        .mode-btn:not(.active) {
+            background: linear-gradient(135deg, 
+                rgba(248,250,252,0.9) 0%, 
+                rgba(241,245,249,0.8) 100%);
+            color: #475569;
+            border: 1px solid rgba(203,213,225,0.5);
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .mode-btn:not(.active):hover {
+            background: linear-gradient(135deg, 
+                rgba(241,245,249,0.95) 0%, 
+                rgba(226,232,240,0.9) 100%);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 20px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        /* 프리미엄 속도 조절 바 */
+        .speed-control {
+            margin: 25px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, 
+                rgba(30,41,59,0.8) 0%, 
+                rgba(51,65,85,0.6) 100%);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(148,163,184,0.2);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .speed-control label {
+            color: #e2e8f0;
+            font-weight: 600;
+            font-size: 16px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .speed-slider {
+            width: 320px;
+            margin: 15px;
+            height: 6px;
+            background: linear-gradient(90deg, #334155, #64748b);
+            border-radius: 3px;
+            outline: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .speed-slider:hover {
+            opacity: 1;
+        }
+
+        .speed-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+        }
+
+        .speed-control div {
+            color: #cbd5e1;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 15px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(203,213,225,0.6);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, 
+                rgba(248,250,252,0.95) 0%, 
+                rgba(241,245,249,0.9) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 
+                0 0 0 4px rgba(59,130,246,0.1),
+                0 8px 25px rgba(59,130,246,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.98) 0%, 
+                rgba(248,250,252,0.95) 100%);
+        }
+
+        .processing-unit {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .unit-option {
+            padding: 20px;
+            border: 2px solid rgba(203,213,225,0.4);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, 
+                rgba(248,250,252,0.9) 0%, 
+                rgba(241,245,249,0.8) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unit-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .unit-option:hover::before {
+            left: 100%;
+        }
+
+        .unit-option:hover {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, 
+                rgba(59,130,246,0.05) 0%, 
+                rgba(139,92,246,0.03) 100%);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                0 8px 25px rgba(59,130,246,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        .unit-option.selected {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, 
+                #1e293b 0%, 
+                #334155 100%);
+            color: #e2e8f0;
+            font-weight: 600;
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 30px rgba(30,41,59,0.3),
+                0 6px 15px rgba(59,130,246,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .unit-option h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .unit-option p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 8px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, 
+                #1e293b 0%, 
+                #334155 50%, 
+                #475569 100%);
+            color: #e2e8f0;
+            border: 1px solid rgba(148,163,184,0.3);
+            box-shadow: 
+                0 8px 25px rgba(30,41,59,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(30,41,59,0.4),
+                0 6px 20px rgba(59,130,246,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, 
+                #065f46 0%, 
+                #047857 50%, 
+                #059669 100%);
+            color: #ecfdf5;
+            border: 1px solid rgba(6,95,70,0.4);
+            box-shadow: 
+                0 8px 25px rgba(6,95,70,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(6,95,70,0.4),
+                0 6px 20px rgba(16,185,129,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, 
+                #991b1b 0%, 
+                #dc2626 50%, 
+                #ef4444 100%);
+            color: #fef2f2;
+            border: 1px solid rgba(153,27,27,0.4);
+            box-shadow: 
+                0 8px 25px rgba(153,27,27,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(153,27,27,0.4),
+                0 6px 20px rgba(239,68,68,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        /* 프리미엄 탭 스타일 */
+        .process-tabs {
+            display: flex;
+            gap: 18px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab {
+            background: linear-gradient(145deg, 
+                rgba(248,250,252,0.95) 0%, 
+                rgba(241,245,249,0.9) 100%);
+            padding: 24px 28px;
+            border-radius: 18px;
+            border: 2px solid rgba(203,213,225,0.4);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            min-width: 170px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0.8;
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(59,130,246,0.15), 
+                transparent);
+            transition: left 0.6s;
+        }
+
+        .tab:hover::before {
+            left: 100%;
+        }
+
+        .tab:hover {
+            background: linear-gradient(145deg, 
+                rgba(59,130,246,0.08) 0%, 
+                rgba(139,92,246,0.05) 100%);
+            border-color: #3b82f6;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 
+                0 15px 35px rgba(59,130,246,0.2),
+                0 8px 20px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            opacity: 1;
+        }
+
+        .tab.active {
+            background: linear-gradient(145deg, 
+                #1e293b 0%, 
+                #334155 100%);
+            color: #e2e8f0;
+            border-color: #3b82f6;
+            opacity: 1;
+            transform: translateY(-4px);
+            box-shadow: 
+                0 12px 30px rgba(30,41,59,0.4),
+                0 6px 20px rgba(59,130,246,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .tab h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .tab p {
+            font-size: 13px;
+            margin: 0;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        .tab.active p {
+            opacity: 0.9;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .grid-display {
+            background: linear-gradient(145deg, 
+                rgba(248,250,252,0.95) 0%, 
+                rgba(241,245,249,0.9) 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(203,213,225,0.6);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .grid-display.visible {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 
+                0 12px 35px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        .grid-display h3 {
+            color: #1e293b;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #334155, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coordinate-grid {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .coordinate-cell {
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.9) 0%, 
+                rgba(248,250,252,0.8) 100%);
+            border: 2px solid rgba(203,213,225,0.5);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 
+                0 2px 8px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .coordinate-cell.filled {
+            background: linear-gradient(135deg, 
+                #1e293b 0%, 
+                #334155 100%);
+            color: #e2e8f0;
+            border-color: #3b82f6;
+            box-shadow: 
+                0 4px 15px rgba(30,41,59,0.3),
+                0 2px 8px rgba(59,130,246,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .coordinate-cell:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 
+                0 8px 20px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        .coordinate-cell.filled:hover {
+            box-shadow: 
+                0 8px 25px rgba(30,41,59,0.4),
+                0 4px 15px rgba(59,130,246,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        /* 개선된 지구 자전 스타일 */
+        .restoration-success {
+            background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .earth-rotation {
+            display: inline-block;
+            animation: smoothEarthRotation 3s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes smoothEarthRotation {
+            0% { 
+                transform: rotateY(0deg); 
+            }
+            100% { 
+                transform: rotateY(360deg); 
+            }
+        }
+
+        .data-comparison {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .original-data {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .restored-data {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #56ab2f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 무지개 글로우 효과 */
+        .rainbow-glow {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: rainbow 3s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .rainbow-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: rainbow 3s ease-in-out infinite;
+            border-radius: 10px;
+            opacity: 0.2;
+            blur: 10px;
+            z-index: -1;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 보안 메커니즘 프리미엄 시각화 */
+        .security-mechanism {
+            background: linear-gradient(145deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #475569 75%, 
+                #64748b 100%);
+            color: #e2e8f0;
+            padding: 60px 50px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(148,163,184,0.2);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .security-mechanism::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, 
+                rgba(59,130,246,0.05) 0%, 
+                rgba(139,92,246,0.03) 50%, 
+                rgba(6,182,212,0.04) 100%);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+
+        .security-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .security-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 50px;
+            font-weight: 800;
+            color: #000000;
+        }
+
+        .security-visualization {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 50px 0;
+        }
+
+        .security-feature {
+            background: linear-gradient(145deg, 
+                rgba(30,41,59,0.8) 0%, 
+                rgba(51,65,85,0.6) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148,163,184,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .security-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                #3b82f6, 
+                #8b5cf6, 
+                #06b6d4);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .security-feature:hover::before {
+            opacity: 1;
+        }
+
+        .security-feature:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 60px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            border-color: rgba(148,163,184,0.5);
+        }
+
+        .feature-icon {
+            font-size: 4.5em;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 25px rgba(59,130,246,0.6));
+            animation: premiumPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes premiumPulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 25px rgba(59,130,246,0.6));
+            }
+            50% { 
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 35px rgba(139,92,246,0.8));
+            }
+        }
+
+        .security-feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .feature-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .keyword {
+            background: linear-gradient(135deg, 
+                rgba(59,130,246,0.2) 0%, 
+                rgba(139,92,246,0.15) 100%);
+            color: #e2e8f0;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59,130,246,0.3);
+            box-shadow: 
+                0 4px 15px rgba(59,130,246,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: premiumFloat 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .keyword:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, 
+                rgba(59,130,246,0.3) 0%, 
+                rgba(139,92,246,0.25) 100%);
+            box-shadow: 
+                0 8px 25px rgba(59,130,246,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        @keyframes premiumFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .market-highlight {
+            background: linear-gradient(145deg, 
+                rgba(59, 130, 246, 0.12) 0%, 
+                rgba(139, 92, 246, 0.08) 50%,
+                rgba(6, 182, 212, 0.06) 100%);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 20px 50px rgba(59, 130, 246, 0.15),
+                0 8px 25px rgba(139, 92, 246, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.12),
+                inset 0 -1px 0 rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .market-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(59, 130, 246, 0.08) 45%,
+                rgba(139, 92, 246, 0.06) 50%,
+                rgba(6, 182, 212, 0.04) 55%,
+                transparent 70%);
+            animation: premiumShimmer 4s linear infinite;
+        }
+
+        @keyframes premiumShimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .market-value {
+            font-size: 3.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, 
+                #3b82f6 0%, 
+                #8b5cf6 35%,
+                #06b6d4 70%,
+                #10b981 100%);
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
+            }
+            33% { 
+                background-position: 50% 0%;
+                filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.5));
+            }
+            66% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.4));
+            }
+        }
+
+        .market-highlight p {
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 15px;
+            color: #f1f5f9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 팝업 스타일 */
+        .step-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .step-popup.active {
+            opacity: 1;
+        }
+
+        .popup-container {
+            width: 90vw;
+            height: 80vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .popup-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .popup-content {
+            height: calc(100% - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Step별 특수 스타일 */
+        .typing-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            min-height: 60px;
+        }
+
+        .split-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .element-box {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        /* 수정된 그리드 스타일 */
+        .excel-grid {
+            display: grid;
+            gap: 5px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .grid-cell {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-cell.header {
+            background: #667eea;
+            color: white;
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .grid-cell.corner {
+            background: #4a5568;
+            color: white;
+        }
+
+        .placement-grid {
+            display: grid;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .placement-cell {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+
+        .placement-cell.filled {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.8);
+            border-style: solid;
+            transform: scale(1.05);
+        }
+
+        .coordinate-list {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .coordinate-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-size: 1.1em;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Step 6 고급 분리저장 스타일 */
+        .separation-scene {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .data-cards-container {
+            display: flex;
+            gap: 50px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .data-card {
+            width: 200px;
+            height: 120px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 15px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .data-card h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            font-size: 10px;
+        }
+
+        .mini-cell {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 2px;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .mini-cell.filled {
+            background: #667eea;
+            color: white;
+        }
+
+        .storage-destinations {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 40px;
+        }
+
+        .storage-destination {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 1s ease;
+        }
+
+        /* 보호막 글로우 효과 */
+        .storage-destination.protected {
+            background: rgba(102,255,102,0.2);
+            border-color: rgba(102,255,102,0.8);
+            box-shadow: 
+                0 0 30px rgba(102,255,102,0.6),
+                0 0 60px rgba(102,255,102,0.4),
+                inset 0 0 30px rgba(102,255,102,0.2);
+            animation: protectionGlow 3s ease-in-out;
+        }
+
+        @keyframes protectionGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 30px rgba(102,255,102,0.6),
+                    0 0 60px rgba(102,255,102,0.4),
+                    inset 0 0 30px rgba(102,255,102,0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 50px rgba(102,255,102,0.8),
+                    0 0 100px rgba(102,255,102,0.6),
+                    inset 0 0 50px rgba(102,255,102,0.3);
+            }
+        }
+
+        .storage-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+        }
+
+        /* 카드 애니메이션 */
+        .card-spiral-left {
+            animation: spiralLeftDown 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .card-spiral-right {
+            animation: spiralRightDown 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes spiralLeftDown {
+            0% {
+                transform: translateX(0) translateY(0) scale(1) rotateY(0deg) rotateZ(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateX(-50px) translateY(20px) scale(0.9) rotateY(15deg) rotateZ(-10deg);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateX(-150px) translateY(60px) scale(0.7) rotateY(30deg) rotateZ(-20deg);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateX(-250px) translateY(120px) scale(0.5) rotateY(45deg) rotateZ(-30deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateX(-350px) translateY(200px) scale(0.2) rotateY(60deg) rotateZ(-45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spiralRightDown {
+            0% {
+                transform: translateX(0) translateY(0) scale(1) rotateY(0deg) rotateZ(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateX(50px) translateY(20px) scale(0.9) rotateY(-15deg) rotateZ(10deg);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateX(150px) translateY(60px) scale(0.7) rotateY(-30deg) rotateZ(20deg);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateX(250px) translateY(120px) scale(0.5) rotateY(-45deg) rotateZ(30deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateX(350px) translateY(200px) scale(0.2) rotateY(-60deg) rotateZ(45deg);
+                opacity: 0;
+            }
+        }
+
+        .deletion-demo {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .deletion-text {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .deletion-text.deleting {
+            opacity: 0;
+        }
+
+        /* 복원 팝업 스타일 */
+        .restoration-scene {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .merging-cards {
+            display: flex;
+            gap: 200px;
+            margin: 40px 0;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .merge-card {
+            width: 180px;
+            height: 100px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 15px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+        }
+
+        /* 완전히 겹치는 카드 애니메이션 */
+        .card-overlap-left {
+            animation: overlapLeft 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+                       floatAnimation 2s 2s ease-in-out infinite;
+        }
+
+        .card-overlap-right {
+            animation: overlapRight 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+                       floatAnimation 2s 2s ease-in-out infinite;
+        }
+
+        @keyframes overlapLeft {
+            0% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100px) scale(0.95);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes overlapRight {
+            0% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100px) scale(0.95);
+                opacity: 0.3;
+            }
+        }
+
+        /* 유영 애니메이션 */
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateX(var(--overlap-x, 0)) translateY(0) scale(0.95);
+            }
+            50% {
+                transform: translateX(var(--overlap-x, 0)) translateY(-10px) scale(0.95);
+            }
+        }
+
+        /* 카드 분리 애니메이션 */
+        .card-separate-left {
+            animation: separateLeft 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .card-separate-right {
+            animation: separateRight 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes separateLeft {
+            0% {
+                transform: translateX(100px) scale(0.95);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(-150px) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes separateRight {
+            0% {
+                transform: translateX(-100px) scale(0.95);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(150px) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .restoration-result {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .restored-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .restored-element {
+            background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            animation: restoreElement 0.5s ease forwards;
+        }
+
+        @keyframes restoreElement {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 초기화 버튼 -->
+    <button class="reset-button" onclick="resetToInitial()">🔄 초기화</button>
+
+    <div class="container">
+        <!-- 히어로 섹션 -->
+        <div class="hero">
+            <h1>
+                <span class="main-title">🌌 COSMOS LOCK 🌌</span><br>
+                <span class="sub-title">차세대 분산 보안 시스템</span>
+            </h1>
+            <p class="subtitle">좌표 기반 물리적 분산기술 및 관계 기반 본인인증 기술 적용으로<br>해킹 불가능한 완전 보안 구현</p>
+            
+            <!-- 특허 배지 개선 -->
+            <div class="patent-badges">
+                <div class="patent-badge">KR 특허 10-2252861</div>
+                <div class="patent-badge">KR 특허 10-2552111</div>
+                <div class="patent-badge">US 특허 Appl. No 18/006876</div>
+            </div>
+            
+            <!-- 상표출원 강조 섹션 -->
+            <div style="
+                background: linear-gradient(145deg, 
+                    rgba(59, 130, 246, 0.15) 0%, 
+                    rgba(139, 92, 246, 0.12) 50%,
+                    rgba(6, 182, 212, 0.08) 100%);
+                padding: 12px 24px;
+                border-radius: 12px;
+                margin: 10px auto 15px auto;
+                max-width: 750px;
+                text-align: center;
+                border: 2px solid rgba(59, 130, 246, 0.3);
+                backdrop-filter: blur(20px);
+                box-shadow: 
+                    0 10px 25px rgba(59, 130, 246, 0.12),
+                    0 4px 15px rgba(139, 92, 246, 0.08),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                position: relative;
+                z-index: 2;
+            ">
+                <div style="position: relative; z-index: 2;">
+                    <p style="
+                        font-size: 1.0em;
+                        font-weight: 600;
+                        color: #cbd5e1;
+                        margin: 0;
+                        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+                        line-height: 1.3;
+                    ">
+                        <span style="color: #10b981;">COSMOS LOCK™</span> <span style="color: #94a3b8;">상표출원</span> | <span style="color: #94a3b8;">출원일:</span> <span style="color: #9ca3af;">2025.6.6</span> | <span style="color: #94a3b8;">상표출원번호:</span> <span style="color: #9ca3af;">40-2025-0097359</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value">$699B+</div>
+                    <p>글로벌 데이터 보안<br>$699B+ 시장</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">16.6%</div>
+                    <p>연 16.6% 성장<br>고부가가치</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100%</div>
+                    <p>해킹 시에도<br>복원 불가능</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">특허</div>
+                    <p>한국/미국<br>특허 보유</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; position: relative; z-index: 2;">
+                <p style="
+                    font-size: 15px; 
+                    font-weight: 500; 
+                    color: rgba(226,232,240,0.95);
+                    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+                    line-height: 1.4;
+                ">
+                    <strong style="
+                        background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-weight: 700;
+                    ">글로벌 데이터 보안 시장:</strong> 
+                    $1,504억 (2024) → 
+                    <strong style="
+                        color: #10b981;
+                        font-weight: 700;
+                        font-size: 16px;
+                        text-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+                        filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4));
+                    ">$6,990억 (2034)</strong> 
+                    예상 (CAGR 16.6%)
+                </p>
+            </div>
+        </div>
+
+        <!-- 모드 선택 -->
+        <div class="section" id="modeSection">
+            <h2>🎮 데모 모드 선택</h2>
+            <div class="mode-selector">
+                <button class="mode-btn active" id="autoBtn" onclick="setMode('auto')">🤖 자동 모드</button>
+                <button class="mode-btn" id="manualBtn" onclick="setMode('manual')">✋ 수동 모드</button>
+            </div>
+            
+            <div id="autoMode">
+                <p style="
+                    font-size: 16px; 
+                    font-weight: 500; 
+                    color: #475569; 
+                    margin-bottom: 20px;
+                "><strong style="color: #1e293b;">🤖 자동모드:</strong> 샘플 데이터로 전체 과정을 자동으로 시연합니다.</p>
+                <div id="autoDataDisplay" style="
+                    background: linear-gradient(135deg, 
+                        rgba(30,41,59,0.05) 0%, 
+                        rgba(51,65,85,0.03) 100%);
+                    padding: 18px 24px;
+                    border-radius: 12px;
+                    border: 1px solid rgba(203,213,225,0.4);
+                    font-weight: 500;
+                    color: #334155;
+                    box-shadow: 
+                        0 4px 15px rgba(0,0,0,0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+                    margin-bottom: 20px;
+                ">🌌 생성된 데이터: "COSMOS LOCK 우주적 보안 혁신 기술"</div>
+                
+                <!-- 속도 조절 바 -->
+                <div class="speed-control">
+                    <label for="speedSlider">⚡ 진행 속도 조절:</label>
+                    <input type="range" id="speedSlider" class="speed-slider" min="0.5" max="3" step="0.1" value="1">
+                    <div>현재 속도: <span id="speedDisplay">1.0x</span></div>
+                </div>
+            </div>
+            
+            <div id="manualMode" style="display: none;">
+                <div class="input-group">
+                    <label for="originalData" style="
+                        font-size: 15px;
+                        color: #1e293b;
+                        font-weight: 600;
+                    ">보안 처리할 데이터 입력:</label>
+                    <textarea id="originalData" placeholder="여기에 보안 처리할 데이터를 입력하세요..." rows="3"></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label style="
+                        font-size: 15px;
+                        color: #1e293b;
+                        font-weight: 600;
+                    ">보안 처리 단위 선택:</label>
+                    <div class="processing-unit">
+                        <div class="unit-option selected" onclick="selectUnit('syllable')">
+                            <h4>📝 음절 단위</h4>
+                            <p>각 음절별로 분할</p>
+                        </div>
+                        <div class="unit-option" onclick="selectUnit('word')">
+                            <h4>📄 단어 단위</h4>
+                            <p>공백 기준 단어별 분할</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" onclick="startProcessing()">🚀 보안 처리 시작</button>
+        </div>
+
+        <!-- 처리 과정 (탭 형식) -->
+        <div class="section" id="processSection" style="display: none;">
+            <h2>⚙️ 2단계: 보안 처리 과정</h2>
+            <p style="
+                margin-bottom: 25px; 
+                color: #64748b; 
+                font-size: 15px;
+                font-weight: 500;
+                text-align: center;
+                background: linear-gradient(135deg, 
+                    rgba(30,41,59,0.05) 0%, 
+                    rgba(51,65,85,0.03) 100%);
+                padding: 15px 20px;
+                border-radius: 10px;
+                border: 1px solid rgba(203,213,225,0.3);
+            ">각 탭에 마우스를 올리면 활성화되며, 클릭하면 해당 단계의 상세 과정을 볼 수 있습니다.</p>
+            <div class="process-tabs" id="processTabs">
+                <div class="tab" data-step="1" onmouseover="activateTab(1)" onclick="showStepPopup(1)">
+                    <h4>Step 1</h4>
+                    <p>데이터 입력</p>
+                </div>
+                <div class="tab" data-step="2" onmouseover="activateTab(2)" onclick="showStepPopup(2)">
+                    <h4>Step 2</h4>
+                    <p>문자 분할</p>
+                </div>
+                <div class="tab" data-step="3" onmouseover="activateTab(3)" onclick="showStepPopup(3)">
+                    <h4>Step 3</h4>
+                    <p>그리드 생성</p>
+                </div>
+                <div class="tab" data-step="4" onmouseover="activateTab(4)" onclick="showStepPopup(4)">
+                    <h4>Step 4</h4>
+                    <p>랜덤 배치</p>
+                </div>
+                <div class="tab" data-step="5" onmouseover="activateTab(5)" onclick="showStepPopup(5)">
+                    <h4>Step 5</h4>
+                    <p>좌표 기록</p>
+                </div>
+                <div class="tab" data-step="6" onmouseover="activateTab(6)" onclick="showStepPopup(6)">
+                    <h4>Step 6</h4>
+                    <p>분리 저장</p>
+                </div>
+                <div class="tab" data-step="7" onmouseover="activateTab(7)" onclick="showStepPopup(7)">
+                    <h4>Step 7</h4>
+                    <p>원본 삭제</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 처리 결과 -->
+        <div class="section" id="resultSection" style="display: none;">
+            <h2>📊 3단계: 처리 결과</h2>
+            
+            <!-- 분할된 데이터 요소 -->
+            <div class="grid-display" style="margin-bottom: 20px;">
+                <h3>분할된 데이터 요소</h3>
+                <div id="splitDataDisplay"></div>
+            </div>
+            
+            <!-- 랜덤배치정보와 좌표정보 -->
+            <div class="grid-container">
+                <div class="grid-display">
+                    <h3>랜덤배치정보</h3>
+                    <div id="coordinateGrid"></div>
+                </div>
+                <div class="grid-display">
+                    <h3>좌표정보 (복원키)</h3>
+                    <div id="coordinateInfo"></div>
+                </div>
+            </div>
+            
+            <button class="btn btn-success" onclick="showRestorationPopup()">🔓 데이터 복원 테스트</button>
+        </div>
+
+        <!-- 복원 결과 -->
+        <div class="section" id="restoreSection" style="display: none;">
+            <h2>🔓 4단계: 데이터 복원</h2>
+            <div class="restoration-success">
+                <h3><span class="earth-rotation">🎉 복원 성공!</span></h3>
+                <p>좌표정보와 랜덤배치정보를 결합하여 원본 데이터를 완벽하게 복원했습니다!</p>
+            </div>
+            
+            <div class="data-comparison">
+                <div class="original-data">
+                    <h4>📄 원본 데이터:</h4>
+                    <div id="originalDataDisplay"></div>
+                </div>
+                <div class="restored-data">
+                    <h4>✨ 복원된 데이터:</h4>
+                    <div id="restoredDataDisplay" class="rainbow-glow"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 보안 메커니즘 시각화 -->
+        <div class="section security-mechanism">
+            <div class="security-content">
+                <h2 class="security-title">🌌 COSMOS LOCK 보안 메커니즘</h2>
+                
+                <div class="security-visualization">
+                    <div class="security-feature">
+                        <div class="feature-icon">🌌</div>
+                        <h3>우주적 분산 원리</h3>
+                        <div class="feature-keywords">
+                            <span class="keyword">좌표정보</span>
+                            <span class="keyword">무한분산</span>
+                            <span class="keyword">우주질서</span>
+                            <span class="keyword">절대보안</span>
+                        </div>
+                    </div>
+                    
+                    <div class="security-feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>시장 기회</h3>
+                        <div class="feature-keywords">
+                            <span class="keyword">고성장</span>
+                            <span class="keyword">AI보안</span>
+                            <span class="keyword">클라우드</span>
+                            <span class="keyword">차세대</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="market-highlight">
+                    <div class="market-value">$6,990억</div>
+                    <p>2034년 예상 시장 규모 • 연평균 16.6% 성장</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 문의 섹션 -->
+        <div class="section" style="
+            background: linear-gradient(145deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #475569 75%, 
+                #64748b 100%);
+            color: #e2e8f0;
+            text-align: center;
+            border: 1px solid rgba(148,163,184,0.2);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+        ">
+            <h2 style="
+                color: #3b82f6;
+                text-shadow: 
+                    0 2px 4px rgba(0,0,0,0.4),
+                    0 0 30px rgba(59,130,246,0.3);
+                filter: drop-shadow(0 0 15px rgba(59,130,246,0.4));
+                font-size: 2.0em;
+                margin-bottom: 25px;
+            ">📧 문의 및 제휴</h2>
+            
+            <div style="
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                flex-wrap: wrap;
+                margin: 25px 0;
+            ">
+                <div style="
+                    background: linear-gradient(145deg, 
+                        rgba(30,41,59,0.8) 0%, 
+                        rgba(51,65,85,0.6) 100%);
+                    padding: 25px 30px;
+                    border-radius: 18px;
+                    backdrop-filter: blur(15px);
+                    border: 1px solid rgba(148,163,184,0.3);
+                    box-shadow: 
+                        0 12px 30px rgba(0,0,0,0.3),
+                        inset 0 1px 0 rgba(255,255,255,0.1);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    min-width: 250px;
+                "
+                onmouseover="this.style.transform='translateY(-6px) scale(1.02)'"
+                onmouseout="this.style.transform='translateY(0) scale(1)'">
+                    <div style="font-size: 2.2em; margin-bottom: 12px;">🤝</div>
+                    <h3 style="
+                        color: #f1f5f9;
+                        font-size: 1.2em;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                    ">비즈니스 제휴</h3>
+                    <a href="mailto:intrepid7@naver.com" style="
+                        color: #3b82f6;
+                        text-decoration: none;
+                        font-size: 1.0em;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                    "
+                    onmouseover="this.style.color='#60a5fa'"
+                    onmouseout="this.style.color='#3b82f6'">
+                        intrepid7@naver.com
+                    </a>
+                </div>
+                
+                <div style="
+                    background: linear-gradient(145deg, 
+                        rgba(30,41,59,0.8) 0%, 
+                        rgba(51,65,85,0.6) 100%);
+                    padding: 25px 30px;
+                    border-radius: 18px;
+                    backdrop-filter: blur(15px);
+                    border: 1px solid rgba(148,163,184,0.3);
+                    box-shadow: 
+                        0 12px 30px rgba(0,0,0,0.3),
+                        inset 0 1px 0 rgba(255,255,255,0.1);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    min-width: 250px;
+                " 
+                onmouseover="this.style.transform='translateY(-6px) scale(1.02)'"
+                onmouseout="this.style.transform='translateY(0) scale(1)'">
+                    <div style="font-size: 2.2em; margin-bottom: 12px;">📨</div>
+                    <h3 style="
+                        color: #f1f5f9;
+                        font-size: 1.2em;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                    ">기술 문의</h3>
+                    <a href="mailto:pertz7709@gmail.com" style="
+                        color: #3b82f6;
+                        text-decoration: none;
+                        font-size: 1.0em;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                    " 
+                    onmouseover="this.style.color='#60a5fa'"
+                    onmouseout="this.style.color='#3b82f6'">
+                        pertz7709@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'auto';
+        let processingUnit = 'syllable';
+        let splitData = [];
+        let coordinateSequence = [];
+        let placementGrid = {};
+        let isProcessing = false;
+        let originalText = '';
+        let speedMultiplier = 1.0;
+        let gridSize = 4;
+
+        // 속도 조절 바 이벤트
+        document.getElementById('speedSlider').addEventListener('input', function(e) {
+            speedMultiplier = parseFloat(e.target.value);
+            document.getElementById('speedDisplay').textContent = speedMultiplier.toFixed(1) + 'x';
+        });
+
+        // 전체 초기화 함수
+        function resetToInitial() {
+            // 모든 팝업 제거
+            document.querySelectorAll('.step-popup').forEach(popup => {
+                if (document.body.contains(popup)) {
+                    document.body.removeChild(popup);
+                }
+            });
+            
+            // 섹션 상태 초기화
+            const sections = ['processSection', 'resultSection', 'restoreSection'];
+            sections.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            });
+            
+            const modeSection = document.getElementById('modeSection');
+            if (modeSection) modeSection.style.display = 'block';
+            
+            // 변수 초기화
+            splitData = [];
+            coordinateSequence = [];
+            placementGrid = {};
+            isProcessing = false;
+            originalText = '';
+            gridSize = 4;
+            currentMode = 'auto';
+            processingUnit = 'syllable';
+            
+            // UI 상태 초기화
+            resetUIElements();
+        }
+
+        function resetUIElements() {
+            // 버튼 상태 초기화
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            const autoBtn = document.getElementById('autoBtn');
+            if (autoBtn) autoBtn.classList.add('active');
+            
+            // 입력 필드 초기화
+            const originalDataInput = document.getElementById('originalData');
+            if (originalDataInput) {
+                originalDataInput.value = '';
+                originalDataInput.placeholder = '여기에 보안 처리할 데이터를 입력하세요...';
+                originalDataInput.style.color = '';
+                originalDataInput.style.fontWeight = '';
+            }
+            
+            // 자동 데이터 표시 초기화
+            const autoDataDisplay = document.getElementById('autoDataDisplay');
+            if (autoDataDisplay) {
+                autoDataDisplay.innerHTML = '🌌 생성된 데이터: "COSMOS LOCK 우주적 보안 혁신 기술"';
+                autoDataDisplay.style.color = '';
+                autoDataDisplay.style.fontWeight = '';
+            }
+            
+            // 분할 데이터 표시 초기화
+            const splitDataDisplay = document.getElementById('splitDataDisplay');
+            if (splitDataDisplay) {
+                splitDataDisplay.innerHTML = '';
+                splitDataDisplay.style.color = '';
+                splitDataDisplay.style.fontWeight = '';
+            }
+            
+            // 모드 표시 초기화
+            const autoMode = document.getElementById('autoMode');
+            const manualMode = document.getElementById('manualMode');
+            if (autoMode) autoMode.style.display = 'block';
+            if (manualMode) manualMode.style.display = 'none';
+            
+            // 단위 선택 초기화
+            document.querySelectorAll('.unit-option').forEach(option => option.classList.remove('selected'));
+            const firstOption = document.querySelector('.unit-option');
+            if (firstOption) firstOption.classList.add('selected');
+            
+            // 그리드 및 탭 상태 초기화
+            document.querySelectorAll('.grid-display').forEach(element => {
+                element.classList.remove('visible');
+            });
+            
+            document.querySelectorAll('.tab').forEach(element => {
+                element.classList.remove('active');
+            });
+        }
+
+        // 모드 설정
+        function setMode(mode) {
+            currentMode = mode;
+            
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            
+            if (mode === 'auto') {
+                document.getElementById('autoBtn').classList.add('active');
+                document.getElementById('autoMode').style.display = 'block';
+                document.getElementById('manualMode').style.display = 'none';
+            } else {
+                document.getElementById('manualBtn').classList.add('active');
+                document.getElementById('autoMode').style.display = 'none';
+                document.getElementById('manualMode').style.display = 'block';
+            }
+        }
+
+        // 처리 단위 선택
+        function selectUnit(unit) {
+            processingUnit = unit;
+            document.querySelectorAll('.unit-option').forEach(option => option.classList.remove('selected'));
+            event.target.closest('.unit-option').classList.add('selected');
+        }
+
+        // 탭 활성화
+        function activateTab(stepNumber) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            const targetTab = document.querySelector(`[data-step="${stepNumber}"]`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+        }
+
+        // 개별 스텝 팝업 표시
+        function showStepPopup(stepNumber) {
+            if (!splitData.length) {
+                alert('먼저 보안 처리를 시작해주세요.');
+                return;
+            }
+            
+            const stepFunctions = {
+                1: () => showStep1Popup(() => {}),
+                2: () => showStep2Popup(() => {}),
+                3: () => showStep3Popup(() => {}),
+                4: () => showStep4Popup(() => {}),
+                5: () => showStep5Popup(() => {}),
+                6: () => showStep6Popup(() => {}),
+                7: () => showStep7Popup(() => {})
+            };
+            
+            if (stepFunctions[stepNumber]) {
+                stepFunctions[stepNumber]();
+            }
+        }
+
+        // 데이터 처리 시작
+        function startProcessing() {
+            if (isProcessing) return;
+            
+            if (currentMode === 'auto') {
+                originalText = "COSMOS LOCK 우주적 보안 혁신 기술";
+            } else {
+                originalText = document.getElementById('originalData').value.trim();
+                if (!originalText) {
+                    alert('처리할 데이터를 입력해주세요.');
+                    return;
+                }
+            }
+            
+            isProcessing = true;
+            
+            // 처리 과정 섹션 표시
+            document.getElementById('processSection').style.display = 'block';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('restoreSection').style.display = 'none';
+            
+            // 데이터 분할
+            if (currentMode === 'auto' || processingUnit === 'syllable') {
+                splitData = originalText.split('');
+            } else {
+                splitData = originalText.split(/\s+/);
+            }
+            
+            // 그리드 크기 계산 (분할 요소의 2배 이상)
+            const requiredCells = splitData.length * 2;
+            gridSize = Math.ceil(Math.sqrt(requiredCells));
+            
+            // 좌표 사전 생성
+            generateCoordinates();
+            
+            // 단계별 처리 시작
+            processSteps();
+        }
+
+        // 단계별 처리
+        function processSteps() {
+            const steps = [
+                showStep1Popup,
+                showStep2Popup,
+                showStep3Popup,
+                showStep4Popup,
+                showStep5Popup,
+                showStep6Popup,
+                showStep7Popup
+            ];
+            
+            let currentStep = 0;
+            
+            function nextStep() {
+                if (currentStep < steps.length) {
+                    activateTab(currentStep + 1);
+                    
+                    steps[currentStep](() => {
+                        currentStep++;
+                        if (currentStep < steps.length) {
+                            setTimeout(nextStep, 500 / speedMultiplier);
+                        } else {
+                            setTimeout(displayResults, 1000 / speedMultiplier);
+                        }
+                    });
+                }
+            }
+            
+            nextStep();
+        }
+
+        // Step 1: 데이터 입력 팝업
+        function showStep1Popup(callback) {
+            const popup = createPopup('Step 1: 데이터 입력', `
+                <div class="popup-content">
+                    <div class="typing-text" id="typingText"></div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const typingElement = document.getElementById('typingText');
+                if (!typingElement) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                let index = 0;
+                
+                function typeChar() {
+                    if (index < originalText.length) {
+                        typingElement.textContent += originalText[index];
+                        index++;
+                        setTimeout(typeChar, 100 / speedMultiplier);
+                    } else {
+                        setTimeout(() => {
+                            closePopup(popup);
+                            callback();
+                        }, 1500 / speedMultiplier);
+                    }
+                }
+                
+                typeChar();
+            }, 500 / speedMultiplier);
+        }
+
+        // Step 2: 문자 분할 팝업
+        function showStep2Popup(callback) {
+            const popup = createPopup('Step 2: 문자 분할', `
+                <div class="popup-content">
+                    <div class="split-elements" id="splitElements"></div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const container = document.getElementById('splitElements');
+                if (!container) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                splitData.forEach((element, index) => {
+                    setTimeout(() => {
+                        const box = document.createElement('div');
+                        box.className = 'element-box';
+                        box.textContent = element;
+                        box.style.animationDelay = `${index * 0.1}s`;
+                        container.appendChild(box);
+                    }, (index * 200) / speedMultiplier);
+                });
+                
+                setTimeout(() => {
+                    closePopup(popup);
+                    callback();
+                }, Math.max((splitData.length * 200 + 2000) / speedMultiplier, 3000 / speedMultiplier));
+            }, 100);
+        }
+
+        // Step 3: 그리드 생성 팝업
+        function showStep3Popup(callback) {
+            const popup = createPopup('Step 3: 그리드 생성', `
+                <div class="popup-content">
+                    <div class="excel-grid" id="excelGrid"></div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const grid = document.getElementById('excelGrid');
+                if (!grid) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+                
+                for (let row = 1; row <= gridSize; row++) {
+                    for (let col = 0; col < gridSize; col++) {
+                        setTimeout(() => {
+                            const cell = document.createElement('div');
+                            cell.className = 'grid-cell';
+                            const colLetter = String.fromCharCode(65 + col);
+                            cell.textContent = `${colLetter}${row}`;
+                            grid.appendChild(cell);
+                        }, ((row - 1) * gridSize + col * 100) / speedMultiplier);
+                    }
+                }
+                
+                setTimeout(() => {
+                    closePopup(popup);
+                    callback();
+                }, 3000 / speedMultiplier);
+            }, 100);
+        }
+
+        // Step 4: 랜덤 배치 팝업
+        function showStep4Popup(callback) {
+            const popup = createPopup('Step 4: 랜덤 배치', `
+                <div class="popup-content">
+                    <div class="placement-grid" id="placementGrid"></div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const grid = document.getElementById('placementGrid');
+                if (!grid) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+                
+                for (let i = 0; i < gridSize * gridSize; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'placement-cell';
+                    const row = Math.floor(i / gridSize) + 1;
+                    const col = i % gridSize;
+                    const colLetter = String.fromCharCode(65 + col);
+                    cell.id = `cell-${colLetter}${row}`;
+                    grid.appendChild(cell);
+                }
+                
+                splitData.forEach((element, index) => {
+                    setTimeout(() => {
+                        if (index < coordinateSequence.length) {
+                            const coord = coordinateSequence[index];
+                            const cellId = `cell-${coord}`;
+                            const cell = document.getElementById(cellId);
+                            if (cell) {
+                                cell.textContent = element;
+                                cell.classList.add('filled');
+                            }
+                        }
+                    }, (index * 500) / speedMultiplier);
+                });
+                
+                setTimeout(() => {
+                    closePopup(popup);
+                    callback();
+                }, Math.max((splitData.length * 500 + 1500) / speedMultiplier, 3000 / speedMultiplier));
+            }, 100);
+        }
+
+        // Step 5: 좌표 기록 팝업
+        function showStep5Popup(callback) {
+            const popup = createPopup('Step 5: 좌표 기록', `
+                <div class="popup-content">
+                    <div class="coordinate-list" id="coordinateList"></div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const list = document.getElementById('coordinateList');
+                if (!list) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                splitData.forEach((element, index) => {
+                    setTimeout(() => {
+                        if (index < coordinateSequence.length) {
+                            const item = document.createElement('div');
+                            item.className = 'coordinate-item';
+                            item.style.animationDelay = `${index * 0.1}s`;
+                            item.innerHTML = `
+                                <span>"${element}"</span>
+                                <span>→ 좌표: ${coordinateSequence[index]}</span>
+                            `;
+                            list.appendChild(item);
+                        }
+                    }, (index * 300) / speedMultiplier);
+                });
+                
+                setTimeout(() => {
+                    closePopup(popup);
+                    callback();
+                }, Math.max((splitData.length * 300 + 2000) / speedMultiplier, 3000 / speedMultiplier));
+            }, 100);
+        }
+
+        // Step 6: 분리 저장 팝업
+        function showStep6Popup(callback) {
+            const popup = createPopup('Step 6: 분리 저장', `
+                <div class="popup-content">
+                    <div class="separation-scene">
+                        <h3 style="margin-bottom: 30px;">데이터 분리 및 안전 저장</h3>
+                        
+                        <div class="data-cards-container">
+                            <div class="data-card" id="randomCard">
+                                <h4>랜덤배치정보</h4>
+                                <div class="mini-grid" id="miniRandomGrid"></div>
+                            </div>
+                            <div class="data-card" id="coordCard">
+                                <h4>좌표정보</h4>
+                                <div class="mini-grid" id="miniCoordGrid"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="storage-destinations">
+                            <div class="storage-destination" id="leftStorage">
+                                <div class="storage-icon">🖥️</div>
+                                <h3>중앙컴퓨터</h3>
+                                <p>랜덤배치정보 저장</p>
+                            </div>
+                            <div class="storage-destination" id="rightStorage">
+                                <div class="storage-icon">☁️</div>
+                                <h3>고객 클라우드</h3>
+                                <p>좌표정보 저장</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                createMiniGrids();
+                
+                setTimeout(() => {
+                    const randomCard = document.getElementById('randomCard');
+                    const coordCard = document.getElementById('coordCard');
+                    
+                    if (randomCard) randomCard.classList.add('card-spiral-left');
+                    if (coordCard) coordCard.classList.add('card-spiral-right');
+                }, 2000 / speedMultiplier);
+                
+                setTimeout(() => {
+                    const leftStorage = document.getElementById('leftStorage');
+                    const rightStorage = document.getElementById('rightStorage');
+                    
+                    if (leftStorage) leftStorage.classList.add('protected');
+                    if (rightStorage) rightStorage.classList.add('protected');
+                }, 4000 / speedMultiplier);
+                
+                setTimeout(() => {
+                    closePopup(popup);
+                    callback();
+                }, 8000 / speedMultiplier);
+            }, 500);
+        }
+
+        // 미니 그리드 생성
+        function createMiniGrids() {
+            const grids = [
+                { id: 'miniRandomGrid', data: splitData },
+                { id: 'miniCoordGrid', data: coordinateSequence }
+            ];
+            
+            grids.forEach(({ id, data }) => {
+                const grid = document.getElementById(id);
+                if (grid) {
+                    for (let i = 0; i < 9; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'mini-cell';
+                        if (i < data.length && i < 9) {
+                            cell.textContent = data[i];
+                            cell.classList.add('filled');
+                        }
+                        grid.appendChild(cell);
+                    }
+                }
+            });
+        }
+
+        // Step 7: 원본 데이터 삭제 팝업
+        function showStep7Popup(callback) {
+            const popup = createPopup('Step 7: 원본 데이터 삭제', `
+                <div class="popup-content">
+                    <div class="deletion-demo">
+                        <div class="deletion-text" id="deletionText">"${originalText}"</div>
+                        <div style="margin-top: 30px; font-size: 1.2em;">
+                            시스템에서 완전 제거 중...
+                        </div>
+                    </div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                const deletionText = document.getElementById('deletionText');
+                if (!deletionText) {
+                    closePopup(popup);
+                    callback();
+                    return;
+                }
+                
+                let text = originalText;
+                
+                const deleteInterval = setInterval(() => {
+                    if (text.length > 0) {
+                        text = text.slice(0, -1);
+                        deletionText.textContent = `"${text}"`;
+                    } else {
+                        clearInterval(deleteInterval);
+                        deletionText.innerHTML = '<span style="color: #ff6b6b;">🗑️ 완전 삭제됨</span>';
+                        
+                        setTimeout(() => {
+                            closePopup(popup);
+                            // 팝업 닫힌 후 실제 화면 데이터 삭제 시작
+                            performRealDataDeletion();
+                            callback();
+                        }, 1500 / speedMultiplier);
+                    }
+                }, 200 / speedMultiplier);
+            }, 500 / speedMultiplier);
+        }
+
+        // 실제 화면 데이터 삭제 함수
+        function performRealDataDeletion() {
+            // 1. 자동모드 데이터 삭제
+            if (currentMode === 'auto') {
+                const autoDataDisplay = document.getElementById('autoDataDisplay');
+                if (autoDataDisplay) {
+                    deleteTextContent(autoDataDisplay, '🌌 생성된 데이터: "COSMOS LOCK 우주적 보안 혁신 기술"', () => {
+                        autoDataDisplay.innerHTML = '<span style="color: #ff6b6b;">🗑️ 원본 데이터 완전 삭제됨</span>';
+                    });
+                }
+            } else {
+                // 2. 수동모드 입력창 데이터 삭제
+                const originalDataInput = document.getElementById('originalData');
+                if (originalDataInput && originalDataInput.value) {
+                    deleteInputContent(originalDataInput);
+                }
+            }
+            
+            // 3. 분할된 데이터 요소 삭제 (2초 후)
+            setTimeout(() => {
+                const splitDataDisplay = document.getElementById('splitDataDisplay');
+                if (splitDataDisplay && splitDataDisplay.textContent) {
+                    deleteTextContent(splitDataDisplay, splitDataDisplay.textContent, () => {
+                        splitDataDisplay.innerHTML = '<span style="color: #ff6b6b;">🗑️ 분할 데이터 완전 삭제됨</span>';
+                    });
+                }
+            }, 2000 / speedMultiplier);
+        }
+
+        // 텍스트 콘텐츠 삭제 애니메이션 (최적화)
+        function deleteTextContent(element, text, onComplete) {
+            if (!element || !text) return;
+            
+            let currentText = text;
+            element.style.color = '#ff6b6b';
+            element.style.fontWeight = 'bold';
+            
+            const deleteInterval = setInterval(() => {
+                if (currentText.length > 0) {
+                    currentText = currentText.slice(0, -1);
+                    element.textContent = currentText;
+                } else {
+                    clearInterval(deleteInterval);
+                    if (onComplete) onComplete();
+                }
+            }, 100 / speedMultiplier);
+        }
+
+        // 입력창 콘텐츠 삭제 애니메이션 (최적화)
+        function deleteInputContent(inputElement) {
+            if (!inputElement || !inputElement.value) return;
+            
+            let currentText = inputElement.value;
+            inputElement.style.color = '#ff6b6b';
+            inputElement.style.fontWeight = 'bold';
+            
+            const deleteInterval = setInterval(() => {
+                if (currentText.length > 0) {
+                    currentText = currentText.slice(0, -1);
+                    inputElement.value = currentText;
+                } else {
+                    clearInterval(deleteInterval);
+                    inputElement.placeholder = '🗑️ 원본 데이터 완전 삭제됨';
+                    inputElement.style.color = '';
+                    inputElement.style.fontWeight = '';
+                }
+            }, 100 / speedMultiplier);
+        }
+
+        // 팝업 관리 함수들 (최적화)
+        function createPopup(title, content) {
+            const popup = document.createElement('div');
+            popup.className = 'step-popup';
+            popup.innerHTML = `
+                <div class="popup-container">
+                    <button class="popup-close" onclick="closePopup(this.closest('.step-popup'))">×</button>
+                    <h2 class="popup-title">${title}</h2>
+                    ${content}
+                </div>
+            `;
+            
+            document.body.appendChild(popup);
+            requestAnimationFrame(() => popup.classList.add('active'));
+            return popup;
+        }
+
+        function closePopup(popup) {
+            if (popup && popup.classList) {
+                popup.classList.remove('active');
+                setTimeout(() => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                    }
+                }, 500);
+            }
+        }
+
+        // 복원 팝업 표시 (완전히 겹치는 애니메이션)
+        function showRestorationPopup() {
+            const popup = createPopup('데이터 복원 과정', `
+                <div class="popup-content">
+                    <div class="restoration-scene">
+                        <h3 style="margin-bottom: 30px;">카드 결합 및 데이터 복원</h3>
+                        
+                        <div class="merging-cards">
+                            <div class="merge-card" id="mergeRandomCard">
+                                <h4>랜덤배치정보</h4>
+                                <div class="mini-grid" id="mergeRandomGrid"></div>
+                            </div>
+                            <div class="merge-card" id="mergeCoordCard">
+                                <h4>좌표정보</h4>
+                                <div class="mini-grid" id="mergeCoordGrid"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="restoration-result">
+                            <h3>🔓 복원된 데이터</h3>
+                            <div class="restored-elements" id="restoredElements"></div>
+                            <div style="margin-top: 20px; font-size: 1.5em; font-weight: bold; color: #56ab2f;" id="finalResult"></div>
+                        </div>
+                    </div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                createMergeGrids();
+                
+                // 카드 겹치기
+                setTimeout(() => {
+                    const randomCard = document.getElementById('mergeRandomCard');
+                    const coordCard = document.getElementById('mergeCoordCard');
+                    
+                    if (randomCard) {
+                        randomCard.style.setProperty('--overlap-x', '100px');
+                        randomCard.classList.add('card-overlap-left');
+                    }
+                    if (coordCard) {
+                        coordCard.style.setProperty('--overlap-x', '-100px');
+                        coordCard.classList.add('card-overlap-right');
+                    }
+                }, 1000 / speedMultiplier);
+                
+                // 데이터 복원
+                setTimeout(() => {
+                    showRestoredElements();
+                }, 5000 / speedMultiplier);
+                
+                // 카드 분리
+                setTimeout(() => {
+                    const randomCard = document.getElementById('mergeRandomCard');
+                    const coordCard = document.getElementById('mergeCoordCard');
+                    
+                    if (randomCard) {
+                        randomCard.classList.remove('card-overlap-left');
+                        randomCard.classList.add('card-separate-left');
+                    }
+                    if (coordCard) {
+                        coordCard.classList.remove('card-overlap-right');
+                        coordCard.classList.add('card-separate-right');
+                    }
+                }, 6000 / speedMultiplier);
+                
+                // 최종 결과
+                setTimeout(() => {
+                    const finalResult = document.getElementById('finalResult');
+                    if (finalResult) {
+                        const restoredText = coordinateSequence.map(coord => placementGrid[coord]).join('');
+                        finalResult.textContent = `"${restoredText}"`;
+                    }
+                    
+                    setTimeout(() => {
+                        closePopup(popup);
+                        restoreData();
+                    }, 2000 / speedMultiplier);
+                }, 7000 / speedMultiplier);
+            }, 500);
+        }
+
+        // 관련 헬퍼 함수들
+        function createMergeGrids() {
+            const grids = [
+                { id: 'mergeRandomGrid', data: splitData },
+                { id: 'mergeCoordGrid', data: coordinateSequence }
+            ];
+            
+            grids.forEach(({ id, data }) => {
+                const grid = document.getElementById(id);
+                if (grid) {
+                    for (let i = 0; i < 9; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'mini-cell';
+                        if (i < data.length && i < 9) {
+                            cell.textContent = data[i];
+                            cell.classList.add('filled');
+                        }
+                        grid.appendChild(cell);
+                    }
+                }
+            });
+        }
+
+        function showRestoredElements() {
+            const container = document.getElementById('restoredElements');
+            if (!container) return;
+            
+            splitData.forEach((element, index) => {
+                setTimeout(() => {
+                    const elementDiv = document.createElement('div');
+                    elementDiv.className = 'restored-element';
+                    elementDiv.textContent = element;
+                    elementDiv.style.animationDelay = `${index * 0.1}s`;
+                    container.appendChild(elementDiv);
+                }, (index * 200) / speedMultiplier);
+            });
+        }
+        function generateCoordinates() {
+            coordinateSequence = [];
+            placementGrid = {};
+            
+            if (!splitData || splitData.length === 0) return;
+            
+            // 사용 가능한 모든 좌표 생성
+            const availableCoords = [];
+            for (let row = 1; row <= gridSize; row++) {
+                for (let col = 0; col < gridSize; col++) {
+                    const colLetter = String.fromCharCode(65 + col);
+                    availableCoords.push(`${colLetter}${row}`);
+                }
+            }
+            
+            // 좌표 섞기 (Fisher-Yates shuffle)
+            for (let i = availableCoords.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [availableCoords[i], availableCoords[j]] = [availableCoords[j], availableCoords[i]];
+            }
+            
+            // 분할된 데이터에 좌표 할당
+            splitData.forEach((element, index) => {
+                if (index < availableCoords.length) {
+                    const coord = availableCoords[index];
+                    coordinateSequence.push(coord);
+                    placementGrid[coord] = element;
+                }
+            });
+        }
+
+        // 결과 표시
+        function displayResults() {
+            document.getElementById('resultSection').style.display = 'block';
+            
+            const animationDelay = 800 / speedMultiplier;
+            
+            // 분할된 데이터 표시
+            setTimeout(() => {
+                const splitDisplay = document.querySelector('#splitDataDisplay').parentElement;
+                splitDisplay.classList.add('visible');
+                document.getElementById('splitDataDisplay').innerHTML = 
+                    splitData.map((data, index) => `${index + 1}. "${data}"`).join(', ');
+            }, animationDelay);
+            
+            // 랜덤배치정보 표시
+            setTimeout(() => {
+                const gridDisplay = document.querySelector('#coordinateGrid').parentElement;
+                gridDisplay.classList.add('visible');
+                displayCoordinateGrid();
+            }, animationDelay * 2);
+            
+            // 좌표정보 표시
+            setTimeout(() => {
+                const coordDisplay = document.querySelector('#coordinateInfo').parentElement;
+                coordDisplay.classList.add('visible');
+                document.getElementById('coordinateInfo').innerHTML = 
+                    coordinateSequence.map((coord, index) => `${index + 1}. ${coord}`).join('<br>');
+                
+                isProcessing = false;
+            }, animationDelay * 3);
+        }
+
+        // 좌표 격자 표시
+        function displayCoordinateGrid() {
+            const totalCells = gridSize * gridSize;
+            const cells = [];
+            
+            for (let i = 0; i < totalCells; i++) {
+                const row = Math.floor(i / gridSize) + 1;
+                const col = i % gridSize;
+                const colLetter = String.fromCharCode(65 + col);
+                const coord = `${colLetter}${row}`;
+                const char = placementGrid[coord] || '';
+                const filled = char ? 'filled' : '';
+                
+                cells.push(`<div class="coordinate-cell ${filled}">${char || coord}</div>`);
+            }
+            
+            const grid = document.getElementById('coordinateGrid');
+            grid.innerHTML = `<div class="coordinate-grid" style="grid-template-columns: repeat(${gridSize}, 1fr);">${cells.join('')}</div>`;
+        }
+
+        // 데이터 복원
+        function restoreData() {
+            document.getElementById('restoreSection').style.display = 'block';
+            
+            // 좌표 순서대로 복원
+            const restoredText = coordinateSequence.map(coord => placementGrid[coord]).join('');
+            
+            // 원본과 복원 데이터 표시
+            document.getElementById('originalDataDisplay').textContent = originalText;
+            document.getElementById('restoredDataDisplay').textContent = restoredText;
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', resetToInitial);
+    </script>
+</body>
+</html>
