@@ -657,19 +657,7 @@
             updateCounters();
             setTimeout(incrementVisit, 1000); // 1초 후 방문자 수 증가
             
-            // 링크 클릭 시 알림 (실제 파일로 교체 필요)
-            document.querySelectorAll('.link-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const type = this.textContent.toLowerCase();
-                    const parent = this.closest('.item-card');
-                    const brand = parent.querySelector('.item-brand').textContent;
-                    const isKorean = this.closest('.language-section').querySelector('.korean');
-                    const language = isKorean ? '한글' : 'English';
-                    
-                    alert(`${brand} - ${language} ${type}\n\n실제 파일로 링크를 교체해주세요:\n- PDF 파일 (팩트시트)\n- HTML 파일 (데모앱)\n- MP4 파일 (동영상)`);
-                });
-            });
+            
         });
 
         // 스크롤 애니메이션
