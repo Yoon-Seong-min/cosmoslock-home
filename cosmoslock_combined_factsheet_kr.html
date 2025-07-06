@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COSMOS LOCK + NEXAUTH - 차세대 통합 보안 솔루션</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* A4 가로 출력 기준 설정 */
+        @page {
+            size: A4 landscape;
+            margin: 15mm 20mm;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 슬라이드 기본 스타일 - A4 가로 최적화 */
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 20mm 25mm;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3561 100%);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        .slide:last-child {
+            page-break-after: auto;
+        }
+
+        .slide:nth-child(even) {
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 50%, #3e4784 100%);
+        }
+
+        /* 타이틀 슬라이드 */
+        .title-slide {
+            text-align: center;
+            background: radial-gradient(ellipse at center, #1a1f3a 0%, #0a0e27 70%);
+            position: relative;
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="500" cy="500" r="1" fill="white" opacity="0.3"/></svg>');
+            animation: stars 100s linear infinite;
+        }
+
+        @keyframes stars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo {
+            font-size: 4em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(0, 153, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 153, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); }
+        }
+
+        .subtitle {
+            font-size: 1.6em;
+            color: #8892b0;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(136, 146, 176, 0.5);
+            animation: subtitleGlow 3s ease-in-out infinite alternate;
+            font-weight: bold;
+        }
+
+        @keyframes subtitleGlow {
+            from { text-shadow: 0 0 20px rgba(136, 146, 176, 0.5); }
+            to { text-shadow: 0 0 30px rgba(136, 146, 176, 0.8), 0 0 40px rgba(0, 212, 255, 0.3); }
+        }
+
+        .integration-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.56em;
+            font-weight: 700;
+            margin: 20px 0;
+            animation: rainbow 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1); }
+            33% { background: linear-gradient(45deg, #4ecdc4, #45b7d1, #ff6b6b); }
+            66% { background: linear-gradient(45deg, #45b7d1, #ff6b6b, #4ecdc4); }
+        }
+
+        .patent-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px auto;
+            max-width: 900px;
+        }
+
+        .patent-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .patent-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(0, 153, 255, 0.5);
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1em;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .patent-badge:hover {
+            background: rgba(0, 153, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.3);
+        }
+
+        /* 1페이지 특별 스타일 - 최하단 컨텐츠 프리미엄 디자인 */
+        .premium-bottom-section {
+            margin-top: 30px; 
+            padding: 25px; 
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(0, 212, 255, 0.1) 50%, 
+                rgba(255, 107, 107, 0.1) 100%);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ffd700, #00d4ff, #ff6b6b) 1;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 153, 255, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .premium-bottom-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 215, 0, 0.1) 50%, 
+                transparent 70%);
+            animation: premiumShimmer 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes premiumShimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .premium-bottom-text {
+            font-size: 1.56em;
+            color: #00d4ff;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .premium-highlight {
+            background: linear-gradient(135deg, #ffd700, #ffed4a, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        /* 가로 레이아웃 최적화 */
+        .landscape-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .landscape-layout.three-col {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .slide-content {
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        p {
+            font-size: 1.15em;
+            line-height: 1.7;
+            color: #c8d1e6;
+            margin-bottom: 18px;
+        }
+
+        .highlight {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        .warning {
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        .success {
+            color: #51cf66;
+            font-weight: 700;
+        }
+
+        .premium {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* 통합 시스템 표시 */
+        .integration-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .system-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 153, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px 25px;
+            text-align: center;
+            flex: 0 1 auto;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            white-space: normal;
+        }
+
+        .system-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 153, 255, 0.3);
+        }
+
+        .connector {
+            font-size: 2.25em;
+            color: #00d4ff;
+            margin: 0 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* 리스트 스타일 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1em;
+            color: #c8d1e6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* 시각화 요소 */
+        .visual-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 153, 255, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .visual-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #0066ff, #00d4ff);
+            border-radius: 15px;
+            opacity: 0;
+            animation: borderGlow 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 통계 카드 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .stats-grid.four-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stats-grid.two-rows {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 153, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: #8892b0;
+        }
+
+        /* 프로세스 다이어그램 */
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .process-flow.vertical {
+            flex-direction: column;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 153, 255, 0.3);
+            border-radius: 12px;
+            padding: 8px 15px;
+            flex: 1;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .process-flow.vertical .process-step {
+            margin: 2px 0;
+            width: 100%;
+            padding: 6px 15px;
+        }
+
+        .process-step:hover {
+            background: rgba(0, 153, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            color: #0a0e27;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 1.1em;
+        }
+
+        /* 비교 테이블 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 1.05em;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(0, 153, 255, 0.1);
+            font-weight: 700;
+            color: #00d4ff;
+            font-size: 1.1em;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* 이중보안 시각화 */
+        .dual-security {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            position: relative;
+            transform: scale(0.8);
+        }
+
+        .security-layer {
+            width: 120px;
+            height: 120px;
+            border: 3px solid;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 -30px;
+        }
+
+        .layer-1 {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            z-index: 1;
+        }
+
+        .layer-2 {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            z-index: 2;
+        }
+
+        .layer-center {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 특수 효과 */
+        .security-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 153, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 153, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* 프리미엄 문의 섹션 */
+        .premium-contact {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.9) 50%, 
+                rgba(51, 65, 85, 0.85) 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #00d4ff, #0099ff, #0066ff) 1;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 153, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-top: 15px;
+        }
+
+        .premium-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(0, 212, 255, 0.05) 0%, 
+                rgba(0, 153, 255, 0.03) 50%, 
+                rgba(0, 102, 255, 0.05) 100%);
+            border-radius: 18px;
+        }
+
+        .contact-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(248, 250, 252, 0.05) 100%);
+            border: 2px solid rgba(0, 153, 255, 0.3);
+            padding: 12px;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 
+                0 15px 35px rgba(0, 153, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 2.3em;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 10px rgba(0, 153, 255, 0.5));
+        }
+
+        .contact-title {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+
+        .contact-email {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            word-break: break-word;
+        }
+
+        .contact-desc {
+            font-size: 0.85em;
+            color: #94a3b8;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        .closing-statement {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(255, 193, 7, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-statement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 215, 0, 0.1) 50%, 
+                transparent 70%);
+            animation: premiumShimmer 4s linear infinite;
+        }
+
+        .closing-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700, #ffed4a, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 슬라이드 4 전용 스타일 */
+        .vertical-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .full-width-section {
+            width: 100%;
+        }
+
+        /* 슬라이드 7 전용 스타일 */
+        .vertical-split {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .vertical-split > div {
+            flex: 1;
+        }
+
+        /* 애니메이션 효과 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 반응형 - 화면 표시용 */
+        @media screen and (max-width: 1200px) {
+            .container {
+                transform: scale(0.8);
+                transform-origin: top left;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .container {
+                transform: scale(0.6);
+            }
+            
+            .landscape-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* 페이지별 커스텀 스타일 */
+        /* 페이지 2 조정 - 수정된 부분 */
+        .page2-layout {
+            grid-template-columns: 1.46fr 0.7fr;
+            gap: 9px;
+        }
+        
+        .page2-title {
+            font-size: 2.0em !important;
+            line-height: 1.1;
+        }
+        
+        /* 2페이지 시스템 박스 왼쪽 정렬 */
+        .page2-integration-flow {
+            display: flex;
+            justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .page2-cosmos {
+            width: 45.656%;
+            margin-left: 0; /* 왼쪽 여백 제거 */
+            margin-right: 10px;
+        }
+        
+        .page2-nexauth {
+            width: 34.656%;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        /* 2페이지 우측 섹션 확장 */
+        .page2-visual {
+            width: 115.13%; /* 110%로 확장 */
+            height: 80%;
+            margin: 0 auto;
+            position: relative;
+            right: 0; /* 오른쪽 끝에 붙이기 */
+            margin-right: -20px; /* 오른쪽으로 더 이동 */
+        }
+        
+        .page2-visual h3 {
+            font-size: 1.9em;
+        }
+        
+        .page2-visual > div:last-child p {
+            font-size: 1.52em;
+        }
+        
+        .page2-visual .security-layer {
+            margin: 0 -10px;
+        }
+        
+        /* 2페이지 써클 텍스트 위치 및 크기 조정 */
+        .page2-visual .security-layer span {
+            font-size: 1.35em !important;
+        }
+        
+        .page2-visual .layer-1 span {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .page2-visual .layer-2 span {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* 2페이지 리스트 밑줄 길이 조정 */
+        .page2-features {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .page2-features li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 80%; /* 밑줄 길이를 80%로 제한 */
+        }
+        
+        .page2-cosmos p, .page2-nexauth p {
+            font-size: 1em;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+        
+        /* 페이지 3 조정 */
+        .page3-process {
+            gap: 4px;
+        }
+        
+        .page3-process .process-step {
+            padding: 13px 15px;
+        }
+        
+        .page3-process p {
+            font-size: 1.44em !important;
+            line-height: 1.32 !important;
+            margin-bottom: 0;
+        }
+        
+        .page3-process .process-step:nth-child(7) p {
+            font-weight: bold;
+        }
+        
+        .page3-stats .stat-card {
+            padding: 15px 12px;
+        }
+        
+        .page3-features li {
+            padding: 6px 0 6px 35px;
+        }
+        
+        /* 페이지 5 조정 */
+        .page5-content {
+            padding: 20px;
+        }
+        
+        .page5-content h3 {
+            margin-bottom: 12px;
+            margin-top: 8px;
+        }
+        
+        .page5-content h4 {
+            margin: 12px 0 8px;
+        }
+        
+        .page5-content .feature-list {
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+        
+        .page5-content .feature-list li {
+            padding: 6px 0 6px 25px;
+        }
+        
+        .page5-content .feature-list li:before {
+            display: none;
+        }
+        
+        .page5-bottom {
+            margin-top: 10px;
+            padding: 12px;
+        }
+        
+        .page5-bottom-text {
+            font-size: 1.32em !important;
+        }
+        
+        /* 페이지 6 조정 */
+        .page6-title {
+            font-size: 2.1em !important;
+        }
+        
+        .page6-left {
+            width: 96%;
+        }
+        
+        .page6-left h3 {
+            font-size: 1.76em;
+            white-space: nowrap;
+        }
+        
+        .page6-left h4 {
+            font-size: 1.32em;
+        }
+        
+        .page6-left p {
+            font-size: 1.265em;
+            white-space: nowrap;
+        }
+        
+        .page6-vs {
+            font-size: 0.75em;
+            display: inline;
+        }
+        
+        .page6-table {
+            font-size: 1.2em;
+        }
+        
+        .page6-table th,
+        .page6-table td {
+            white-space: nowrap;
+            padding: 12px;
+        }
+        
+        .page6-bottom-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.44em;
+        }
+        
+        .page6-bottom-line1 {
+            margin-bottom: 5px;
+        }
+        
+        .page6-bottom-line2 {
+            margin-top: 5px;
+        }
+        
+        /* 페이지 7 조정 */
+        .page7-visual {
+            padding: 20px;
+            height: auto;
+            min-height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-bottom: 90px;
+        }
+        
+        .page7-visual h3 {
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        
+        .page7-visual .stats-grid {
+            margin: 15px 0;
+        }
+        
+        .page7-visual .stat-card {
+            padding: 15px 10px;
+        }
+        
+        .page7-visual .stat-label {
+            font-size: 1.08em;
+        }
+        
+        .world-first-stat .stat-number {
+            font-size: 2.5em;
+            font-weight: 900;
+        }
+        
+        .world-first-stat .stat-label {
+            font-size: 1.08em;
+            margin-top: -5px;
+        }
+        
+        .page7-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .page7-features li {
+            padding: 4px 0 4px 30px;
+            font-size: 1.14em;
+        }
+        
+        /* 차별화 포인트 첫째 줄 텍스트 120% 확대 */
+        .process-step p strong {
+            font-size: 1.2em;
+        }
+        
+        /* 페이지 8 조정 */
+        .page8-layout {
+            grid-template-columns: 1.26fr 0.6fr;
+            gap: 15px;
+        }
+        
+        .page8-policy {
+            width: 108%;
+            padding: 20px;
+        }
+        
+        .page8-policy h3 {
+            margin-bottom: 15px;
+            font-size: 1.71em;
+        }
+        
+        .page8-policy h4 {
+            margin: 15px 0 8px;
+        }
+        
+        .page8-korea-policy {
+            font-size: 1.43em !important;
+        }
+        
+        .page8-policy .feature-list {
+            margin: 8px 0;
+        }
+        
+        .page8-policy .feature-list li {
+            padding: 5px 0 5px 30px;
+            font-size: 0.95em;
+            white-space: nowrap;
+        }
+        
+        .page8-right {
+            margin-left: 40px;
+        }
+        
+        .page8-table th,
+        .page8-table td {
+            white-space: nowrap;
+        }
+        
+        .page8-table th:nth-child(1) {
+            width: 30%;
+        }
+        
+        .page8-table th:nth-child(2) {
+            width: 35%;
+        }
+        
+        .page8-table th:nth-child(3) {
+            width: 35%;
+        }
+        
+        .page8-bottom-text {
+            font-size: 1.32em !important;
+            background: linear-gradient(135deg, #00d4ff, #0099ff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            animation: highlightGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes highlightGlow {
+            from { 
+                filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+                text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+            to { 
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+        
+        .page8-center-text {
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* 페이지 10 조정 */
+        .page10-roi {
+            font-size: 1.44em !important;
+        }
+        
+        .page10-content h4 {
+            margin-bottom: 8px;
+        }
+        
+        .page10-content .feature-list {
+            margin-bottom: 40px;
+        }
+        
+        /* 페이지 11 조정 */
+        .page11-left {
+            margin-top: -10px;
+        }
+        
+        .page11-left h3 {
+            margin-bottom: 15px;
+        }
+        
+        .page11-right h2 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+        }
+        
+        .page11-effects {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .page11-effects > div {
+            margin: 0;
+            padding: 15px;
+        }
+        
+        .page11-effects h4 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .page11-effects p {
+            margin: 5px 0;
+            line-height: 1.4;
+            font-size: 1.05em;
+        }
+        
+        /* 페이지 12 조정 - 수정된 부분 */
+        .page12-slide {
+            padding: 12mm 20mm;
+        }
+        
+        .page12-title {
+            font-size: 2.187em !important;
+            margin-bottom: 15px;
+        }
+        
+        .page12-content {
+            line-height: 1.8 !important;
+            font-size: 1.116em !important;
+            padding: 15px 10px;
+            margin-bottom: 15px;
+            height: auto !important;
+            margin-top: 0;
+        }
+        
+        .page12-content p {
+            margin-bottom: 12px;
+            line-height: 1.32;
+        }
+        
+        /* 12페이지 써클 이미지 위아래 공간 축소 */
+        .page12-content .dual-security {
+            margin: 5px 0; /* 기존 10px에서 50% 축소 */
+        }
+        
+        /* 12페이지 그림 텍스트 크기 115%로 확대 */
+        .page12-content .dual-security .security-layer span {
+            font-size: 1.345em !important; /* 1.17em * 1.15 = 1.345em */
+            position: absolute;
+            white-space: nowrap;
+        }
+        
+        .page12-content .dual-security .layer-1 span {
+            left: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .page12-content .dual-security .layer-2 span {
+            right: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .page12-contact {
+            padding: 20px !important;
+            margin-top: 20px;
+            flex: 1.5;
+        }
+        
+        .page12-contact .contact-header {
+            display: none;
+        }
+        
+        .page12-contact .contact-grid {
+            gap: 10px;
+            margin-top: 0;
+        }
+        
+        .page12-contact .contact-card {
+            padding: 15px;
+        }
+        
+        .page12-contact .contact-icon {
+            display: none;
+        }
+        
+        .page12-contact .contact-title {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            margin-top: 0;
+        }
+        
+        .page12-contact .contact-email {
+            font-size: 1em;
+        }
+        
+        .page12-contact .contact-desc {
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+        
+        .page12-contact .closing-statement {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<section class="slide title-slide">
+<div class="security-grid"></div>
+<div class="slide-content fade-in" style="text-align: center; z-index: 1;">
+<h1 class="logo">COSMOS LOCK + NEXAUTH</h1>
+<div class="integration-badge">🛡️ 이중보안 통합 솔루션</div>
+<p class="subtitle"><strong>차세대 완벽 보안의 완성</strong></p>
+<div class="patent-info">
+<div class="patent-row">
+<div class="patent-badge">COSMOS LOCK™ 특허   KR 10-2252861, KR 10-2552111, US 18/006876</div>
+</div>
+<div class="patent-row">
+<div class="patent-badge">NEXAUTH™ 특허   KR 10-2468849, US 12074871, EP 4044052, JP 07245390</div>
+</div>
+</div>
+<div class="premium-bottom-section">
+<p class="premium-bottom-text">
+                        데이터 분산보안 + AI 관계인증 = <span class="premium-highlight">완벽한 제로트러스트 구현</span>
+</p>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout page2-layout" style="grid-template-columns: 1.46fr 0.7fr;">
+<div class="slide-content slide-in-left">
+<h2 class="page2-title">혁신적인 이중보안 통합 솔루션</h2>
+<p><span class="highlight">COSMOS LOCK</span>의 분산 데이터 보안과 <span class="highlight">NEXAUTH</span>의 AI 관계인증이<br/>
+만나<span class="success">  완벽한 보안 생태계</span>를 구현합니다.</p>
+<div class="integration-flow page2-integration-flow">
+<div class="system-box page2-cosmos" style="width: 45.656%;">
+<h4 style="color: #00d4ff; margin-bottom: 10px;">🌌 COSMOS LOCK</h4>
+<p>좌표 기반 물리적 분산<br/>해킹 불가능한 데이터 저장</p>
+</div>
+<div class="system-box page2-nexauth" style="width: 34.656%;">
+<h4 style="color: #ff6b6b; margin-bottom: 10px;">🎯 NEXAUTH</h4>
+<p>AI 관계인증 기반<br/>100% 정확한 본인확인</p>
+</div>
+</div>
+<ul class="feature-list page2-features">
+<li>데이터 암호화 + 인증 검증의 완벽한 조합</li>
+<li>해킹 시에도 복원 불가능한 절대 보안</li>
+<li>제로트러스트 아키텍처 완벽 구현</li>
+<li>기업 신뢰도 및 수익성 극대화</li>
+</ul>
+</div>
+<div class="visual-box slide-in-right page2-visual" style="width: 115.13%; margin-right: 40px;">
+<h3 style="text-align: center;">통합 시스템 핵심 가치</h3>
+<div class="dual-security" style="transform: scale(0.825);">
+<div class="security-layer layer-1">
+<span style="font-size: 0.9em;">데이터 분산</span>
+</div>
+<div class="security-layer layer-2">
+<span style="font-size: 0.9em;">본인인증</span>
+<div class="layer-center" style="font-size: 2em;">🛡️</div>
+</div>
+</div>
+<div style="text-align: center; margin-top: 30px;">
+<p style="color: #ffd700; font-weight: bold;">
+                            완벽한 이중보안 메커니즘
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout">
+<div class="visual-box slide-in-left">
+<h3>이중보안 프로세스 플로우</h3>
+<div class="process-flow vertical page3-process">
+<div class="process-step">
+<div class="step-number" style="margin-left:0; float:left;">1</div>
+<p style="line-height:1.56;"><strong>데이터 입력</strong><br/>원본 데이터 수신</p>
+</div>
+<div style="font-size: 1.3em; color: #00d4ff; text-align: center;">↓</div>
+<div class="process-step">
+<div class="step-number" style="margin-left:0; float:left;">2</div>
+<p style="line-height:1.56;"><strong>COSMOS LOCK 암호화</strong><br/>좌표 기반 분산 저장</p>
+</div>
+<div style="font-size: 1.3em; color: #00d4ff; text-align: center;">↓</div>
+<div class="process-step">
+<div class="step-number" style="margin-left:0; float:left;">3</div>
+<p style="line-height:1.56;"><strong>복원 요청 시</strong><br/>NEXAUTH 인증 필수</p>
+</div>
+<div style="font-size: 1.3em; color: #00d4ff; text-align: center;">↓</div>
+<div class="process-step">
+<div class="step-number" style="margin-left:0; float:left;">4</div>
+<p style="line-height:1.56;"><strong>원본 데이터 복원</strong><br/>인증 완료 후</p>
+</div>
+</div>
+</div>
+<div class="slide-content slide-in-right">
+<h2>세계 최초<br/><span class="success">다층보안</span> 메커니즘</h2>
+<p>단순한 기술 결합이 아닌, <span class="highlight">완전히 새로운 보안 패러다임</span>의 창조입니다.</p>
+<div class="stats-grid two-rows page3-stats">
+<div class="stat-card">
+<div class="stat-number">다층</div>
+<div class="stat-label">보안 계층</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">불가</div>
+<div class="stat-label">인증 실패시 접근</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">100%</div>
+<div class="stat-label">해킹 방어</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">∞</div>
+<div class="stat-label">보안 강도</div>
+</div>
+</div>
+<ul class="feature-list page3-features">
+<li><span class="highlight">1차 방어:</span> 데이터 분산으로 원본 접근 차단</li>
+<li><span class="highlight">2차 방어:</span> AI 인증으로 복원 권한 검증</li>
+<li><span class="success">완벽한 보안:</span> 두 단계 모두 뚫려야 접근 가능</li>
+<li><span class="premium">비즈니스 가치:</span> 고객 신뢰도 및 기업가치 상승</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="vertical-layout">
+<div class="full-width-section">
+<h2 style="text-align: center;">제로트러스트 <span class="highlight">완벽 구현</span></h2>
+<div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 15px; margin: 20px auto; max-width: 800px;">
+<p style="font-size: 1.8em; margin: 10px 0;">
+                            "<span class="warning">Never Trust</span>, <span class="success">Always Verify</span>"
+                        </p>
+<p style="font-size: 1.2em;">신뢰하지 않고 항상 검증하라</p>
+</div>
+</div>
+<div class="full-width-section">
+<p style="text-align: center; font-size: 1.3em; margin-bottom: 25px;">
+                        통합 솔루션은 <span class="highlight">데이터</span>와 <span class="highlight">사용자</span> 양방향에서 
+                        제로트러스트를 구현하는 <span class="success">유일한 솔루션</span>입니다.
+                    </p>
+<table class="comparison-table">
+<tr>
+<th style="width: 25%;">영역</th>
+<th style="width: 35%;">기존 솔루션</th>
+<th style="width: 40%;">통합 솔루션</th>
+</tr>
+<tr>
+<td><strong>데이터 보안</strong></td>
+<td>경계 기반 방어</td>
+<td><span class="success">분산 저장 + 좌표 암호화</span></td>
+</tr>
+<tr>
+<td><strong>사용자 인증</strong></td>
+<td>패스워드/OTP</td>
+<td><span class="success">AI 관계인증 + 빅데이터</span></td>
+</tr>
+<tr>
+<td><strong>접근 통제</strong></td>
+<td>역할 기반</td>
+<td><span class="success">실시간 검증 + 동적 권한</span></td>
+</tr>
+<tr>
+<td><strong>위협 대응</strong></td>
+<td>사후 탐지</td>
+<td><span class="success">사전 차단 + 복원 불가</span></td>
+</tr>
+</table>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout">
+<div class="slide-content slide-in-left">
+<h2>글로벌 보안 시장의<br/><span class="premium">폭발적 성장</span></h2>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-number">950조원</div>
+<div class="stat-label">2034년 데이터보안</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">1,050조원</div>
+<div class="stat-label">2034년 신원인증</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">2,000조원</div>
+<div class="stat-label">통합시장 총 규모</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">20.1%</div>
+<div class="stat-label">연평균 성장률</div>
+</div>
+</div>
+<p style="text-align: center; color: #ffd700; font-weight: bold; margin-top: 20px; font-size: 1.56em;">
+                        세계 최대 규모의 보안 시장 기회
+                    </p>
+</div>
+<div class="visual-box slide-in-right page5-content">
+<h3>시장 성장 동력 및 위협</h3>
+<h4 style="color: #51cf66;">📈 성장 동력</h4>
+<ul class="feature-list">
+<li>AI/클라우드 확산으로 보안 수요 급증</li>
+<li>랜섬웨어·해킹 피해 급증 (연간 $13조 예상)</li>
+<li>제로트러스트 보안 모델 채택 가속화</li>
+<li>정부 데이터 보호 규제 강화</li>
+</ul>
+<h4 style="color: #ff6b6b;">⚠️ 주요 위협</h4>
+<ul class="feature-list">
+<li>기존 보안 솔루션의 근본적 한계 노출</li>
+<li>중앙집중식 데이터 관리의 취약점</li>
+<li>생체인증 위조/변조 기술 발달</li>
+<li>내부자 위협 및 사회공학적 공격 증가</li>
+</ul>
+<div class="page5-bottom" style="background: rgba(255,215,0,0.1); border-radius: 8px;">
+<p class="page5-bottom-text" style="color: #ffd700; font-weight: bold; text-align: center;">
+                            통합 솔루션만이 모든 위협을 완벽 차단
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout" style="grid-template-columns: 1fr 1fr;">
+<div class="visual-box slide-in-left page6-left">
+<h3>2025년 대형 보안사고 분석</h3>
+<div style="margin: 18px 0;">
+<h4 style="color: #ff6b6b;">🔥 SK텔레콤 해킹사태</h4>
+<p><span class="warning">피해 규모:</span> IMSI, 인증키 등 <span style="color: #ffffff;">9.7GB</span> 유출</p>
+<p><span class="warning">공격 방법:</span> BPFDoor 악성코드 (스텔스형)</p>
+<p><span class="warning">2차 피해:</span> 유심 복제로 금융사기 위험</p>
+</div>
+<div style="margin-right:10px;">
+<p>근본 원인 분석</p>
+<p>
+                            • 중앙집중식 데이터 저장의 치명적 약점<br/>
+                            • 경계 기반 보안의 한계 노출<br/>
+                            • 내부 통합 보안 관리 시스템 부재
+                        </p>
+</div>
+</div>
+<div class="slide-content slide-in-right">
+<h2 class="page6-title">기존 솔루션 한계 <span class="page6-vs">vs</span> 통합 솔루션</h2>
+<table class="comparison-table page6-table">
+<tr>
+<th>보안 요소</th>
+<th>기존 솔루션</th>
+<th>통합 솔루션</th>
+</tr>
+<tr>
+<td><strong>데이터 저장</strong></td>
+<td><span class="warning">중앙집중식</span></td>
+<td><span class="success">완전 분산식</span></td>
+</tr>
+<tr>
+<td><strong>해킹 대응</strong></td>
+<td><span class="warning">사후 대응</span></td>
+<td><span class="success">원천 차단</span></td>
+</tr>
+<tr>
+<td><strong>인증 방식</strong></td>
+<td><span class="warning">단일 인증</span></td>
+<td><span class="success">AI 다층 인증</span></td>
+</tr>
+<tr>
+<td><strong>복구 가능성</strong></td>
+<td><span class="warning">100% 복구</span></td>
+<td><span class="success">복원 불가능</span></td>
+</tr>
+<tr>
+<td><strong>내부자 위협</strong></td>
+<td><span class="warning">무방비</span></td>
+<td><span class="success">완벽 차단</span></td>
+</tr>
+</table>
+<div class="page6-bottom-text">
+<div class="page6-bottom-line1">SK텔레콤과 같은 대형 사고도</div>
+<div class="page6-bottom-line2"><span class="highlight">통합 솔루션으로 원천 차단 가능</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="vertical-split">
+<div class="slide-content">
+<h2 style="text-align: center;">핵심 기술 <span class="premium">차별화 포인트</span></h2>
+<div class="process-flow" style="margin: 30px 0;">
+<div class="process-step">
+<div class="step-number">1</div>
+<p style="font-size: 1em;"><strong>데이터 분할</strong><br/>음절/단어 단위</p>
+</div>
+<div class="process-step">
+<div class="step-number">2</div>
+<p style="font-size: 1em;"><strong>랜덤 배치</strong><br/>좌표 기반 분산</p>
+</div>
+<div class="process-step">
+<div class="step-number">3</div>
+<p style="font-size: 1em;"><strong>물리적 분리</strong><br/>정보완전격리저장</p>
+</div>
+<div class="process-step">
+<div class="step-number">4</div>
+<p style="font-size: 1em;"><strong>AI 인증</strong><br/>관계망 검증</p>
+</div>
+<div class="process-step">
+<div class="step-number">5</div>
+<p style="font-size: 1em;"><strong>복원 승인</strong><br/>인증 완료시만</p>
+</div>
+</div>
+</div>
+<div class="visual-box page7-visual" style="padding: 20px; height: auto; min-height: 60%; margin-bottom: 150px;">
+<h3>글로벌 특허 기술력</h3>
+<div class="stats-grid four-cols">
+<div class="stat-card">
+<div class="stat-number">7건</div>
+<div class="stat-label">글로벌 특허</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">4개국</div>
+<div class="stat-label">특허 보유국</div>
+</div>
+<div class="stat-card world-first-stat">
+<div class="stat-number">1st</div>
+<div class="stat-label">세계 최초</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">100%</div>
+<div class="stat-label">원천 기술</div>
+</div>
+</div>
+<ul class="feature-list page7-features">
+<li style="margin-bottom:8px;"><span class="premium">COSMOS LOCK:</span> 좌표 기반 분산 원천특허</li>
+<li style="margin-bottom:8px;"><span class="premium">NEXAUTH:</span> AI 관계인증 세계 최초</li>
+<li style="margin-bottom:8px;"><span class="success">통합 시스템:</span> 이중보안 독점 기술</li>
+<li style="margin-bottom:8px;"><span class="highlight">시장 진입장벽:</span> 타업체 모방 불가</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout page8-layout">
+<div class="visual-box slide-in-left page8-policy">
+<h3>글로벌 데이터 보안 정책 동향</h3>
+<div style="margin: 15px 0;">
+<h4 class="page8-korea-policy" style="color: #00d4ff; font-size: 1.3em;">🌐 한국 정책</h4>
+<p style="font-size:1.3225em;"><span class="success">망중심에서 데이터 중심 보호체계로 전환</span></p>
+<ul class="feature-list">
+<li>범정부 차원 사이버 보안 대응체계 구축</li>
+<li>민간 책임 강화 및 자율 보안 확대</li>
+<li>AI for Security 적극 활용</li>
+</ul>
+<h4 style="margin-top:40px;">🌍 글로벌 규제</h4>
+<ul class="feature-list">
+<li><strong>GDPR:</strong> 데이터 주체 권리 강화</li>
+<li><strong>CCPA:</strong> 개인정보 보호 의무</li>
+<li><strong>제로트러스트:</strong> 미국 연방정부 의무화</li>
+</ul>
+</div>
+</div>
+<div class="slide-content slide-in-right page8-right">
+<h2>완벽한 정책 부합성<br/><span class="success">규제 선도</span></h2>
+<table class="comparison-table page8-table">
+<tr>
+<th>정책/규제</th>
+<th style="width:75%;">요구사항</th>
+<th style="width:25%;">통합솔루션 대응</th>
+</tr>
+<tr>
+<td><strong>데이터 중심 보안</strong></td>
+<td>데이터 자체 보호</td>
+<td><span class="success">분산암호화 + 인증결합</span></td>
+</tr>
+<tr>
+<td><strong>제로트러스트</strong></td>
+<td style="white-space:pre-wrap;">Never Trust,
+Always Verify</td>
+<td><span class="success">이중검증 시스템</span></td>
+</tr>
+<tr>
+<td><strong>개인정보보호</strong></td>
+<td>동의 및 통제권</td>
+<td><span class="success">본인인증 기반 접근</span></td>
+</tr>
+<tr>
+<td><strong>AI 보안</strong></td>
+<td>AI 기술 활용</td>
+<td><span class="success">AI 관계인증 적용</span></td>
+</tr>
+</table>
+<div style="background: rgba(0,255,0,0.1); padding: 20px; border-radius: 8px; margin-top: 20px;">
+<p class="page8-bottom-text page8-center-text">
+                            전 세계 보안 정책의 완벽한 선행 구현
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout">
+<div class="slide-content slide-in-left">
+<h2>무한 확장 가능한<br/><span class="highlight">글로벌 아키텍처</span></h2>
+<div class="visual-box" style="text-align: center;">
+<h4>클라우드 네이티브 설계</h4>
+<div style="font-size: 3.5em; margin: 20px 0;">☁️</div>
+<p style="font-size: 1.3em; color: #00d4ff;">무한 확장 가능한 통합 보안 인프라</p>
+<div class="stats-grid" style="margin-top: 20px;">
+<div class="stat-card">
+<div class="stat-number">∞</div>
+<div class="stat-label">무제한 확장</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">99.99%</div>
+<div class="stat-label">가용성</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">100M+</div>
+<div class="stat-label">사용자</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">Global</div>
+<div class="stat-label">서비스 범위</div>
+</div>
+</div>
+</div>
+</div>
+<div class="visual-box slide-in-right">
+<h3>통합 솔루션 확장성</h3>
+<ul class="feature-list">
+<li><strong>멀티 클라우드:</strong> AWS, Azure, GCP 완벽 지원</li>
+<li><strong>자동 스케일링:</strong> 사용량 기반 자동 확장/축소</li>
+<li><strong>글로벌 분산:</strong> 전 세계 데이터센터 활용</li>
+<li><strong>API 기반:</strong> 모든 시스템과 쉬운 통합</li>
+<li><strong>컨테이너:</strong> Kubernetes 기반 마이크로서비스</li>
+<li><strong>재해복구:</strong> 다중 백업 및 자동 복구</li>
+</ul>
+<div style="background: rgba(0,153,255,0.1); padding: 20px; border-radius: 8px; margin-top: 20px;">
+<p style="text-align: center; font-weight: bold; color: #00d4ff; font-size: 1.65em; line-height: 1.3;">
+                            스타트업부터 대기업까지<br/>모든 규모 적용 가능
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout">
+<div class="slide-content slide-in-left">
+<h2>압도적인 비즈니스<br/><span class="premium">가치 창출</span></h2>
+<div class="stats-grid two-rows">
+<div class="stat-card">
+<div class="stat-number">Zero</div>
+<div class="stat-label">보안 사고 발생</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">대폭 절감</div>
+<div class="stat-label">운영 비용</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">최대</div>
+<div class="stat-label">고객 신뢰도</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">극대화</div>
+<div class="stat-label">투자 효과</div>
+</div>
+</div>
+<div style="background: rgba(255,215,0,0.1); padding: 20px; border-radius: 8px; margin-top: 20px;">
+<p class="page10-roi" style="text-align: center; font-weight: bold; color: #ffd700;">
+                            완벽한 보안으로 달성하는 최고의 ROI
+                        </p>
+</div>
+</div>
+<div class="visual-box slide-in-right page10-content">
+<h3>기업 가치 극대화 효과</h3>
+<h4 style="color: #51cf66;">💰 직접적 수익 증대</h4>
+<ul class="feature-list">
+<li>보안 사고 Zero로 인한 손실 비용 제거</li>
+<li>고객 신뢰도 상승으로 매출 증가</li>
+<li>규제 준수 완벽 달성으로 벌금 회피</li>
+<li>보험료 대폭 절감 (보안등급 상향)</li>
+</ul>
+<h4 style="color: #00d4ff;">🚀 간접적 가치 창출</h4>
+<ul class="feature-list">
+<li>브랜드 가치 및 기업 이미지 제고</li>
+<li>투자자 신뢰도 증가로 기업가치 상승</li>
+<li>우수한 보안으로 경쟁사 대비 우위</li>
+<li>글로벌 진출 시 보안 인증 선도</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="landscape-layout">
+<div class="visual-box slide-in-left page11-left">
+<h3>주요 적용 분야</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0;">
+<div>
+<h4 style="color: #00d4ff; font-size: 1.2em;">🏦 금융업</h4>
+<ul class="feature-list" style="font-size: 1em;">
+<li>비대면 계좌개설</li>
+<li>대출심사 및 승인</li>
+<li>모바일뱅킹 보안</li>
+<li>고액거래 인증</li>
+</ul>
+</div>
+<div>
+<h4 style="color: #00d4ff; font-size: 1.2em;">🏛️ 정부/공공</h4>
+<ul class="feature-list" style="font-size: 1em;">
+<li>전자정부 서비스</li>
+<li>온라인 민원처리</li>
+<li>디지털 투표시스템</li>
+<li>공공데이터 보호</li>
+</ul>
+</div>
+<div>
+<h4 style="color: #00d4ff; font-size: 1.2em;">🏥 헬스케어</h4>
+<ul class="feature-list" style="font-size: 1em;">
+<li>원격의료 인증</li>
+<li>의료기록 보호</li>
+<li>처방전 관리</li>
+<li>환자정보 보안</li>
+</ul>
+</div>
+<div>
+<h4 style="color: #00d4ff; font-size: 1.2em;">🏢 기업</h4>
+<ul class="feature-list" style="font-size: 1em;">
+<li>임직원 인증</li>
+<li>원격근무 보안</li>
+<li>기밀정보 보호</li>
+<li>접근권한 관리</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="slide-content slide-in-right page11-right">
+<h2>도입 시 기대 효과</h2>
+<div class="visual-box page11-effects">
+<div style="background: rgba(255,255,255,0.05); border-radius: 12px;">
+<h4 style="color: #51cf66;">✅ 기업 예상 효과</h4>
+<p>• 내부 정보유출: <span class="success">완전 차단</span></p>
+<p>• 원격근무: <span class="highlight">효율성 증대</span></p>
+<p>• 보안투자: <span class="premium">최고 효과</span></p>
+</div>
+<div style="background: rgba(255,255,255,0.05); border-radius: 12px;">
+<h4 style="color: #51cf66;">✅ 금융기관 예상 효과</h4>
+<p>• 보안사고 발생률: <span class="success">Zero 달성</span></p>
+<p>• 고객 만족도: <span class="highlight">최대 향상</span></p>
+<p>• 운영비용: <span class="success">대폭 절감</span></p>
+</div>
+<div style="background: rgba(255,255,255,0.05); border-radius: 12px;">
+<h4 style="color: #51cf66;">✅ 정부기관 예상 효과</h4>
+<p>• 해킹 시도 차단: <span class="success">100%</span></p>
+<p>• 민원처리: <span class="highlight">효율성 향상</span></p>
+<p>• 시민 신뢰도: <span class="success">대폭 상승</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide title-slide page12-slide">
+<div class="slide-content fade-in" style="text-align: center; display: flex; flex-direction: column; height: 100%;">
+<h2 class="page12-title">
+                    완벽한 보안의 새로운 기준<br/>
+<span class="highlight">COSMOS LOCK + NEXAUTH</span>
+</h2>
+<div class="visual-box page12-content">
+<div class="dual-security" style="transform: scale(0.525);">
+<div class="security-layer layer-1">
+<span style="font-size: 1.921em; white-space: nowrap; position: absolute; left: -95px; top: 50%; transform: translateY(-50%);">데이터 분산 보안</span>
+</div>
+<div class="security-layer layer-2">
+<span style="font-size: 1.921em; white-space: nowrap; position: absolute; right: -95px; top: 50%; transform: translateY(-50%);">AI 관계 인증</span>
+<div class="layer-center" style="font-size: 1.3em;">🛡️</div>
+</div>
+</div>
+<p>
+                        단순한 기술의 결합이 아닌<br/>
+<span class="success" style="font-size: 1.05em;">완전히 새로운 보안 패러다임의 창조</span><br/><br/>
+                        SK텔레콤 사태로 증명된 기존 보안의 한계<br/>
+                        제로트러스트가 요구하는 완벽한 검증<br/>
+                        기업과 고객이 원하는 절대적 신뢰<br/><br/>
+<span class="premium" style="font-size: 1.15em;">모든 답은 통합 솔루션에 있습니다</span>
+</p>
+</div>
+<div class="premium-contact page12-contact" style="padding:10px;">
+<div class="contact-header">
+<h3 style="color: #00d4ff;">🤝 프리미엄 파트너십</h3>
+</div>
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-icon">💼</div>
+<div class="contact-title">비즈니스 파트너십</div>
+<div class="contact-email">intrepid7@naver.com</div>
+<div class="contact-desc">투자, 제휴, 라이선스, 글로벌 진출</div>
+</div>
+<div class="contact-card">
+<div class="contact-icon">🔧</div>
+<div class="contact-title">기술 협력</div>
+<div class="contact-email">pertz7709@gmail.com</div>
+<div class="contact-desc">기술 연동, 개발 지원, 시스템 통합</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>
