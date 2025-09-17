@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventor Profile - Yoon Seongmin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
+
+        /* A4 Landscape Page Setup */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page {
+            width: 297mm;
+            height: 210mm;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative gradient accent */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+
+        .content-wrapper {
+            padding: 6mm 10mm 6mm 10mm;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 4mm;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -2.5mm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7mm;
+            margin-bottom: 2mm;
+        }
+
+        h1 {
+            font-size: 24pt;
+            font-weight: 400;
+            color: #1e293b;
+            letter-spacing: -0.3mm;
+            font-family: 'Montserrat', 'Noto Sans', sans-serif;
+            margin: 0;
+        }
+
+        h1 .highlight {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .inventor-name {
+            font-size: 15pt;
+            font-weight: 400;
+            color: #3b82f6;
+            letter-spacing: 1.2px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            padding: 1.5mm 3.5mm;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 6px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .inventor-name::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60%;
+            background: #3b82f6;
+            border-radius: 1px;
+        }
+
+        .subtitle {
+            font-size: 11.5pt;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 9mm;
+            flex-grow: 1;
+        }
+
+        /* Left Column */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+        }
+
+        /* Right Column */
+        .right-column {
+            background: #f8fafc;
+            border-radius: 9px;
+            padding: 4mm 5mm;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 2mm;
+            display: flex;
+            align-items: center;
+            gap: 2.5mm;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2::before {
+            content: '';
+            width: 3px;
+            height: 15px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        /* Manifesto Box */
+        .manifesto-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 3px solid #1e3a8a;
+            border-radius: 0 6px 6px 0;
+            padding: 3mm 4mm;
+            margin-bottom: 2mm;
+            position: relative;
+        }
+
+        .manifesto-box::before {
+            content: '"';
+            position: absolute;
+            top: -2mm;
+            left: 2.5mm;
+            font-size: 28pt;
+            color: #3b82f6;
+            opacity: 0.15;
+            font-family: Georgia, serif;
+        }
+
+        .manifesto {
+            font-size: 11pt;
+            line-height: 1.35;
+            color: #1e293b;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Body Text */
+        p {
+            font-size: 10pt;
+            line-height: 1.35;
+            color: #475569;
+            text-align: justify;
+            margin-bottom: 1.5mm;
+        }
+
+        /* Compact section spacing */
+        section {
+            margin-bottom: 1.5mm;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            margin-top: 0.3mm;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 3mm 5mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6mm;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8mm;
+        }
+
+        .contact-label {
+            font-size: 7pt;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .contact-email {
+            font-size: 9pt;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 25px;
+            background: #cbd5e1;
+        }
+
+        /* Profile Items - 오른쪽 섹션 글자 크기 증가 */
+        .profile-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 3.2mm;
+        }
+
+        .profile-section {
+            margin-bottom: 0;
+        }
+
+        .profile-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+            margin-bottom: 2mm;
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16pt;
+            flex-shrink: 0;
+        }
+
+        h3 {
+            font-size: 11.5pt;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.35;
+        }
+
+        .profile-list {
+            padding-left: 38px;
+        }
+
+        .profile-list li {
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 1.7mm;
+            position: relative;
+            padding-left: 4.5mm;
+            list-style: none;
+        }
+
+        .profile-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Highlights */
+        strong {
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background: white;
+            }
+            .page-container {
+                padding: 0;
+                min-height: auto;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 297mm;
+                height: 210mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="page">
+            <div class="content-wrapper">
+                <div class="header">
+                    <div class="title-container">
+                        <h1><span class="highlight">System Architect</span> Who Controls Risk</h1>
+                        <div class="inventor-name">Yoon Seongmin</div>
+                    </div>
+                    <p class="subtitle">System Architect & Business Innovator</p>
+                </div>
+
+                <div class="main-content">
+                    <div class="left-column">
+                        <section>
+                            <h2>Inventor's Manifesto</h2>
+                            <div class="manifesto-box">
+                                <p class="manifesto">
+                                    I am not just another IT technician. I am a <strong>'business architect' who penetrates the essence of risk and transforms the entire system landscape</strong>.
+                                </p>
+                            </div>
+                            <p>
+                                I mastered the importance of rights through my law studies at Yonsei University, and built specialized expertise in predicting and responding to system vulnerabilities as a Risk Management Team Leader at a Korean trust company for 17 years. Witnessing endless security incidents, I realized that 'structural innovation' beyond technical solutions was essential.
+                            </p>
+                            <p>
+                                My core role is not simply writing code, but <strong>designing inimitable patent portfolios and creating new business ecosystems based on them</strong>.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Vision and Infinite Scalability</h2>
+                            <p>
+                                CosmosLock and NexAuth are just the tip of the iceberg. The patents I currently hold in collective intelligence, employment creation, financial transactions, foreign exchange, digital currency, payment settlement, and electronic voting create synergy with the main business, enabling <strong>infinite expansion as a platform leading the global market</strong>.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Partnership Proposal</h2>
+                            <p>
+                                I am now seeking the best partners to bring this innovative blueprint to reality. As we are still in the <strong>pre-incorporation stage</strong>, I want to begin a journey with <strong>founding partners</strong> who will design the business structure together, build teams, and create new market standards.
+                            </p>
+                            <p>
+                                For partners who join from the initial stage, I propose not just simple cooperation, but core roles in business strategy development and performance sharing that go beyond ordinary partnerships.
+                            </p>
+                        </section>
+
+                        <section class="contact-section">
+                            <h2>Contact Information</h2>
+                            <div class="contact-box">
+                                <div class="contact-info">
+                                    <span class="contact-label">Business Inquiry</span>
+                                    <span class="contact-email">intrepid7@naver.com</span>
+                                </div>
+                                <div class="contact-divider"></div>
+                                <div class="contact-info">
+                                    <span class="contact-label">Technical Partnership</span>
+                                    <span class="contact-email">pertz7709@gmail.com</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="right-column">
+                        <h2>Core Competency Profile</h2>
+                        
+                        <div class="profile-content">
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">📊</div>
+                                    <h3>Proven Risk Management & Business Growth Expert</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li>17 years as Risk Management Team Leader at a Korean trust company, analyzing system vulnerabilities and providing innovative solutions</li>
+                                    <li>As a founding member, made key contributions to company growth from <strong>5.5 billion KRW to 120 billion KRW</strong> in annual revenue</li>
+                                </ul>
+                            </div>
+
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">🔐</div>
+                                    <h3>Holder of 27 Robust Patent Portfolio</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li>Total of <strong>27 business model patents</strong> registered, including 7 core patents in security & authentication fields</li>
+                                    <li>Secured extensive rights scope through strategic divisional applications, building patent barriers that fundamentally block competitor entry</li>
+                                </ul>
+                            </div>
+
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">💡</div>
+                                    <h3>Innovator with Legal Knowledge & Creativity</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li>Graduate of <strong>Yonsei University Law School</strong>, possessing deep insights into strategic value and rights protection of intellectual property</li>
+                                    <li>Beyond security & authentication, created innovative business models in diverse areas including collective intelligence, employment creation, financial transactions, foreign exchange, digital currency, payment settlement, and electronic voting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
