@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventor Profile - 윤성민</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
+
+        /* A4 Landscape Page Setup */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page {
+            width: 297mm;
+            height: 210mm;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative gradient accent */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+
+        .content-wrapper {
+            padding: 6.5mm 11mm 7mm 11mm;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 4mm;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3mm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8mm;
+            margin-bottom: 2.5mm;
+        }
+
+        h1 {
+            font-size: 25pt;
+            font-weight: 300;
+            color: #1e293b;
+            letter-spacing: -0.5mm;
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+            margin: 0;
+        }
+
+        h1 strong {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .inventor-name {
+            font-size: 16pt;
+            font-weight: 400;
+            color: #3b82f6;
+            letter-spacing: 1.5px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            padding: 2mm 4mm;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 6px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .inventor-name::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60%;
+            background: #3b82f6;
+            border-radius: 1px;
+        }
+
+        .subtitle {
+            font-size: 12.5pt;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 10mm;
+            flex-grow: 1;
+        }
+
+        /* Left Column */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3.5mm;
+        }
+
+        /* Right Column */
+        .right-column {
+            background: #f8fafc;
+            border-radius: 9px;
+            padding: 5mm 6mm;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 2mm;
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2::before {
+            content: '';
+            width: 3px;
+            height: 15px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        /* Manifesto Box */
+        .manifesto-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 3px solid #1e3a8a;
+            border-radius: 0 6px 6px 0;
+            padding: 3.5mm 4.5mm;
+            margin-bottom: 3mm;
+            position: relative;
+        }
+
+        .manifesto-box::before {
+            content: '"';
+            position: absolute;
+            top: -2.5mm;
+            left: 3mm;
+            font-size: 32pt;
+            color: #3b82f6;
+            opacity: 0.15;
+            font-family: Georgia, serif;
+        }
+
+        .manifesto {
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #1e293b;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Body Text - 왼쪽 섹션 글자 크기 약간 증가 */
+        p {
+            font-size: 9.5pt;
+            line-height: 1.65;
+            color: #475569;
+            text-align: justify;
+            margin-bottom: 2mm;
+        }
+
+        /* Compact section spacing */
+        section {
+            margin-bottom: 2.5mm;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            margin-top: -3mm;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 3mm 5mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7mm;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1mm;
+        }
+
+        .contact-label {
+            font-size: 7.5pt;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .contact-email {
+            font-size: 9.5pt;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 28px;
+            background: #cbd5e1;
+        }
+
+        /* Profile Items - 오른쪽 섹션 글자 크기 증가 */
+        .profile-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 7mm;
+            margin-top: 12mm;
+        }
+
+        .profile-section {
+            margin-bottom: 0;
+        }
+
+        .profile-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+            margin-bottom: 2.5mm;
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16pt;
+            flex-shrink: 0;
+        }
+
+        h3 {
+            font-size: 11.5pt;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.35;
+        }
+
+        .profile-list {
+            padding-left: 38px;
+        }
+
+        .profile-list li {
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 2mm;
+            position: relative;
+            padding-left: 4.5mm;
+            list-style: none;
+        }
+
+        .profile-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Highlights */
+        strong {
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background: white;
+            }
+            .page-container {
+                padding: 0;
+                min-height: auto;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 297mm;
+                height: 210mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="page">
+            <div class="content-wrapper">
+                <div class="header">
+                    <div class="title-container">
+                        <h1>리스크를 제어하는 <strong>시스템 설계자</strong></h1>
+                        <div class="inventor-name">윤성민</div>
+                    </div>
+                    <p class="subtitle">System Architect & Business Innovator</p>
+                </div>
+
+                <div class="main-content">
+                    <div class="left-column">
+                        <section>
+                            <h2>발명가 선언문</h2>
+                            <div class="manifesto-box">
+                                <p class="manifesto">
+                                    저는 단순한 IT 기술자가 아닙니다. 저는 <strong>리스크의 본질을 꿰뚫어 보고, 시스템의 판을 바꾸는 '비즈니스 설계자'</strong>입니다.
+                                </p>
+                            </div>
+                            <p>
+                                연세대학교에서 법학을 전공하며 권리의 중요성을 체득했고, 국내 신탁회사에서 17년간 리스크관리팀장으로서 시스템의 취약점을 예측하고 대응하는 전문성을 쌓았습니다. 끊임없이 반복되는 보안 사고를 목도하며, 기술적 해결책을 넘어선 '구조적 혁신'이 필요함을 깨달았습니다.
+                            </p>
+                            <p>
+                                저의 핵심 역할은 단순히 코드를 작성하는 것이 아니라, <strong>모방 불가능한 특허 포트폴리오를 설계하고, 이를 기반으로 새로운 비즈니스 생태계를 창조</strong>하는 것입니다.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>비전과 무한한 확장성</h2>
+                            <p>
+                                CosmosLock과 NexAuth는 빙산의 일각입니다. 현재 보유한 집단지성, 고용창출, 금융거래, 외환환전, 디지털 화폐, 지급결제, 전자투표 분야의 특허들은 본 사업과 시너지를 창출하며 <strong>글로벌 시장을 선도할 플랫폼으로의 무한한 확장</strong>을 가능케 합니다.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>파트너십 제안</h2>
+                            <p>
+                                저는 이제 이 혁신적 설계도를 현실로 구현할 최고의 파트너를 찾고 있습니다. <strong>아직 법인 설립 전 단계</strong>로, 함께 비즈니스 구조를 설계하고 팀을 구성하며 새로운 시장의 표준을 만들어갈 <strong>창립 파트너</strong>와의 여정을 시작하고자 합니다.
+                            </p>
+                            <p>
+                                초기부터 함께하는 파트너에게는 단순한 협력을 넘어, 사업 전략 수립과 성과 공유의 핵심 역할을 제안합니다.
+                            </p>
+                        </section>
+
+                        <section class="contact-section">
+                            <h2>연락처 정보</h2>
+                            <div class="contact-box">
+                                <div class="contact-info">
+                                    <span class="contact-label">비즈니스 문의</span>
+                                    <span class="contact-email">intrepid7@naver.com</span>
+                                </div>
+                                <div class="contact-divider"></div>
+                                <div class="contact-info">
+                                    <span class="contact-label">기술 협력 문의</span>
+                                    <span class="contact-email">pertz7709@gmail.com</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="right-column">
+                        <h2>핵심 역량 프로필</h2>
+                        
+                        <div class="profile-content">
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">📊</div>
+                                    <h3>검증된 리스크 관리 및 사업 성장 전문가</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li>17년간 국내 신탁회사의 리스크관리팀장으로서 시스템 취약점 분석 및 혁신적 해결책 제시</li>
+                                    <li>창립 초기 멤버로 참여하여 연매출 <strong>55억 원에서 1,200억 원 규모</strong>로 성장하는 과정에 핵심적 기여</li>
+                                </ul>
+                            </div>
+
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">🔐</div>
+                                    <h3>27건의 강력한 특허 포트폴리오 보유</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li>보안·인증 분야 핵심특허 7건 포함, 총 <strong>27건의 비즈니스 모델 특허</strong> 등록 완료</li>
+                                    <li>전략적 분할출원을 통해 광범위한 권리범위 확보, 경쟁사의 진입을 원천 차단하는 특허 장벽 구축</li>
+                                </ul>
+                            </div>
+
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-icon">💡</div>
+                                    <h3>법률 지식과 창의성을 겸비한 혁신가</h3>
+                                </div>
+                                <ul class="profile-list">
+                                    <li><strong>연세대학교 법학과</strong> 졸업, 지적재산권의 전략적 가치와 권리 보호에 대한 깊은 통찰력 보유</li>
+                                    <li>보안·인증을 넘어 집단지성, 고용창출, 금융거래, 외환환전, 디지털 화폐, 지급결제, 전자투표 등 다양한 영역에서 혁신적 비즈니스 모델 창출</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
