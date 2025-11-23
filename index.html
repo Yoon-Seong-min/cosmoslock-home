@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CosmosLock & NexAuth - The Future of Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ... (기존 CSS 스타일 전체 동일하게 유지) ... */
+        :root {
+            --bg-dark: #050505;
+            --primary-glow: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15), transparent 60%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gold-gradient: linear-gradient(135deg, #ffd700, #fdb931, #e1ad01);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* 배경 효과 */
+        .bg-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none; overflow: hidden;
+            background: radial-gradient(ellipse at top, #1a1235 0%, #000000 80%);
+        }
+
+        .patent-watermark {
+            position: absolute;
+            opacity: 0.04; filter: grayscale(100%) contrast(1.5) brightness(1.5);
+            transform: rotate(-15deg);
+            animation: floatPatent 25s infinite alternate ease-in-out;
+            width: 350px;
+        }
+
+        .pw-1 { top: 5%; left: -5%; animation-delay: 0s; }
+        .pw-2 { top: 20%; right: -10%; width: 400px; transform: rotate(10deg); animation-delay: -5s; }
+        .pw-3 { bottom: 10%; left: 10%; width: 450px; transform: rotate(5deg); animation-delay: -10s; }
+        .pw-4 { bottom: 40%; right: 15%; width: 300px; transform: rotate(-10deg); animation-delay: -15s; }
+        .pw-center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; opacity: 0.02; filter: blur(3px); }
+
+        @keyframes floatPatent {
+            0% { transform: translateY(0) rotate(-10deg) scale(1); }
+            100% { transform: translateY(-40px) rotate(5deg) scale(1.05); }
+        }
+
+        .stars {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 1.5px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 1.5px);
+            background-size: 500px 500px, 300px 300px;
+            background-position: 0 0, 40px 60px; opacity: 0.6;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+        /* Header */
+        .header { padding: 120px 0 80px; text-align: center; position: relative; }
+        .header::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: var(--primary-glow); filter: blur(100px); z-index: -1; }
+        .badge-pill { display: inline-block; padding: 6px 16px; border-radius: 50px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); color: #ffd700; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase; }
+        .main-title { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .title-gradient { background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .title-highlight { display: block; background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)); }
+        .subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 48px; font-weight: 300; }
+        .btn-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .btn-glass { padding: 14px 32px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-weight: 600; text-decoration: none; transition: all 0.3s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .btn-glass::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: 0.5s; }
+        .btn-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.4); }
+        .btn-glass:hover::before { left: 100%; }
+
+        /* Cards */
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 32px; margin-bottom: 100px; }
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: all 0.4s ease; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .glass-card::after { content: ''; position: absolute; inset: 0; border-radius: 24px; padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,0.1), transparent); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+        .glass-card:hover { transform: translateY(-8px); background: rgba(255, 255, 255, 0.05); box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(168, 85, 247, 0.2); }
+        .card-tag { color: #a78bfa; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .card-tag::before { content:''; width: 8px; height: 8px; background: #a78bfa; border-radius: 50%; box-shadow: 0 0 10px #a78bfa; }
+        .card-title { font-size: 2rem; font-weight: 700; margin-bottom: 16px; color: #fff; }
+        .card-desc { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; flex-grow: 1; }
+        
+        .card-links { display: flex; gap: 12px; margin-bottom: 40px; }
+        .mini-btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; text-decoration: none; color: white; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+        .mini-btn:hover { background: rgba(255,255,255,0.1); }
+        .btn-accent { background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.4); color: #e9d5ff; }
+        .btn-accent:hover { background: rgba(168, 85, 247, 0.4); }
+
+        /* Patents */
+        .patent-area { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
+        .patent-header { display: flex; align-items: center; gap: 8px; font-family: 'Playfair Display', serif; font-style: italic; color: #ffd700; font-size: 1rem; margin-bottom: 16px; }
+        .patent-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+        .patent-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: 0.3s; }
+        .patent-item:hover { transform: translateY(-4px); }
+        .patent-badge { font-family: monospace; font-size: 0.75rem; color: #cbd5e1; background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 8px; transition: 0.3s; }
+        .patent-item:hover .patent-badge { border-color: #ffd700; color: #ffd700; }
+        .patent-img-box { width: 80px; height: 110px; position: relative; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.2); transition: 0.3s; }
+        .patent-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .patent-item:hover .patent-img-box { border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        .patent-item:hover .patent-img-box img { opacity: 1; transform: scale(1.05); }
+
+        /* Footer & Modal (기존 동일) */
+        .footer { border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); padding: 80px 0; text-align: center; }
+        .footer h2 { font-size: 2rem; margin-bottom: 40px; color: #fff; }
+        .contact-box { display: inline-flex; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; justify-content: center; }
+        .c-item { text-align: left; padding: 20px 30px; border-left: 2px solid #a855f7; background: linear-gradient(90deg, rgba(168, 85, 247, 0.05), transparent); }
+        .c-label { display: block; font-size: 0.85rem; color: #a78bfa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .c-value { font-size: 1.2rem; color: #fff; font-weight: 600; }
+        .copyright { color: #475569; font-size: 0.9rem; }
+        .coming-soon { display: flex; align-items: center; justify-content: center; text-align: center; border-style: dashed; background: rgba(255,255,255,0.01); }
+        .cs-content h3 { font-size: 1.5rem; margin: 16px 0 8px; color: #fff; }
+        .cs-content p { color: #64748b; }
+
+        /* Modals */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-window { width: 95%; max-width: 1100px; height: 90vh; background: #101014; border: 1px solid #333; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8); transform: scale(0.95); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-overlay.active .modal-window { transform: scale(1); }
+        .modal-header { padding: 16px 24px; background: #1a1a20; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { color: #fff; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .close-btn { background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.5rem; transition: 0.2s; padding: 0 8px; }
+        .close-btn:hover { color: #fff; transform: rotate(90deg); }
+        .pdf-container { flex: 1; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .lang-modal-content { background: rgba(20, 20, 25, 0.95); border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 30px; text-align: center; backdrop-filter: blur(30px); }
+        .lang-btn { margin: 10px; padding: 15px 40px; font-size: 1.1rem; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; }
+        .btn-ko { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .btn-en { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .lang-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+
+        @media (max-width: 768px) { .main-title { font-size: 2.5rem; } .glass-card { padding: 24px; } .contact-box { flex-direction: column; gap: 20px; } .c-item { border-left: none; border-top: 2px solid #a855f7; padding: 20px 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-layer">
+        <div class="stars"></div>
+        <img src="us_patent_thumb.png" class="patent-watermark pw-1" alt="bg">
+        <img src="ep_patent_thumb.png" class="patent-watermark pw-2" alt="bg">
+        <img src="jp_patent_thumb.png" class="patent-watermark pw-3" alt="bg">
+        <img src="kr_patent_10-2252861_thumb.png" class="patent-watermark pw-4" alt="bg">
+        <img src="us_patent_thumb.png" class="patent-watermark pw-center" alt="bg">
+    </div>
+
+    <div id="langModal" class="modal-overlay active" style="z-index: 10000;">
+        <div class="lang-modal-content modal-window" style="height: auto; max-width: 500px;">
+            <h2 style="color:white; margin-bottom:10px; font-size:2rem;">Select Language</h2>
+            <p style="color:#94a3b8; margin-bottom:30px;">언어를 선택해주세요</p>
+            <div>
+                <button class="lang-btn btn-ko" onclick="setLanguage('ko')">한국어</button>
+                <button class="lang-btn btn-en" onclick="setLanguage('en')">English</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pdfModal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="modal-header">
+                <div class="modal-title" id="pdfTitle">📄 Patent View</div>
+                <button class="close-btn" onclick="closePdf()">×</button>
+            </div>
+            <div class="pdf-container">
+                <iframe id="pdfFrame" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="badge-pill">Global Intellectual Property</div>
+            <h1 class="main-title">
+                <span class="title-gradient" data-key="hero_highlight">Paradigm Shifting Innovation,</span><br>
+                <span class="title-highlight" data-key="hero_sub">Meeting the Future with AI</span>
+            </h1>
+            <p class="subtitle" data-key="hero_desc">
+                Securing the digital world with unhackable data distribution & AI-driven identity authentication.
+            </p>
+            
+            <div class="btn-group">
+                <a href="inventor_profile_kr.html" class="btn-glass" target="_blank">
+                    <span data-key="btn_profile_kr">👨‍💻 발명자 소개 (KR)</span>
+                </a>
+                <a href="inventor_profile_en.html" class="btn-glass" target="_blank">
+                    <span data-key="btn_profile_en">👨‍💻 Inventor Intro (EN)</span>
+                </a>
+                <a href="https://youtu.be/MTAdxh74WJo" class="btn-glass" target="_blank">
+                    <span data-key="btn_teaser_kr">▶ 티저 영상 (KR)</span>
+                </a>
+                <a href="https://youtu.be/nxl60l0azKw" class="btn-glass" target="_blank">
+                    <span data-key="btn_teaser_en">▶ Teaser Video (EN)</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="items-grid">
+            
+            <article class="glass-card">
+                <div class="card-tag" data-key="cat_security">SECURITY & AUTH APP</div>
+                <h2 class="card-title">CosmosLock & NexAuth</h2>
+                <p class="card-desc" data-key="desc_combined">
+                    The ultimate convergence of data security and identity verification.
+                </p>
+
+                <div class="card-links">
+                    <a href="cosmoslock_combined_factsheet_kr.html" class="mini-btn" target="_blank" data-key="btn_factsheet" data-link-key="comb_fact">Factsheet</a>
+                    <a href="cosmoslock_combined_kr.html" class="mini-btn" target="_blank" data-key="btn_demo" data-link-key="comb_demo">Demo App</a>
+                    <a href="https://youtu.be/zln0Znq9JV0" class="mini-btn btn-accent" target="_blank" data-key="btn_video" data-link-key="comb_video">Video</a>
+                </div>
+
+                <div class="patent-area">
+                    <div class="patent-header">Global Core Patents</div>
+                    <div class="patent-grid">
+                        <div class="patent-item" onclick="openPdf('KR 10-2252861', '특허증_10-2252861_데이터보안.pdf')">
+                            <div class="patent-badge">KR 2252861</div>
+                            <div class="patent-img-box"><img src="kr_patent_10-2252861_thumb.png" alt="KR"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('KR 10-2468849', '특허증_10-2468849_동일성인증.pdf')">
+                            <div class="patent-badge">KR 2468849</div>
+                            <div class="patent-img-box"><img src="kr_patent_10-2468849_thumb.png" alt="KR"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('US 12,411,980', 'US_12411980_Grant Certificate.pdf')">
+                            <div class="patent-badge">US 12,411,980</div>
+                            <div class="patent-img-box"><img src="us_patent_thumb.png" alt="US"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('US 12,074,871', 'US_12074871_Grant Certificate.pdf')">
+                            <div class="patent-badge">US 12,074,871</div>
+                            <div class="patent-img-box"><img src="us_patent_thumb.png" alt="US"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('EP 4,044,052', 'EP_4044052_Certificate.pdf')">
+                            <div class="patent-badge">EP 4,044,052</div>
+                            <div class="patent-img-box"><img src="ep_patent_thumb.png" alt="EP"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="glass-card">
+                <div class="card-tag" data-key="cat_data">DATA SECURITY</div>
+                <h2 class="card-title">CosmosLock™</h2>
+                <p class="card-desc" data-key="desc_cosmos">
+                    Coordinate-based physical data distribution technology for unhackable storage.
+                </p>
+
+                <div class="card-links">
+                    <a href="cosmoslock_factsheet_kr.html" class="mini-btn" target="_blank" data-key="btn_factsheet" data-link-key="cos_fact">Factsheet</a>
+                    <a href="cosmoslock_kr.html" class="mini-btn" target="_blank" data-key="btn_demo" data-link-key="cos_demo">Demo App</a>
+                    <a href="https://youtu.be/gDOD9nSBTnA" class="mini-btn btn-accent" target="_blank" data-key="btn_video" data-link-key="cos_video">Video</a>
+                </div>
+
+                <div class="patent-area">
+                    <div class="patent-header">Registered Patents</div>
+                    <div class="patent-grid">
+                        <div class="patent-item" onclick="openPdf('KR 10-2252861', '특허증_10-2252861_데이터보안.pdf')">
+                            <div class="patent-badge">KR 2252861</div>
+                            <div class="patent-img-box"><img src="kr_patent_10-2252861_thumb.png" alt="KR"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('KR 10-2552111', '특허증_10-2552111_데이터보안.pdf')">
+                            <div class="patent-badge">KR 2552111</div>
+                            <div class="patent-img-box"><img src="kr_patent_10-2552111_thumb.png" alt="KR"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('US 12,411,980', 'US_12411980_Grant Certificate.pdf')">
+                            <div class="patent-badge">US 12,411,980</div>
+                            <div class="patent-img-box"><img src="us_patent_thumb.png" alt="US"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="glass-card">
+                <div class="card-tag" data-key="cat_auth">DIGITAL IDENTITY</div>
+                <h2 class="card-title">NexAuth™</h2>
+                <p class="card-desc" data-key="desc_nexauth">
+                    100% accurate identity verification using AI & Relationship Big Data.
+                </p>
+
+                <div class="card-links">
+                    <a href="nexauth_factsheet_kr.html" class="mini-btn" target="_blank" data-key="btn_factsheet" data-link-key="nex_fact">Factsheet</a>
+                    <a href="nexauth_kr.html" class="mini-btn" target="_blank" data-key="btn_demo" data-link-key="nex_demo">Demo App</a>
+                    <a href="https://youtu.be/AAJwcBloNo8" class="mini-btn btn-accent" target="_blank" data-key="btn_video" data-link-key="nex_video">Video</a>
+                </div>
+
+                <div class="patent-area">
+                    <div class="patent-header">Registered Patents</div>
+                    <div class="patent-grid">
+                        <div class="patent-item" onclick="openPdf('KR 10-2468849', '특허증_10-2468849_동일성인증.pdf')">
+                            <div class="patent-badge">KR 2468849</div>
+                            <div class="patent-img-box"><img src="kr_patent_10-2468849_thumb.png" alt="KR"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('US 12,074,871', 'US_12074871_Grant Certificate.pdf')">
+                            <div class="patent-badge">US 12,074,871</div>
+                            <div class="patent-img-box"><img src="us_patent_thumb.png" alt="US"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('EP 4,044,052', 'EP_4044052_Certificate.pdf')">
+                            <div class="patent-badge">EP 4,044,052</div>
+                            <div class="patent-img-box"><img src="ep_patent_thumb.png" alt="EP"></div>
+                        </div>
+                        <div class="patent-item" onclick="openPdf('JP 7,245,390', 'JP_Patent Certificate_ID.pdf')">
+                            <div class="patent-badge">JP 7,245,390</div>
+                            <div class="patent-img-box"><img src="jp_patent_thumb.png" alt="JP"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="glass-card coming-soon">
+                <div class="cs-content">
+                    <div style="font-size:3rem; margin-bottom:10px; filter: drop-shadow(0 0 20px rgba(168,85,247,0.5));">🚀</div>
+                    <h3 data-key="soon_title">Next Innovation</h3>
+                    <p data-key="soon_desc">More patented technologies are being developed.</p>
+                </div>
+            </article>
+
+        </main>
+
+        <footer class="footer">
+            <h2 data-key="footer_title">Looking for Partners to Build the Future</h2>
+            <div class="contact-box">
+                <div class="c-item">
+                    <span class="c-label" data-key="contact_biz">BUSINESS PARTNERSHIP</span>
+                    <div class="c-value">intrepid7@naver.com</div>
+                </div>
+                <div class="c-item">
+                    <span class="c-label" data-key="contact_tech">TECHNICAL COOPERATION</span>
+                    <div class="c-value">pertz7709@gmail.com</div>
+                </div>
+            </div>
+            <p class="copyright" data-key="copyright">&copy; 2025 Patent Innovation Hub. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // [수정됨] 텍스트 번역 데이터
+        const translations = {
+            ko: {
+                hero_highlight: "패러다임을 바꾸는 특허 아이템,",
+                hero_sub: "AI와 함께 미래를 만나다!",
+                hero_desc: "특허받은 혁신 기술로 AI 트랜스포메이션의 미래를 경험하세요.",
+                btn_profile_kr: "👨‍💻 발명자 소개 (KR)",
+                btn_profile_en: "👨‍💻 Inventor Intro (EN)",
+                btn_teaser_kr: "▶ 티저 영상 (KR)",
+                btn_teaser_en: "▶ Teaser Video (EN)",
+                cat_security: "보안 & 인증 통합앱",
+                cat_data: "데이터보안",
+                cat_auth: "디지털 신원인증",
+                desc_combined: "차세대 보안 및 인증 통합 솔루션으로 디지털 환경의 완벽한 보안을 제공합니다.",
+                desc_cosmos: "좌표 기반 물리적 분산기술 적용으로 해킹 불가능한 완전한 보안을 구현합니다.",
+                desc_nexauth: "글로벌 특허기술로 검증된 관계 빅데이터에 기반하여 100% 정확한 본인인증을 구현합니다.",
+                ver_kr: "한글 버전",
+                ver_en: "English Version",
+                btn_factsheet: "팩트시트",
+                btn_demo: "데모앱",
+                btn_video: "동영상",
+                soon_title: "더 많은 혁신 기술 공개 예정",
+                soon_desc: "More innovative patent items coming soon...",
+                footer_title: "함께 미래를 만들어갈 파트너를 찾습니다",
+                contact_biz: "💼 비즈니스 파트너십",
+                contact_tech: "🔧 기술 협력",
+                copyright: "© 2025 Patent Innovation Hub. 모든 특허 아이템은 지적재산권으로 보호받습니다."
+            },
+            en: {
+                hero_highlight: "Paradigm Shifting Innovation,",
+                hero_sub: "Meeting the Future with AI",
+                hero_desc: "Securing the digital world with unhackable data distribution & AI-driven identity authentication.",
+                btn_profile_kr: "👨‍💻 Inventor Intro (KR)",
+                btn_profile_en: "👨‍💻 Inventor Intro (EN)",
+                btn_teaser_kr: "▶ Teaser Video (KR)",
+                btn_teaser_en: "▶ Teaser Video (EN)",
+                cat_security: "SECURITY & AUTH APP",
+                cat_data: "DATA SECURITY",
+                cat_auth: "DIGITAL IDENTITY",
+                desc_combined: "Providing complete digital security with next-gen integrated security and authentication solutions.",
+                desc_cosmos: "Implementing unhackable security through coordinate-based physical data distribution technology.",
+                desc_nexauth: "Realizing 100% accurate identity verification based on relationship big data verified by global patents.",
+                ver_kr: "Korean Ver.",
+                ver_en: "English Ver.",
+                btn_factsheet: "Factsheet",
+                btn_demo: "Demo App",
+                btn_video: "Video",
+                soon_title: "Next Innovation",
+                soon_desc: "More patented technologies are being developed.",
+                footer_title: "Looking for Partners to Build the Future",
+                contact_biz: "BUSINESS PARTNERSHIP",
+                contact_tech: "TECHNICAL COOPERATION",
+                copyright: "© 2025 Patent Innovation Hub. All rights reserved."
+            }
+        };
+
+        // [신규] 링크 URL 데이터
+        const links = {
+            ko: {
+                comb_fact: "cosmoslock_combined_factsheet_kr.html",
+                comb_demo: "cosmoslock_combined_kr.html",
+                comb_video: "https://youtu.be/zln0Znq9JV0",
+                cos_fact: "cosmoslock_factsheet_kr.html",
+                cos_demo: "cosmoslock_kr.html",
+                cos_video: "https://youtu.be/gDOD9nSBTnA",
+                nex_fact: "nexauth_factsheet_kr.html",
+                nex_demo: "nexauth_kr.html",
+                nex_video: "https://youtu.be/AAJwcBloNo8"
+            },
+            en: {
+                comb_fact: "cosmoslock_combined_factsheet_en.html",
+                comb_demo: "cosmoslock_combined_en.html",
+                comb_video: "https://youtu.be/2gbMD0MXuqQ",
+                cos_fact: "cosmoslock_factsheet_en.html",
+                cos_demo: "cosmoslock_en.html",
+                cos_video: "https://youtu.be/0O4FEFUYNzw",
+                nex_fact: "nexauth_factsheet_en.html",
+                nex_demo: "nexauth_en.html",
+                nex_video: "https://youtu.be/jcu_NWcViO8"
+            }
+        };
+
+        function setLanguage(lang) {
+            // 1. 텍스트 변경
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.style.opacity = 0;
+                    setTimeout(() => {
+                        el.textContent = translations[lang][key];
+                        el.style.opacity = 1;
+                    }, 200);
+                }
+            });
+
+            // 2. [신규] 링크 href 주소 변경
+            const linkElements = document.querySelectorAll('[data-link-key]');
+            linkElements.forEach(el => {
+                const key = el.getAttribute('data-link-key');
+                if (links[lang] && links[lang][key]) {
+                    el.href = links[lang][key];
+                }
+            });
+
+            // Close Language Modal
+            const modal = document.getElementById('langModal');
+            if(modal) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.style.display = 'none', 400);
+            }
+        }
+
+        // Init transitions
+        document.querySelectorAll('[data-key]').forEach(el => el.style.transition = 'opacity 0.3s ease');
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+
+        // PDF Logic
+        function openPdf(title, pdfUrl) {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            const titleEl = document.getElementById('pdfTitle');
+            
+            titleEl.textContent = title;
+            frame.src = pdfUrl;
+            
+            modal.classList.add('active');
+        }
+
+        function closePdf() {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                frame.src = "";
+            }, 400);
+        }
+
+        document.getElementById('pdfModal').addEventListener('click', function(e) {
+            if (e.target === this) { closePdf(); }
+        });
+    </script>
+</body>
+</html>
