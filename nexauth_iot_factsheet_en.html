@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexAuth for IoT - Factsheet (English)</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexAuth for IoT - Factsheet</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;family=Playfair+Display:ital,wght@1,600&amp;display=swap" rel="stylesheet"/>
+<style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -30,7 +31,7 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
-        /* A4 Landscape Optimization */
+        /* A4 landscape print optimization */
         @media print {
             @page {
                 size: A4 landscape;
@@ -456,414 +457,386 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="badge">Patent Technology Factsheet</div>
-            <h1>NexAuth for IoT</h1>
-            <p class="subtitle">Zero-Trust Logistics Security Where 15,000 IoT Devices Mutually Verify Each Other</p>
-        </div>
-
-        <!-- Patent Portfolio -->
-        <h2>🏆 Registered Patent Portfolio</h2>
-        <div class="patent-grid">
-            <div class="patent-card">
-                <div class="patent-number">KR 10-2395500</div>
-                <div class="patent-title">System and Method for Identity Authentication of Objects</div>
-                <div class="patent-date">Registered: May 3, 2022</div>
-            </div>
-            <div class="patent-card">
-                <div class="patent-number">KR 10-2252863</div>
-                <div class="patent-title">System and Method for Identity Authentication of Objects</div>
-                <div class="patent-date">Registered: May 11, 2021</div>
-            </div>
-            <div class="patent-card">
-                <div class="patent-number">KR 10-2410294</div>
-                <div class="patent-title">Security System and Method for Objects Through Identity Authentication of People and Objects</div>
-                <div class="patent-date">Registered: June 14, 2022</div>
-            </div>
-        </div>
-
-        <!-- Core Technology -->
-        <h2>💡 Core Technology Principle</h2>
-        <div class="key-tech">
-            <h3>IoT Device Mutual Verification Based on Communication History</h3>
-            <p style="margin-top: 16px;">
-                <strong>Limitations of Existing IoT Authentication:</strong> All methods including passwords, certificates, and biometric authentication have a <strong>Single Point of Failure (SPOF)</strong>. Once one authentication method is compromised, the entire system collapses.
+<div class="container">
+<!-- Header -->
+<div class="header">
+<div class="badge">Patent Technology Factsheet</div>
+<h1>NexAuth for IoT</h1>
+<p class="subtitle">Zero-Trust–aligned logistics security designed for large-scale IoT environments, where devices can mutually validate access based on observed communication history.</p>
+</div>
+ Patent Portfolio 
+<h2>🏆 Granted Patent Portfolio</h2>
+<div class="patent-grid">
+<div class="patent-card">
+<div class="patent-number">KR 10-2395500</div>
+<div class="patent-title">System and method for identity authentication of things</div>
+<div class="patent-date">Registration date: May 3, 2022</div>
+</div>
+<div class="patent-card">
+<div class="patent-number">KR 10-2252863</div>
+<div class="patent-title">System and method for identity authentication of things</div>
+<div class="patent-date">Registration date: May 11, 2021</div>
+</div>
+<div class="patent-card">
+<div class="patent-number">KR 10-2410294</div>
+<div class="patent-title">System and method for securing objects through identity authentication of people and things</div>
+<div class="patent-date">Registration date: June 14, 2022</div>
+</div>
+</div>
+ Core Technology 
+<h2>💡 Core Mechanism</h2>
+<div class="key-tech">
+<h3>Mutual verification of IoT devices based on communication history</h3>
+<p style="margin-top: 16px;">
+<strong>Limitations of conventional IoT authentication:</strong> Passwords, certificates, and biometrics can create concentration risk when a single credential or authority becomes a primary control point. In compromise scenarios, this may enable broader lateral movement.</p>
+<p style="margin-top: 16px;">
+<strong>NexAuth for IoT innovation:</strong> Designed to use peer-reviewed communication history as an additional verification signal. Devices and access requests can be evaluated against configurable thresholds (e.g., network contact coverage over a defined observation window) to flag unfamiliar or anomalous entities for blocking or step-up approval.</p>
+<p style="margin-top: 16px; color: #ffd700; font-weight: 600;">
+                Key idea: “collective-witness authentication,” where peer devices contribute evidence signals for verification decisions (subject to site-specific policy).
             </p>
-            <p style="margin-top: 16px;">
-                <strong>NexAuth for IoT Innovation:</strong> Every IoT device in the network cross-verifies each other's <strong>historical communication records</strong>. New devices or abnormal access attempts are blocked by checking "Has this device had normal communication history with 70%+ of our network devices in the past?"
-            </p>
-            <p style="margin-top: 16px; color: #ffd700; font-weight: 600;">
-                ⚡ Core Concept: 'Collective Intelligence Authentication' where the entire network becomes a witness
-            </p>
-        </div>
-
-        <!-- Technical Differentiation -->
-        <h2>🚀 Technical Differentiation</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Comparison Item</th>
-                    <th>Traditional IoT Security</th>
-                    <th>NexAuth for IoT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Authentication Entity</strong></td>
-                    <td>Central server sole decision</td>
-                    <td>Network-wide device mutual verification</td>
-                </tr>
-                <tr>
-                    <td><strong>Damage from Theft</strong></td>
-                    <td>Full system access possible</td>
-                    <td>Blocked without comm. history</td>
-                </tr>
-                <tr>
-                    <td><strong>Insider Threat</strong></td>
-                    <td>Recognized as valid authority</td>
-                    <td>Comm. pattern anomaly detection</td>
-                </tr>
-                <tr>
-                    <td><strong>Zero-Day Attack</strong></td>
-                    <td>Defenseless until patch</td>
-                    <td>Behavior-based blocking</td>
-                </tr>
-                <tr>
-                    <td><strong>Scalability</strong></td>
-                    <td>Complexity ↑ with device growth</td>
-                    <td>Automatic learning & verification</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Application Scenarios -->
-        <h2>📦 Coupang Fulfillment Center Application Scenarios</h2>
-        
-        <h3>Coupang Infrastructure Overview</h3>
-        <div class="stat-grid">
-            <div class="stat-card">
-                <div class="stat-value">30+</div>
-                <div class="stat-label">Fulfillment Centers</div>
+</div>
+ Technical Superiority 
+<h2>🚀 Technical Differentiators</h2>
+<table>
+<thead>
+<tr>
+<th>Comparison Item</th>
+<th>Conventional IoT Security</th>
+<th>NexAuth for IoT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication authority</strong></td>
+<td>Single centralized server decision</td>
+<td>Mutual validation across all devices on the network</td>
+</tr>
+<tr>
+<td><strong>Impact if compromised</strong></td>
+<td>Broader access may be possible depending on credential scope</td>
+<td>Designed to require corroborating history/evidence signals; unfamiliar entities can be blocked or routed to step-up approval</td>
+</tr>
+<tr>
+<td><strong>Insider threat</strong></td>
+<td>Often difficult to distinguish from legitimate activity</td>
+<td>Designed to surface deviations from established communication patterns for review and policy-based action</td>
+</tr>
+<tr>
+<td><strong>Zero-day attacks</strong></td>
+<td>Limited until detection/response is available</td>
+<td>Designed to enable behavior- and history-based step-up controls that may reduce reliance on signature-only defenses</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Operational overhead can increase with device count</td>
+<td>Designed for policy-driven automation; models/rules can be updated centrally while decisions leverage distributed evidence signals</td>
+</tr>
+</tbody>
+</table>
+ Use Cases 
+<h2>📦 Large Logistics Center Deployment Scenarios</h2>
+<h3>Reference deployment snapshot (illustrative)</h3>
+<div class="stat-grid">
+<div class="stat-card">
+<div class="stat-value">30+</div>
+<div class="stat-label">Logistics center</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">500~1,000</div>
+<div class="stat-label">IoT devices per center</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">15,000~30,000</div>
+<div class="stat-label">Total network scale</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">₩15B</div>
+<div class="stat-label">Illustrative downtime cost (per day)</div>
+</div>
+</div>
+ Scenario 1 
+<div class="scenario-box">
+<div class="scenario-title">
+<span>🔐</span>
+<span>Scenario 1: Response to a stolen admin device (example)</span>
+</div>
+<div class="scenario-problem">
+<strong>❌ Problem scenario:</strong> An admin tablet is stolen. A third party attempts to access the robot-control system.
             </div>
-            <div class="stat-card">
-                <div class="stat-value">500~1,000</div>
-                <div class="stat-label">IoT Devices/Center</div>
+<div class="scenario-solution">
+<strong>✅ Designed response (policy-configurable):</strong>
+<ul style="margin-top: 12px;">
+<li>IoT Hub queries the tablet's historical communication record</li>
+<li>Verify: "Has it communicated normally with 70%+ of network devices over the past 6 months?"</li>
+<li>No communication history → block immediately + notify security team</li>
+<li>If a credential or signing key is compromised, additional history/evidence checks are designed to reduce the likelihood of immediate broad access (subject to integration and policy).</li>
+</ul>
+</div>
+</div>
+ Scenario 2 
+<div class="scenario-box">
+<div class="scenario-title">
+<span>🛠️</span>
+<span>Scenario 2: Step-up control for unexpected privilege change (example)</span>
+</div>
+<div class="scenario-problem">
+<strong>❌ Problem scenario:</strong> A conveyor-belt repair technician attempts to access the robot control room without authorization (industrial espionage risk).
             </div>
-            <div class="stat-card">
-                <div class="stat-value">15,000~30,000</div>
-                <div class="stat-label">Total Network Scale</div>
+<div class="scenario-solution">
+<strong>✅ Designed response (policy-configurable):</strong>
+<ul style="margin-top: 12px;">
+<li>Technician A's device: for two weeks it only built communication history with devices in the “conveyor-belt zone”</li>
+<li>"Robot Control Room" access attempt → communication-history pattern analysis: "Conveyors only / No robots"</li>
+<li>Anomaly detected → block access + automatically send an admin approval request</li>
+</ul>
+</div>
+</div>
+ Scenario 3 
+<div class="scenario-box">
+<div class="scenario-title">
+<span>⚠️</span>
+<span>Scenario 3: Safety-zone access gating (example)</span>
+</div>
+<div class="scenario-problem">
+<strong>❌ Problem scenario:</strong> An untrained worker attempts to enter a -25°C freezer zone.
             </div>
-            <div class="stat-card">
-                <div class="stat-value">$11M</div>
-                <div class="stat-label">Daily Downtime Loss</div>
-            </div>
-        </div>
-
-        <!-- Scenario 1 -->
-        <div class="scenario-box">
-            <div class="scenario-title">
-                <span>🔐</span>
-                <span>Scenario 1: Manager Tablet Theft Defense</span>
-            </div>
-            <div class="scenario-problem">
-                <strong>❌ Problem:</strong> Manager's tablet stolen. Third party attempts to access robot control system.
-            </div>
-            <div class="scenario-solution">
-                <strong>✅ NexAuth Defense:</strong>
-                <ul style="margin-top: 12px;">
-                    <li>IoT Hub queries historical communication records of the tablet</li>
-                    <li>Verification: "Has it had normal communication with 70%+ network devices in past 6 months?"</li>
-                    <li>No comm. history → Immediate block + Security team alert</li>
-                    <li>Even if signature key is stolen, blocked at comm. history verification stage</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Scenario 2 -->
-        <div class="scenario-box">
-            <div class="scenario-title">
-                <span>🛠️</span>
-                <span>Scenario 2: Contractor Authority Deviation Detection</span>
-            </div>
-            <div class="scenario-problem">
-                <strong>❌ Problem:</strong> Conveyor belt repair technician attempts unauthorized access to robot control room (industrial espionage risk).
-            </div>
-            <div class="scenario-solution">
-                <strong>✅ NexAuth Defense:</strong>
-                <ul style="margin-top: 12px;">
-                    <li>Technician A's device: 2 weeks of comm. history with "conveyor belt zone" devices only</li>
-                    <li>"Robot control room" access attempt → Comm. history pattern analysis: "Conveyor only / No robots"</li>
-                    <li>Pattern anomaly detected → Access blocked + Manager approval request auto-sent</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Scenario 3 -->
-        <div class="scenario-box">
-            <div class="scenario-title">
-                <span>⚠️</span>
-                <span>Scenario 3: Worker Safety Zone Management</span>
-            </div>
-            <div class="scenario-problem">
-                <strong>❌ Problem:</strong> Untrained worker attempts to enter -13°F (-25°C) freezer warehouse.
-            </div>
-            <div class="scenario-solution">
-                <strong>✅ NexAuth Defense:</strong>
-                <ul style="margin-top: 12px;">
-                    <li>Worker's wearable device comm. history: "Ambient warehouse sensors only / No freezer equipment"</li>
-                    <li>Assessment: "Freezer warehouse safety training incomplete"</li>
-                    <li>Entry blocked + "Please proceed to training center" notification</li>
-                    <li>Safety management and security integrated into single system</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Scenario 4 -->
-        <div class="scenario-box">
-            <div class="scenario-title">
-                <span>🛡️</span>
-                <span>Scenario 4: Early Ransomware Attack Prevention (Coupang Breach Response)</span>
-            </div>
-            <div class="scenario-problem">
-                <strong>❌ Real Threats:</strong>
-                <ul style="margin-top: 12px;">
-                    <li>2025 Coupang: 33.7M customer data breach (signature key theft)</li>
-                    <li>2021 Hyundai Heavy: Logistics center ransomware → 1-week shutdown</li>
-                </ul>
-            </div>
-            <div class="scenario-solution">
-                <strong>✅ NexAuth Defense Mechanism:</strong>
-                <ul style="margin-top: 12px;">
-                    <li><strong>Stage 1:</strong> Hacker infiltrates network and hijacks Robot #105 control</li>
-                    <li><strong>Stage 2:</strong> Robot #105 suddenly starts sending "system commands"</li>
-                    <li><strong>Stage 3:</strong> IoT Hub real-time analysis
+<div class="scenario-solution">
+<strong>✅ Designed response (policy-configurable):</strong>
+<ul style="margin-top: 12px;">
+<li>Worker wearable communication history: “Ambient warehouse sensors only / No freezer equipment communications”</li>
+<li>Decision: “Freezer-zone safety training not completed”</li>
+<li>Access blocked + prompt: “Please proceed to the training center”</li>
+<li>Unify safety management and security under one system</li>
+</ul>
+</div>
+</div>
+ Scenario 4 
+<div class="scenario-box">
+<div class="scenario-title">
+<span>🛡️</span>
+<span>Scenario 4: Ransomware containment workflow (example)</span>
+</div>
+<div class="scenario-problem">
+<strong>❌ Real-world threat:</strong>
+<ul style="margin-top: 12px;">
+<li>Publicly reported e-commerce incidents have included account exposure following credential or token-related compromise</li>
+<li>Publicly reported industrial ransomware incidents have resulted in multi-day operational disruption</li>
+</ul>
+</div>
+<div class="scenario-solution">
+<strong>✅ Designed response mechanism (policy-configurable):</strong>
+<ul style="margin-top: 12px;">
+<li><strong>Step 1:</strong> An attacker infiltrates the network and takes control of Robot #105</li>
+<li><strong>Step 2:</strong> Robot #105 suddenly begins sending “system commands”</li>
+<li><strong>Step 3:</strong> Real-time analysis at the IoT Hub
                         <ul style="margin-left: 20px; margin-top: 8px;">
-                            <li>Historical comm. pattern: Normal logistics operations (99%)</li>
-                            <li>Current comm. pattern: System commands (100%)</li>
-                        </ul>
-                    </li>
-                    <li><strong>Stage 4:</strong> Cross-verification - 10 adjacent robots report "abnormal"</li>
-                    <li><strong>Stage 5:</strong> Automatic action
+<li>Historical communication pattern: primarily logistics operations (baseline)</li>
+<li>Current communication pattern: elevated administrative/system command activity (anomaly candidate)</li>
+</ul>
+</li>
+<li><strong>Step 4:</strong> Cross-validation: nearby devices report anomalous behavior signals</li>
+<li><strong>Step 5:</strong> Automated actions (per policy)
                         <ul style="margin-left: 20px; margin-top: 8px;">
-                            <li>Robot #105 network isolation</li>
-                            <li>Security team emergency alert</li>
-                            <li>Connected devices enter quarantine mode</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ROI Analysis -->
-        <h2>💰 Return on Investment (ROI)</h2>
-        
-        <h3>Defendable Risks</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Risk Type</th>
-                    <th>Estimated Damage</th>
-                    <th>NexAuth Defense Rate</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Large-scale hack (Coupang-level)</td>
-                    <td>$370M ~ $740M</td>
-                    <td>70%</td>
-                </tr>
-                <tr>
-                    <td>Fulfillment center shutdown</td>
-                    <td>$11M / day</td>
-                    <td>Early ransomware blocking</td>
-                </tr>
-                <tr>
-                    <td>Industrial espionage (tech leak)</td>
-                    <td>$740M+</td>
-                    <td>Authority deviation auto-detect</td>
-                </tr>
-                <tr>
-                    <td>Safety accidents</td>
-                    <td>Compensation + reputation</td>
-                    <td>Untrained worker entry block</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>Implementation Costs</h3>
-        <div class="phase-card">
-            <div class="phase-header">Phase 1: PoC (3 months) - Gimpo Mega-hub</div>
-            <p><strong>Cost:</strong> $370K</p>
-            <p><strong>Scope:</strong> 1 zone, 50 devices</p>
-            <p><strong>Validation:</strong> MES/WMS integration, 99.9% authentication accuracy, <100ms response time</p>
-        </div>
-
-        <div class="phase-card">
-            <div class="phase-header">Phase 2: Expansion (6 months) - 5 Major Centers</div>
-            <p><strong>Cost:</strong> $3.7M</p>
-            <p><strong>Scope:</strong> Gimpo, Gwangju, Daegu, Bucheon, Anseong</p>
-            <p><strong>Target:</strong> 50+ monthly unauthorized access blocks</p>
-        </div>
-
-        <div class="phase-card">
-            <div class="phase-header">Phase 3: Nationwide (12 months) - 30+ Centers</div>
-            <p><strong>Cost:</strong> $14.8M</p>
-            <p><strong>Impact:</strong>
-                <ul style="margin-top: 12px;">
-                    <li>"Smart Logistics Security Platform" branding</li>
-                    <li>Technical advantage for overseas expansion (Japan, Taiwan)</li>
-                    <li>Technology licensing revenue stream</li>
-                </ul>
+<li>Isolate Robot #105 from the network</li>
+<li>Urgent alert to the security team</li>
+<li>Switch connected devices into quarantine mode</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+ ROI Analysis 
+<h2>💰 Return on Investment (ROI)</h2>
+<h3>Defendable Risks</h3>
+<table>
+<thead>
+<tr>
+<th>Risk Type</th>
+<th>Estimated impact</th>
+<th>How NexAuth is intended to help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large-scale breach (enterprise-scale)</td>
+<td>₩500B – ₩1T</td>
+<td>Designed to reduce blast radius and limit unauthorized device actions through evidence-based verification and segmentation</td>
+</tr>
+<tr>
+<td>Logistics center downtime</td>
+<td>₩15B / day</td>
+<td>Designed to support earlier anomaly isolation and faster response workflows</td>
+</tr>
+<tr>
+<td>Industrial espionage (IP leakage)</td>
+<td>₩100B+</td>
+<td>Designed to flag privilege and behavior deviations for review and step-up approval</td>
+</tr>
+<tr>
+<td>Safety incidents</td>
+<td>Compensation + reputational damage</td>
+<td>Designed to enforce policy gates (training/authorization) using device/user evidence signals</td>
+</tr>
+</tbody>
+</table>
+<h3>Implementation Cost</h3>
+<div class="phase-card">
+<div class="phase-header">Phase 1: PoC (3 months) – Gimpo Mega Hub</div>
+<p><strong>Cost:</strong> ₩0.5B</p>
+<p><strong>Scope:</strong> 1 zone, 50 devices</p>
+<p><strong>Validation:</strong> Integration feasibility (MES/WMS), policy effectiveness, false-positive/false-negative rates, and end-to-end latency under representative load (targets to be defined and validated during PoC).</p>
+</div>
+<div class="phase-card">
+<div class="phase-header">Phase 2: Scale-up (6 months) – 5 key centers</div>
+<p><strong>Cost:</strong> ₩5B</p>
+<p><strong>Scope:</strong> Gimpo, Gwangju, Daegu, Bucheon, Anseong</p>
+<p><strong>Objective:</strong> Validate operational workflows (alerting, approvals, exception handling) and quantify reduction in unauthorized or anomalous access attempts under realistic conditions.</p>
+</div>
+<div class="phase-card">
+<div class="phase-header">Phase 3: Nationwide rollout (12 months) – 30+ centers</div>
+<p><strong>Cost:</strong> ₩20B</p>
+<p><strong>Impact:</strong>
+<ul style="margin-top: 12px;"><li>Standardize IoT access policies across sites with auditable evidence trails</li><li>Support expansion by applying consistent verification controls across new facilities and device types</li><li>Enable licensing/partnership discussions supported by patent coverage and PoC evidence</li></ul>
+</p>
+</div>
+<div class="highlight">
+<div class="highlight-title">💎 Payback Period</div>
+<p style="font-size: 1.2rem; margin-top: 12px;">
+ROI is intended to be supported by reduced incident frequency/severity and faster containment. Quantification should be validated with customer-specific baseline data and PoC measurements.
+</p>
+</div>
+ Overall Evaluation 
+<h2>⭐ Overall Fit Assessment</h2>
+<table>
+<thead>
+<tr>
+<th>Evaluation Criteria</th>
+<th>Score</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Technical Fit</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+</div>
+</td>
+<td>Designed for large-scale IoT environments; fit depends on integration constraints and operational policy.</td>
+</tr>
+<tr>
+<td><strong>Business Fit</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+</div>
+</td>
+<td>Designed to protect critical logistics operations; applicability depends on site topology and device inventory.</td>
+</tr>
+<tr>
+<td><strong>Ease of Implementation</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-empty">★</span>
+</div>
+</td>
+<td>Requires integration with existing MES/WMS</td>
+</tr>
+<tr>
+<td><strong>Economics (ROI)</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+</div>
+</td>
+<td>Economics should be validated using incident history, downtime cost models, and PoC evidence.</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+</div>
+</td>
+<td>Designed to scale across multiple sites with consistent policy and evidence signals.</td>
+</tr>
+<tr>
+<td><strong>Differentiation</strong></td>
+<td>
+<div class="rating">
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+<span class="star star-filled">★</span>
+</div>
+</td>
+<td>Patent-backed authentication approach leveraging communication-history evidence signals.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight">
+<div class="highlight-title">📊 Final Fit Score</div>
+<p style="font-size: 3rem; font-weight: 800; color: #ffd700; text-align: center; margin: 20px 0;">
+                Evidence-led pilot recommended
             </p>
-        </div>
-
-        <div class="highlight">
-            <div class="highlight-title">💎 Investment Recovery Period</div>
-            <p style="font-size: 1.2rem; margin-top: 12px;">
-                <strong>Full investment recovery by preventing just one major hacking incident</strong><br>
-                $1.5M annual savings by blocking just 10 minor security incidents<br>
-                <strong style="color: #ffd700;">Expected ROI: Within 1 year</strong>
+<p style="font-size: 1.3rem; text-align: center; color: #e9d5ff; font-weight: 600;">
+                High potential applicability (subject to PoC validation)
             </p>
-        </div>
-
-        <!-- Comprehensive Evaluation -->
-        <h2>⭐ Comprehensive Applicability Assessment</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Evaluation Item</th>
-                    <th>Score</th>
-                    <th>Rationale</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Technical Fit</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                        </div>
-                    </td>
-                    <td>Perfect match for large-scale IoT environment</td>
-                </tr>
-                <tr>
-                    <td><strong>Business Fit</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                        </div>
-                    </td>
-                    <td>Directly tied to Coupang's core asset security</td>
-                </tr>
-                <tr>
-                    <td><strong>Implementation Ease</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-empty">★</span>
-                        </div>
-                    </td>
-                    <td>Requires existing MES/WMS integration</td>
-                </tr>
-                <tr>
-                    <td><strong>Economics (ROI)</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                        </div>
-                    </td>
-                    <td>Recovery through single hack prevention</td>
-                </tr>
-                <tr>
-                    <td><strong>Scalability</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                        </div>
-                    </td>
-                    <td>Nationwide 30+ centers → Global expansion</td>
-                </tr>
-                <tr>
-                    <td><strong>Differentiation</strong></td>
-                    <td>
-                        <div class="rating">
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                            <span class="star star-filled">★</span>
-                        </div>
-                    </td>
-                    <td>World's first comm. history-based auth</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="highlight">
-            <div class="highlight-title">📊 Final Applicability Score</div>
-            <p style="font-size: 3rem; font-weight: 800; color: #ffd700; text-align: center; margin: 20px 0;">
-                95 / 100
+</div>
+ Competitive Advantage 
+<h2>🎯 Deployment Considerations</h2>
+<div class="key-tech">
+<p><strong>Considerations for logistics operators:</strong></p>
+<ul style="margin-top: 16px;">
+<li>Large multi-site logistics footprint (site count varies by operator)</li>
+<li>Automation infrastructure (robots/AGVs/sorting) where device identity and access controls are critical</li>
+<li>A large IoT device footprint with heterogeneous vendors and protocols</li>
+</ul>
+<p style="margin-top: 16px; color: #ffd700; font-weight: 700;">
+                → Operators with large device fleets and high automation density may benefit most from evidence-based mutual verification (to be validated in PoC).
             </p>
-            <p style="font-size: 1.3rem; text-align: center; color: #e9d5ff; font-weight: 600;">
-                Exceptionally High Applicability
-            </p>
-        </div>
-
-        <!-- Competitive Advantage -->
-        <h2>🎯 Competitive Advantage</h2>
-        <div class="key-tech">
-            <p><strong>Coupang vs Competitors (Naver, 11st, SSG):</strong></p>
-            <ul style="margin-top: 16px;">
-                <li>Korea's largest proprietary logistics network (30+ centers)</li>
-                <li>Highest level of automation infrastructure (robots, AGVs, auto-sorting)</li>
-                <li>Most extensive IoT device deployment</li>
-            </ul>
-            <p style="margin-top: 16px; color: #ffd700; font-weight: 700;">
-                → Coupang derives maximum benefit from NexAuth for IoT among all Korean e-commerce players
-            </p>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta-box">
-            <div class="cta-title">Partnership Inquiry</div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-label">Business Partnership</div>
-                    <div class="contact-value">intrepid7@naver.com</div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label">Technical Cooperation</div>
-                    <div class="contact-value">pertz7709@gmail.com</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>© 2025 Patent Innovation Hub. All patents are protected by intellectual property rights.</p>
-            <p style="margin-top: 8px;">Patent Holder: Yoon Seong-min</p>
-        </div>
-    </div>
+</div>
+<!-- CTA -->
+<div class="cta-box">
+<div class="cta-title">Partnership Inquiries</div>
+<div class="contact-info">
+<div class="contact-item">
+<div class="contact-label">Business Partnership</div>
+<div class="contact-value"><a href="mailto:intrepid7@naver.com" style="color:inherit;text-decoration:none;">intrepid7@naver.com</a></div>
+</div>
+<div class="contact-item">
+<div class="contact-label">Technical Collaboration</div>
+<div class="contact-value"><a href="mailto:pertz7709@gmail.com" style="color:inherit;text-decoration:none;">pertz7709@gmail.com</a></div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="footer">
+<p>© 2025 Patent Innovation Hub. All patents are protected as intellectual property.</p>
+<p style="margin-top: 8px;">Patent holder: Seongmin Yoon</p>
+</div>
+</div>
 </body>
 </html>

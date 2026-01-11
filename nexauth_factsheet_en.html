@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXAUTH™ Premium Marketing Factsheet - Landscape</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563EB;
+            --secondary: #7C3AED;
+            --accent: #059669;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gray: #64748B;
+            --premium-gradient: linear-gradient(135deg, #2563EB 0%, #7C3AED 50%, #059669 100%);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            color: var(--dark);
+            line-height: 1.6;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* A4 Landscape Layout */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        
+        .container {
+            width: 297mm;
+            margin: 0 auto;
+        }
+        
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            padding: 15mm 20mm;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide:last-child {
+            page-break-after: auto;
+        }
+        
+        /* Header Slide */
+        .header-slide {
+            background: var(--dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .header-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--premium-gradient);
+            opacity: 0.1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-svg {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 40px;
+        }
+        
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+            background: var(--premium-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Content Slides Common */
+        h2 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--dark);
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary);
+            letter-spacing: -0.5px;
+        }
+        
+        h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 20px 0 16px;
+            color: var(--primary);
+        }
+        
+        /* Grid Layout */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .key-points.three-cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .point-card {
+            background: var(--light);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .point-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .point-card .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .point-card .title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .point-card .desc {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 28px 16px;
+            background: var(--light);
+            border-radius: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .stat-box .number {
+            font-size: 40px;
+            font-weight: 900;
+            background: var(--premium-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+            letter-spacing: -0.05em;
+            white-space: nowrap;
+        }
+        
+        .stat-box .label {
+            font-size: 16px;
+            color: var(--gray);
+        }
+        
+        /* Patent Grid - Premium Design Enhancement */
+        .patent-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 15px 0;
+        }
+        
+        .patent-box {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 3px solid;
+            border-image: var(--premium-gradient) 1;
+            padding: 12px 10px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 12px 24px rgba(37, 99, 235, 0.1),
+                0 5px 10px rgba(124, 58, 237, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(37, 99, 235, 0.2);
+            min-height: 110px;
+            height: auto;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .patent-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--premium-gradient);
+            z-index: 1;
+            filter: blur(1px);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+        }
+        
+        .patent-box .country {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .patent-box .number {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, #1e293b, #475569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 4px;
+        }
+        
+        /* Individual Color Themes by Country with Glow Effects */
+        .patent-box:nth-child(1) {
+            border-image: linear-gradient(135deg, #dc2626, #ef4444) 1;
+            box-shadow: 
+                0 12px 24px rgba(220, 38, 38, 0.15),
+                0 5px 10px rgba(239, 68, 68, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(220, 38, 38, 0.3);
+        }
+        
+        .patent-box:nth-child(1)::before {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 2px 15px rgba(220, 38, 38, 0.6);
+        }
+        
+        .patent-box:nth-child(2) {
+            border-image: linear-gradient(135deg, #2563eb, #3b82f6) 1;
+            box-shadow: 
+                0 12px 24px rgba(37, 99, 235, 0.15),
+                0 5px 10px rgba(59, 130, 246, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(37, 99, 235, 0.3);
+        }
+        
+        .patent-box:nth-child(2)::before {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            box-shadow: 0 2px 15px rgba(37, 99, 235, 0.6);
+        }
+        
+        .patent-box:nth-child(3) {
+            border-image: linear-gradient(135deg, #7c3aed, #8b5cf6) 1;
+            box-shadow: 
+                0 12px 24px rgba(124, 58, 237, 0.15),
+                0 5px 10px rgba(139, 92, 246, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(124, 58, 237, 0.3);
+        }
+        
+        .patent-box:nth-child(3)::before {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            box-shadow: 0 2px 15px rgba(124, 58, 237, 0.6);
+        }
+        
+        .patent-box:nth-child(4) {
+            border-image: linear-gradient(135deg, #059669, #10b981) 1;
+            box-shadow: 
+                0 12px 24px rgba(5, 150, 105, 0.15),
+                0 5px 10px rgba(16, 185, 129, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(5, 150, 105, 0.3);
+        }
+        
+        .patent-box:nth-child(4)::before {
+            background: linear-gradient(135deg, #059669, #10b981);
+            box-shadow: 0 2px 15px rgba(5, 150, 105, 0.6);
+        }
+        
+        /* Optimized Hover Effects */
+        .patent-box:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(37, 99, 235, 0.25),
+                0 10px 20px rgba(124, 58, 237, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Optimized point-card styling */
+        .point-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+            border: 2px solid;
+            border-image: var(--premium-gradient) 1;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 20px rgba(37, 99, 235, 0.08),
+                0 4px 8px rgba(124, 58, 237, 0.08);
+            min-height: 120px;
+        }
+        
+        /* Process Flow */
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 24px 0;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .process-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 0;
+        }
+        
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-step .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid white;
+        }
+        
+        .process-step .icon {
+            font-size: 36px;
+        }
+        
+        .process-step .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .process-step .time {
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Market Box */
+        .market-opportunity {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03), rgba(5, 150, 105, 0.03));
+            padding: 28px;
+            border-radius: 16px;
+            margin: 20px 0;
+        }
+        
+        /* Highlight Text */
+        .highlight-text {
+            font-size: 36px;
+            font-weight: 800;
+            background: var(--premium-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin: 24px 0;
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+            display: grid;
+            gap: 10px;
+        }
+        
+        .feature-list li {
+            padding: 6px 0 6px 36px;
+            position: relative;
+            font-size: 17px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--dark);
+            color: white;
+            padding: 28px 40px;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            margin-top: auto;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--premium-gradient);
+            opacity: 0.1;
+            border-radius: 16px;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-card .type {
+            font-size: 18px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+        
+        .contact-card .email {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        /* Slide Content Area Optimization */
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Compact Layout */
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        /* Print Optimization */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                width: 100%;
+            }
+            
+            .slide {
+                width: 297mm;
+                height: 210mm;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .point-card:hover,
+            .stat-box:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+        
+        /* Remove Responsive - Fixed Layout */
+        @media screen {
+            .container {
+                transform-origin: top left;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<!-- Slide 1: Title -->
+<div class="slide header-slide">
+<div class="header-content" style="padding: 40px 60px 40px 60px; display: flex; flex-direction: column; justify-content: center; height: 100vh;">
+<svg class="logo-svg" style="filter: drop-shadow(0 8px 24px rgba(59, 130, 246, 0.3)); margin-bottom: 30px;" viewbox="0 0 160 160">
+<defs>
+<lineargradient id="nexauthGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#2563EB"></stop>
+<stop offset="50%" style="stop-color:#7C3AED"></stop>
+<stop offset="100%" style="stop-color:#059669"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="6"></fegaussianblur>
+<fedropshadow dx="0" dy="0" flood-color="#2563EB" flood-opacity="0.8" stddeviation="8"></fedropshadow>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+<filter id="intenseBright">
+<fegaussianblur result="coloredBlur" stddeviation="4"></fegaussianblur>
+<fecolormatrix type="matrix" values="1.5 0 0 0 0  0 1.5 0 0 0  0 0 2 0 0  0 0 0 1 0"></fecolormatrix>
+<fedropshadow dx="0" dy="0" flood-color="#ffffff" flood-opacity="0.9" stddeviation="12"></fedropshadow>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Outer hexagon ring -->
+<polygon fill="none" opacity="0.6" points="80,16 120,40 120,80 80,104 40,80 40,40" stroke="url(#nexauthGradient)" stroke-width="4"></polygon>
+<!-- Central nexus circle -->
+<circle cx="80" cy="60" fill="url(#nexauthGradient)" filter="url(#intenseBright)" r="16">
+<animate attributename="opacity" dur="2s" repeatcount="indefinite" values="0.8;1;0.8"></animate>
+</circle>
+<!-- Enhanced glow ring -->
+<circle cx="80" cy="60" fill="none" filter="url(#glow)" opacity="0.6" r="20" stroke="url(#nexauthGradient)" stroke-width="4">
+<animate attributename="r" dur="3s" repeatcount="indefinite" values="20;28;20"></animate>
+<animate attributename="opacity" dur="3s" repeatcount="indefinite" values="0.6;0.2;0.6"></animate>
+</circle>
+<!-- Network nodes -->
+<circle cx="50" cy="30" fill="#2563EB" r="6"></circle>
+<circle cx="110" cy="30" fill="#7C3AED" r="6"></circle>
+<circle cx="130" cy="60" fill="#059669" r="6"></circle>
+<circle cx="110" cy="90" fill="#2563EB" r="6"></circle>
+<circle cx="50" cy="90" fill="#7C3AED" r="6"></circle>
+<circle cx="30" cy="60" fill="#059669" r="6"></circle>
+<!-- Connection lines to center -->
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="50" x2="68" y1="30" y2="50"></line>
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="110" x2="92" y1="30" y2="50"></line>
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="130" x2="96" y1="60" y2="60"></line>
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="110" x2="92" y1="90" y2="70"></line>
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="50" x2="68" y1="90" y2="70"></line>
+<line opacity="0.7" stroke="url(#nexauthGradient)" stroke-width="3" x1="30" x2="64" y1="60" y2="60"></line>
+<!-- Authentication shield symbol in center -->
+<path d="M80 44 L70 52 L80 60 L90 52 Z" fill="white" stroke="none"></path>
+<!-- Pulse animation ring -->
+<circle cx="80" cy="60" fill="none" opacity="0.4" r="24" stroke="url(#nexauthGradient)" stroke-width="2">
+<animate attributename="r" dur="2s" repeatcount="indefinite" values="24;32;24"></animate>
+<animate attributename="opacity" dur="2s" repeatcount="indefinite" values="0.4;0.1;0.4"></animate>
+</circle>
+
+</svg>
+
+<h1 style="margin-bottom: 20px;">NEXAUTH™</h1>
+<p class="tagline" style="margin-bottom: 15px;">The Nexus of Trust</p>
+<p class="subtitle" style="margin-bottom: 35px; white-space: nowrap;">World's First AI Relationship Authentication Technology Revolutionizing Digital Identity Verification</p>
+<!-- Global Patent & Trademark Information -->
+<div style="padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3); position: relative; z-index: 10;">
+<h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 18px;">🏆 Global Patent Portfolio & Trademark Rights</h3>
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; font-size: 13px; margin-bottom: 15px;">
+<div style="text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.3);">
+<img height="36" src="data:image/png;base64,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" style="margin-bottom: 8px;" width="54"/>
+<div style="color: #94a3b8; margin-top: 4px; font-size: 12px;">10-2468849</div>
+<div style="color: #f59e0b; font-size: 10px;">South Korea</div>
+</div>
+<div style="text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.3);">
+<svg height="30" style="margin-bottom: 4px;" viewbox="0 0 60 40" width="40">
+<!-- US Flag -->
+<rect fill="#B22234" height="40" width="60"></rect>
+<!-- White Stripes -->
+<rect fill="white" height="3.08" width="60" y="3.08"></rect>
+<rect fill="white" height="3.08" width="60" y="9.24"></rect>
+<rect fill="white" height="3.08" width="60" y="15.4"></rect>
+<rect fill="white" height="3.08" width="60" y="21.56"></rect>
+<rect fill="white" height="3.08" width="60" y="27.72"></rect>
+<rect fill="white" height="3.08" width="60" y="33.88"></rect>
+<!-- Blue Canton -->
+<rect fill="#3C3B6E" height="21.56" width="24"></rect>
+<!-- Stars -->
+<g fill="white">
+<polygon points="3,2 3.5,3.5 5,3.5 3.75,4.5 4.25,6 3,5 1.75,6 2.25,4.5 1,3.5 2.5,3.5" transform="translate(2,2) scale(0.8)"></polygon>
+<polygon points="3,2 3.5,3.5 5,3.5 3.75,4.5 4.25,6 3,5 1.75,6 2.25,4.5 1,3.5 2.5,3.5" transform="translate(8,2) scale(0.8)"></polygon>
+<polygon points="3,2 3.5,3.5 5,3.5 3.75,4.5 4.25,6 3,5 1.75,6 2.25,4.5 1,3.5 2.5,3.5" transform="translate(14,2) scale(0.8)"></polygon>
+<polygon points="3,2 3.5,3.5 5,3.5 3.75,4.5 4.25,6 3,5 1.75,6 2.25,4.5 1,3.5 2.5,3.5" transform="translate(5,6) scale(0.8)"></polygon>
+<polygon points="3,2 3.5,3.5 5,3.5 3.75,4.5 4.25,6 3,5 1.75,6 2.25,4.5 1,3.5 2.5,3.5" transform="translate(11,6) scale(0.8)"></polygon>
+</g>
+</svg>
+<div style="color: #94a3b8; margin-top: 4px; font-size: 12px;">US 12074871</div>
+<div style="color: #f59e0b; font-size: 10px;">United States</div>
+</div>
+<div style="text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.3);">
+<svg height="30" style="margin-bottom: 4px;" viewbox="0 0 60 40" width="40">
+<!-- EU Flag -->
+<rect fill="#003399" height="40" width="60"></rect>
+<!-- 12 Stars in Circle -->
+<g fill="#FFCC00">
+<polygon points="30,10 30.6,11.8 32.5,11.8 31,12.9 31.6,14.7 30,13.6 28.4,14.7 29,12.9 27.5,11.8 29.4,11.8"></polygon>
+<polygon points="35.2,11.5 35.8,13.3 37.7,13.3 36.2,14.4 36.8,16.2 35.2,15.1 33.6,16.2 34.2,14.4 32.7,13.3 34.6,13.3"></polygon>
+<polygon points="38.7,15 39.3,16.8 41.2,16.8 39.7,17.9 40.3,19.7 38.7,18.6 37.1,19.7 37.7,17.9 36.2,16.8 38.1,16.8"></polygon>
+<polygon points="40.2,20 40.8,21.8 42.7,21.8 41.2,22.9 41.8,24.7 40.2,23.6 38.6,24.7 39.2,22.9 37.7,21.8 39.6,21.8"></polygon>
+<polygon points="38.7,25 39.3,26.8 41.2,26.8 39.7,27.9 40.3,29.7 38.7,28.6 37.1,29.7 37.7,27.9 36.2,26.8 38.1,26.8"></polygon>
+<polygon points="35.2,28.5 35.8,30.3 37.7,30.3 36.2,31.4 36.8,33.2 35.2,32.1 33.6,33.2 34.2,31.4 32.7,30.3 34.6,30.3"></polygon>
+<polygon points="30,30 30.6,31.8 32.5,31.8 31,32.9 31.6,34.7 30,33.6 28.4,34.7 29,32.9 27.5,31.8 29.4,31.8"></polygon>
+<polygon points="24.8,28.5 25.4,30.3 27.3,30.3 25.8,31.4 26.4,33.2 24.8,32.1 23.2,33.2 23.8,31.4 22.3,30.3 24.2,30.3"></polygon>
+<polygon points="21.3,25 21.9,26.8 23.8,26.8 22.3,27.9 22.9,29.7 21.3,28.6 19.7,29.7 20.3,27.9 18.8,26.8 20.7,26.8"></polygon>
+<polygon points="19.8,20 20.4,21.8 22.3,21.8 20.8,22.9 21.4,24.7 19.8,23.6 18.2,24.7 18.8,22.9 17.3,21.8 19.2,21.8"></polygon>
+<polygon points="21.3,15 21.9,16.8 23.8,16.8 22.3,17.9 22.9,19.7 21.3,18.6 19.7,19.7 20.3,17.9 18.8,16.8 20.7,16.8"></polygon>
+<polygon points="24.8,11.5 25.4,13.3 27.3,13.3 25.8,14.4 26.4,16.2 24.8,15.1 23.2,16.2 23.8,14.4 22.3,13.3 24.2,13.3"></polygon>
+</g>
+</svg>
+<div style="color: #94a3b8; margin-top: 4px; font-size: 12px;">EP 4044052</div>
+<div style="color: #f59e0b; font-size: 10px;">European Union</div>
+</div>
+<div style="text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(239, 68, 68, 0.3);">
+<svg height="30" style="margin-bottom: 4px;" viewbox="0 0 60 40" width="40">
+<!-- Japan Flag -->
+<rect fill="white" height="40" width="60"></rect>
+<circle cx="30" cy="20" fill="#BC002D" r="12"></circle>
+</svg>
+<div style="color: #94a3b8; margin-top: 4px; font-size: 12px;">JP 07245390</div>
+<div style="color: #f59e0b; font-size: 10px;">Japan</div>
+</div>
+</div>
+<div style="padding: 12px; background: rgba(16, 185, 129, 0.1); border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.3); text-align: center;">
+<h4 style="color: #10b981; margin-bottom: 8px; font-size: 16px;">📝 Trademark Applications</h4>
+<div style="color: #94a3b8; font-size: 14px;">
+<strong>NEXAUTH™</strong> Application Filed | Date: June 6, 2025 | Number: 40-2025-0097344
+                            <div style="font-size: 12px; margin-top: 4px; color: #64748b;">
+                                "The Nexus of Trust" - New Paradigm in Relationship-Based Authentication
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 2: Core Value Proposition -->
+<div class="slide">
+<div class="slide-content">
+<h2 style="margin-bottom: 18px;">Core Value Proposition</h2>
+<div class="highlight-text" style="margin: 18px 0;">"Identity Proven by Relationships"</div>
+<div class="key-points" style="margin: 15px 0;">
+<div class="point-card" style="padding: 20px;">
+<div class="icon" style="margin-bottom: 8px;">🌍</div>
+<div class="title" style="margin-bottom: 6px;">Early Patented Architecture</div>
+<div class="desc">Global pioneering technology<br/>in relationship-based AI authentication<br/>with 4-country patents</div>
+</div>
+<div class="point-card" style="padding: 20px;">
+<div class="icon" style="margin-bottom: 8px;">🎯</div>
+<div class="title" style="margin-bottom: 6px;">High-Confidence Verification</div>
+<div class="desc">AI big data analysis<br/>multi-layered relationship verification<br/>designed to improve identity matching accuracy</div>
+</div>
+<div class="point-card" style="padding: 20px;">
+<div class="icon" style="margin-bottom: 8px;">⚡</div>
+<div class="title" style="margin-bottom: 6px;">Rapid Authentication (prototype observed)</div>
+<div class="desc">Average completion time<br/>under 8 seconds<br/>industry-leading speed</div>
+</div>
+<div class="point-card" style="padding: 20px;">
+<div class="icon" style="margin-bottom: 8px;">💡</div>
+<div class="title" style="margin-bottom: 6px;">Software-based Deployment</div>
+<div class="desc">100% software-based<br/>no additional equipment<br/>unlimited scalability</div>
+</div>
+</div>
+<div class="stats-grid" style="margin-top: 20px;">
+<div class="stat-box" style="padding: 24px 16px;">
+<div class="number" style="margin-bottom: 4px;">4 Countries</div>
+<div class="label">Global Patents</div>
+</div>
+<div class="stat-box" style="padding: 24px 16px;">
+<div class="number" style="margin-bottom: 4px;">100%</div>
+<div class="label">Authentication Accuracy</div>
+</div>
+<div class="stat-box" style="padding: 24px 16px;">
+<div class="number" style="margin-bottom: 4px;">8 Sec</div>
+<div class="label">Average Processing</div>
+</div>
+<div class="stat-box" style="padding: 24px 16px;">
+<div class="number" style="margin-bottom: 4px;">Zero</div>
+<div class="label">Hardware Dependency</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 3: Technology Solution -->
+<div class="slide">
+<div class="slide-content">
+<h2 style="margin-bottom: 20px;">Revolutionary Technology Solution</h2>
+<h3 style="margin: 16px 0 14px;">AI Relationship Authentication Process</h3>
+<div class="process-flow" style="margin: 18px 0; padding: 16px 0;">
+<div class="process-step">
+<div class="icon-wrapper" style="width: 75px; height: 75px; margin: 0 auto 8px;">
+<span class="icon" style="font-size: 34px;">👤</span>
+</div>
+<div class="title" style="font-size: 17px; margin-bottom: 3px;">Auth Request</div>
+<div class="time" style="font-size: 15px;">Instant</div>
+</div>
+<div class="process-step">
+<div class="icon-wrapper" style="width: 75px; height: 75px; margin: 0 auto 8px;">
+<span class="icon" style="font-size: 34px;">👥</span>
+</div>
+<div class="title" style="font-size: 17px; margin-bottom: 3px;">Verify Contacts</div>
+<div class="time" style="font-size: 15px;">2 seconds</div>
+</div>
+<div class="process-step">
+<div class="icon-wrapper" style="width: 75px; height: 75px; margin: 0 auto 8px;">
+<span class="icon" style="font-size: 34px;">🤖</span>
+</div>
+<div class="title" style="font-size: 17px; margin-bottom: 3px;">AI Analysis</div>
+<div class="time" style="font-size: 15px;">5 seconds</div>
+</div>
+<div class="process-step">
+<div class="icon-wrapper" style="width: 75px; height: 75px; margin: 0 auto 8px;">
+<span class="icon" style="font-size: 34px;">✅</span>
+</div>
+<div class="title" style="font-size: 17px; margin-bottom: 3px;">Verification Complete</div>
+<div class="time" style="font-size: 15px;">Total 8 sec</div>
+</div>
+</div>
+<h3 style="margin: 16px 0 14px;">Core Technology Features</h3>
+<div class="compact-grid" style="gap: 18px;">
+<ul class="feature-list" style="margin: 12px 0; gap: 8px;">
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">Real-time AI analysis of relationship communication patterns</li>
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">Multi-layered relationship network cross-verification system</li>
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">100% big data consistency achievement</li>
+</ul>
+<ul class="feature-list" style="margin: 12px 0; gap: 8px;">
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">Complete elimination of biometric hardware requirements</li>
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">Cloud-based instant scalability</li>
+<li style="padding: 5px 0 5px 36px; font-size: 16px; line-height: 1.35;">Irreplaceable technology for advanced security infrastructure</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Slide 4: Market Opportunity -->
+<div class="slide">
+<div class="slide-content">
+<h2 style="margin-bottom: 18px;">Market Opportunity</h2>
+<div class="market-opportunity" style="padding: 22px; margin: 16px 0;">
+<h3 style="margin: 0 0 16px;">Global Digital Identity Verification Market</h3>
+<div class="stats-grid" style="margin: 16px 0;">
+<div class="stat-box" style="padding: 22px 16px;">
+<div class="number" style="font-size: 38px; margin-bottom: 4px;">$120B</div>
+<div class="label" style="font-size: 15px;">2025 Market Size</div>
+</div>
+<div class="stat-box" style="padding: 22px 16px;">
+<div class="number" style="font-size: 38px; margin-bottom: 4px;">$808B</div>
+<div class="label" style="font-size: 15px;">2034 Projection</div>
+</div>
+<div class="stat-box" style="padding: 22px 16px;">
+<div class="number" style="font-size: 38px; margin-bottom: 4px;">23.6%</div>
+<div class="label" style="font-size: 15px;">Annual Growth Rate</div>
+</div>
+<div class="stat-box" style="padding: 22px 16px;">
+<div class="number" style="font-size: 38px; margin-bottom: 4px;">6.7x</div>
+<div class="label" style="font-size: 15px;">10-Year Growth</div>
+</div>
+</div>
+</div>
+<h3 style="margin: 16px 0 14px;">Target Market Segments</h3>
+<div class="compact-grid" style="gap: 18px;">
+<ul class="feature-list" style="margin: 12px 0; gap: 8px;">
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>Financial Services:</strong> Remote account opening, loan approval, mobile banking</li>
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>Government:</strong> Digital government services, online civil affairs, electronic voting</li>
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>Healthcare:</strong> Telemedicine, medical records, prescription management</li>
+</ul>
+<ul class="feature-list" style="margin: 12px 0; gap: 8px;">
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>Enterprise:</strong> Employee authentication, remote work, access control</li>
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>E-commerce:</strong> High-value transactions, age verification, fraud prevention</li>
+<li style="padding: 4px 0 4px 36px; font-size: 16px; line-height: 1.3;"><strong>Education:</strong> Online exams, attendance tracking, certificate issuance</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Slide 5: Competitive Advantages -->
+<div class="slide">
+<div class="slide-content">
+<h2 style="margin-bottom: 15px;">Competitive Advantages</h2>
+<div style="display: flex; gap: 24px; margin-bottom: 12px;">
+<div style="flex: 1;">
+<h3 style="margin-bottom: 10px; margin-top: 0;">Global Patent Portfolio</h3>
+<div style="background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.3); margin-bottom: 12px;">
+<h4 style="color: #ef4444; margin-bottom: 6px; font-size: 1.2em;">⚡ Core Patent Competitive Edge</h4>
+<div style="color: #94a3b8; font-size: 1.03em; line-height: 1.3; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+<div>• <strong style="color: #ef4444;">Early Patented Architecture</strong> AI relationship authentication foundational patents</div>
+<div>• Simultaneous ownership across 4 countries ensures high barrier to replication</div>
+<div>• Establishes entry barriers and sustains technological leadership</div>
+<div>• Global standardization of innovative technology and licensing revenue generation</div>
+</div>
+</div>
+<div class="patent-grid" style="gap: 12px; margin: 8px 0;">
+<div class="patent-box" style="padding: 10px 8px; min-height: 95px;">
+<img height="36" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAYAAAA4T5zSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAuNSURBVHhe7Zt7UFTnGcaf3UW5i4hgNbYqCqwoEjLRgmKqudWhJHIJeKMdjUGjMqJobMVGGy+Mt1YiNcOolapFjLeKl5rxgogJEsxEMZFwiYBB3GVBSgV2cdfdp3802bKfgjGeA/zBb+bMsO/7Pgf2e8737nfOfihIEj10GUox0EPn0mNAF9NjQBfTY0AX02kGFBUV4bvvvhPD3QaNRoNjx46JYflhJ2AwGKhWq9m3b1/m5uaK6S7n5s2bdHNzo729PW/evCmmZaVTZsDq1atRUlICOzs7qNVq7Nq1C+Xl5WJZp1NdfQdJSUkYMWIEXnjhBTx48ABvv/02Hj58KJbKh+iI1Fy5coUqlYoAeODAARYWFtLOzo4uLi4sLy8XyzuN1tZWDh48mAC4du1aVlRU0NnZmQC4efNmsVw2ZDXAYDBw5MiRBMDIyEi2trZy1KhRBMA333yTer2es2bNYllZmSiVDY1Gw7i4ON64cYO7du0iAPbu3ZtFRUVMS0sjADo6OrK0tFSUyoKsBqxYsYIA6OHhQa1Wy5UrVxIA+/Xrx5qaGi5fvpwAOHTYMJpMJlEuC5GRkQTAsWPH0mQy8bXXXiMAvvjiizQajQwNDSUAhoWFiVJZkM2AgoICm9Zz9epV2tnZEQD37dvH/Px8a/7gwYOiXDYqKyvp4uJCAExJSWFlZSVdXV0JgOvXr2dZWRnfeecdVlXd5qeffirKJUcWA9q2noiICLa2tnL06NEEwDfeeIN6vZ5+fn4EwOjoaFEuOz+0GgcHBxYXF3PHjh0EQHt7e5aUlPD27dv09fWls7Oz7J9TshjQtvVoNBomJycTAN3d3W1aT//+/VlbWyvK28ViNlNf9i0bPjlH3cEjrM06zHunPmHzV8W0GI1iebuYzWZOnjyZABgcHEyTyWR9HRoaSqPRyJCQEALgxIkTaTabxVNIhuQGtG09mZmZNq1n7969P6n1tHxTyqo1Kbw+cQq/GBPy2OPLX77MW8tW8f7nX4jyx1JWVkYnJyd6e3uzoqKCpaWl1lVQeno6i4uL6eDgSABMS0sT5ZIhqQEdtZ7w8HDq9Xqq1WoCYFRUlCh/BKOujreWr+IXgeMfGfCOjpI5C2m4VSme7hHy8/NZVVXFGTNmsKSkhB9++KF1pt65c4ebNm0iALq4uPDWrVuiXBIkNeDw4cM2rWfVqlXtth6tVivKbbhfcJXXX2r/in/S8eXYSazPPi2e9hEiIiKsrcZkMllXQVOmTKHJZOK4ceMIgBs3bhSlkqCgxF/IZGdnw2w2Y8iQIQgODsbDhw+xd+9e+Pr6IjQ0FGazGVlZWZg+fbootdKYk4eKFX8ETc9+Rzp4+WIM+G37v6u0tBRBQUEwGAxITU1FWFgYAgMDYTAYsHv3boSEhKCqqgphYWGiVBIkfxQxdepUREVFIS8vDxaLBeHh4YiJicGcOXNgNpsRFRXV4eC3fHUTlb9fLcngA8CdP6eh4ZPzYtiKn58f1q1bBwBITk6GUqnEhg0boFAoUFhYCH9/f9kGHwAknwFtOX/+PPz9/ZGamootW7agf//++PrrrzFgwACxFABg0Rtw8604GGs0YuqZUDk7wf/IfvQeNFBMAQDMZjMmjJ+Azws/x6RJk3Du3DkUFBQgNDRULJUcyWdAW1599VUMGjQIFosFCoUC27dvb3fwAUDzt72SDz4AmFv0qN6aJoatqFQqZPw9Aw4ODnB3d4fBYOiUwYfcM6At165dQ1BQkBi2omkwoDg8Bn1bGsSUNCgU8D+8D44+w8WMlYqKCnh7e4thWZF1BrSlo8EHgMycW4BBL4alg0T9sZNi1IbOHnx0pgFPIiu3EhYoxLCkNOZeFkNdTqe1oI6o/08rvKZ/jD11/0SASSemn0i1qg8OOY/CVfvnUK90gqvlAcaYahGl/waBxlqb2jHnT6CXZ3+bWFfSLWZAac19kMRV++fE1BP52HkUYj1jkOUcgG/t+qFR6YBqOzecdvTFXI+pSHGbiIdt3mbr7e71vXS3MKCusRUAkO3kZzNYT+IfzmOwpc8EmBQqMWXlmNNIrO37K+trc1OzTb6r+fHvVkYs33fBGlUfZDmPFtOPJcPleaT2CRbDj+Vfjj4469D+6qcr6RYGDOznaP15h+s45DkMscm3pUXRC+vcXsIO13FiqkMyXJ4HAKhcXcVUl9ItDBg1xB1K5f9WQA8VSixzfx2b+kxAtaqPtaZF0QvZTmrEeMYi20ndRv3jKO/lgbsqVzgM/YWY6lK6xSoIAPzmHkNZzX0xjD6WB+gFM/6tdHzmZWq60w3MP/YXMdyldIsZAACTAx//nOa+0h73lE7PPPgA4Dz5/x/G3YVOM6CoqEgM2TD79RFiSHJGT5kghmzIz89HQ4NMj0LaQXYDjEYjYmJiEBQUhAsXLohpK8FqT0wO/JkYloxA734IHNH+DVhdXR0iIyMxZswYFBcXi2nZkNWAEydOQK/Xw9nZGSQRHx+PpqYmsczKXxcFw6F3+2v6Z+FPcc9D0UEXS0hIgE6ng5OTE4YOHYpt27ZBq9WKZZIjmwELFy7E1KlTsWzZMmzbtg0DBw5EZWUlkpOTxVIr/r/oi91LJnQ4UD+FmZO9ETG+/dXP0aNHcejQISiVSuzZswdnz55FUlISAgMD0djYKJZLiuQGnDlzBhcvXkRkZCQUCgUyMjJQWFiI9PR0AMBHH32E3NxcUWZl1sve2LEoGEqJXAhWe2LXkvFi2Ep9fT0WLlwIAFi8eDFGjhyJBQsWAABiY2NhNBoRFxeH2lrbZ0pSIakB6enpCAsLw5w5cxAcHIzZs2eDJObPn49JkyZhxowZsFgsiI+PR0tLiyi3siBcjUOrJsHVqZeYeipiXxqKsymvw8neTkxZWb9+PXQ6HXx8fLBhwwYkJiZCq9XC29sbGzduREJCAjIzMxEdHS1KJUHS+4DGxkYEBATgzp07mDdvHjZv3oyAgABUV1dj3rx5SElJwejRo6HVapGYmIjU1FTxFDbc0jTh3e35OH/t6b4l83RzwNrfBeHd3/iJKRsKCwsxePDPsXLlHxAfH4979+4hIiICSqUSFy5cgE6nw7Rp06BSqZCXl4fx49ufST8Zmz0SEnDy5EkCoEKhYE5ODk+dOkV8vwO5vLychw4dIgAqlUpevnxZlD+WnOsaztp4iR5vHSB+nfHYwy5sL0OTTnPz4a/Y2PxAPMUj1NXV0cvLiwEBAaypqSFJvvLKKwTAhIQE6nQ6enp6EgCTkpJEuWRIbgBJxsXFEQCHDRvG5uZmrlmzhtevX2d9fT2bmpoYGxtLAPTx8aFerxfl7WI2W1ha3cjTV6q48/Q33H68mLvOlPJikYb39T9+ayJJTps2jQA4YsQItrS0cP/+/WxoaOAHH3zA5uZmxsTEEAB9fX2f6m98WmQx4N69exw4cKD1aiLJzMxMenh4MCEhgbW1tdar67333hPlsnPkyBHrLMzLy+Px48cJgGq1ms3NzdRoNPTy8qJSqZR9h7QsBpC0vinxTSoUCubm5jIrK4sAqFKpWFBQIMplo66ujgMGDCAAJiYm2lwsixYtok6n4/vvv8/Kyiru3r1blEuObAaQ5PTp022m+cyZMwmAw4cPZ3NzM6OiogiAISEholQ2tm7davM3tW2XTU1N1tYTExMjSmVBVgPq6uqsrWbp0qWsr6+3Xn1Lly6lVqvl3LlzeffuXVEqKzt37mReXh6zs7OtszInJ8e6t/VpFgjPiqwGsM2GXZVKxc8++8xmA29DQ4NY3qksWbLEpvV4eXkRAJcsWSKWyobsBpBkdHQ08f2HnF6vZ1pa2lP9Y4acHDly9JGVWUtLi1gmG51igFarpaenJ93c3Jifny+muxyj0ciZM2d2auv5AUnvhDvi0qVL8PHxwaBBg8RUt+FJ2yfloNMM6OHxSPowroenp8eALqbHgC6mx4Au5r+A916nkst4UgAAAABJRU5ErkJggg==" style="margin-bottom: 6px;" width="52"/>
+<div class="country" style="font-size: 13px;">South Korea</div>
+<div class="number" style="font-size: 12px;">10-2468849</div>
+</div>
+<div class="patent-box" style="padding: 10px 8px; min-height: 95px;">
+<svg height="32" style="margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" viewbox="0 0 60 40" width="48">
+<!-- US Flag -->
+<rect fill="#B22234" height="40" width="60"></rect>
+<!-- White Stripes -->
+<rect fill="white" height="3.08" width="60" y="3.08"></rect>
+<rect fill="white" height="3.08" width="60" y="9.24"></rect>
+<rect fill="white" height="3.08" width="60" y="15.4"></rect>
+<rect fill="white" height="3.08" width="60" y="21.56"></rect>
+<rect fill="white" height="3.08" width="60" y="27.72"></rect>
+<rect fill="white" height="3.08" width="60" y="33.88"></rect>
+<!-- Blue Canton -->
+<rect fill="#3C3B6E" height="21.56" width="24"></rect>
+<!-- Stars (partial array) -->
+<g fill="white">
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(2,2)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(6,2)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(10,2)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(14,2)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(18,2)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(4,6)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(8,6)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(12,6)"></path>
+<path d="M 2,2 L 2.3,2.9 L 3.2,2.9 L 2.5,3.4 L 2.8,4.3 L 2,3.8 L 1.2,4.3 L 1.5,3.4 L 0.8,2.9 L 1.7,2.9 Z" transform="translate(16,6)"></path>
+</g>
+</svg>
+<div class="country" style="font-size: 13px;">United States</div>
+<div class="number" style="font-size: 12px;">US 12074871</div>
+</div>
+<div class="patent-box" style="padding: 10px 8px; min-height: 95px;">
+<svg height="32" style="margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" viewbox="0 0 60 40" width="48">
+<!-- EU Flag -->
+<rect fill="#003399" height="40" width="60"></rect>
+<!-- 12 Stars in Circle -->
+<g fill="#FFCC00">
+<path d="M 30,8 L 30.6,10.3 L 33,10.3 L 31.2,11.7 L 31.8,14 L 30,12.6 L 28.2,14 L 28.8,11.7 L 27,10.3 L 29.4,10.3 Z"></path>
+<path d="M 37.9,10.5 L 38.5,12.8 L 40.9,12.8 L 39.1,14.2 L 39.7,16.5 L 37.9,15.1 L 36.1,16.5 L 36.7,14.2 L 34.9,12.8 L 37.3,12.8 Z"></path>
+<path d="M 43.2,16.5 L 43.8,18.8 L 46.2,18.8 L 44.4,20.2 L 45,22.5 L 43.2,21.1 L 41.4,22.5 L 42,20.2 L 40.2,18.8 L 42.6,18.8 Z"></path>
+<path d="M 43.2,23.5 L 43.8,25.8 L 46.2,25.8 L 44.4,27.2 L 45,29.5 L 43.2,28.1 L 41.4,29.5 L 42,27.2 L 40.2,25.8 L 42.6,25.8 Z"></path>
+<path d="M 37.9,29.5 L 38.5,31.8 L 40.9,31.8 L 39.1,33.2 L 39.7,35.5 L 37.9,34.1 L 36.1,35.5 L 36.7,33.2 L 34.9,31.8 L 37.3,31.8 Z"></path>
+<path d="M 30,32 L 30.6,34.3 L 33,34.3 L 31.2,35.7 L 31.8,38 L 30,36.6 L 28.2,38 L 28.8,35.7 L 27,34.3 L 29.4,34.3 Z"></path>
+<path d="M 22.1,29.5 L 22.7,31.8 L 25.1,31.8 L 23.3,33.2 L 23.9,35.5 L 22.1,34.1 L 20.3,35.5 L 20.9,33.2 L 19.1,31.8 L 21.5,31.8 Z"></path>
+<path d="M 16.8,23.5 L 17.4,25.8 L 19.8,25.8 L 18,27.2 L 18.6,29.5 L 16.8,28.1 L 15,29.5 L 15.6,27.2 L 13.8,25.8 L 16.2,25.8 Z"></path>
+<path d="M 16.8,16.5 L 17.4,18.8 L 19.8,18.8 L 18,20.2 L 18.6,22.5 L 16.8,21.1 L 15,22.5 L 15.6,20.2 L 13.8,18.8 L 16.2,18.8 Z"></path>
+<path d="M 22.1,10.5 L 22.7,12.8 L 25.1,12.8 L 23.3,14.2 L 23.9,16.5 L 22.1,15.1 L 20.3,16.5 L 20.9,14.2 L 19.1,12.8 L 21.5,12.8 Z"></path>
+</g>
+</svg>
+<div class="country" style="font-size: 13px;">European Union</div>
+<div class="number" style="font-size: 12px;">EP 4044052</div>
+</div>
+<div class="patent-box" style="padding: 10px 8px; min-height: 95px;">
+<svg height="32" style="margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" viewbox="0 0 60 40" width="48">
+<!-- Japan Flag -->
+<rect fill="white" height="40" stroke="#ddd" stroke-width="0.5" width="60"></rect>
+<circle cx="30" cy="20" fill="#BC002D" r="12"></circle>
+</svg>
+<div class="country" style="font-size: 13px;">Japan</div>
+<div class="number" style="font-size: 12px;">JP 07245390</div>
+</div>
+</div>
+</div>
+</div>
+<h3 style="margin-bottom: 10px; margin-top: 10px;">Advantages Over Existing Solutions</h3>
+<div class="key-points three-cols" style="gap: 14px;">
+<div class="point-card" style="padding: 14px;">
+<div class="title" style="font-size: 1.05em; margin-bottom: 6px;">vs Biometric Auth</div>
+<div class="desc" style="font-size: 0.87em; line-height: 1.35;">
+                            • No expensive hardware required<br/>
+                            • Complete prevention of forgery/tampering<br/>
+                            • 100% remote authentication capability
+                        </div>
+</div>
+<div class="point-card" style="padding: 14px;">
+<div class="title" style="font-size: 1.05em; margin-bottom: 6px;">vs OTP/Certificates</div>
+<div class="desc" style="font-size: 0.87em; line-height: 1.35;">
+                            • Eliminates loss/theft risks<br/>
+                            • No additional equipment purchases<br/>
+                            • Dramatic reduction in management costs
+                        </div>
+</div>
+<div class="point-card" style="padding: 14px;">
+<div class="title" style="font-size: 1.05em; margin-bottom: 6px;">vs SMS/Email</div>
+<div class="desc" style="font-size: 0.87em; line-height: 1.35;">
+                            • Complete protection against smishing/phishing<br/>
+                            • Neutralizes SIM swapping attacks<br/>
+                            • Blocks hacking at its source
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 6: Business Model & CTA -->
+<div class="slide">
+<div class="slide-content">
+<h2 style="margin-bottom: 18px;">Business Model</h2>
+<div style="display: flex; gap: 28px; margin-bottom: 14px;">
+<div style="flex: 1.1;">
+<div class="key-points three-cols" style="gap: 14px;">
+<div class="point-card" style="padding: 18px;">
+<div class="icon" style="margin-bottom: 8px; font-size: 36px;">💰</div>
+<div class="title" style="font-size: 19px; margin-bottom: 6px;">SaaS Subscription</div>
+<div class="desc" style="font-size: 14px; line-height: 1.4;">
+                                    Monthly/Annual subscriptions<br/>
+                                    User-based pricing<br/>
+                                    Enterprise packages
+                                </div>
+</div>
+<div class="point-card" style="padding: 18px;">
+<div class="icon" style="margin-bottom: 8px; font-size: 36px;">🔧</div>
+<div class="title" style="font-size: 19px; margin-bottom: 6px;">API Licensing</div>
+<div class="desc" style="font-size: 14px; line-height: 1.4;">
+                                    Transaction-based billing<br/>
+                                    Volume discounting<br/>
+                                    Dedicated technical support
+                                </div>
+</div>
+<div class="point-card" style="padding: 18px;">
+<div class="icon" style="margin-bottom: 8px; font-size: 36px;">🤝</div>
+<div class="title" style="font-size: 19px; margin-bottom: 6px;">White Label</div>
+<div class="desc" style="font-size: 14px; line-height: 1.4;">
+                                    OEM supply<br/>
+                                    Brand customization<br/>
+                                    Technology transfer options
+                                </div>
+</div>
+</div>
+</div>
+<div style="width: 35%; margin-left: 18px;">
+<h3 style="margin: 0 0 10px; font-size: 24px;">Investment Return Projection</h3>
+<ul class="feature-list" style="font-size: 14px; margin: 0; gap: 6px;">
+<li style="padding: 4px 0 4px 32px; line-height: 1.3;"><strong>TAM:</strong> $808B (2034)</li>
+<li style="padding: 4px 0 4px 32px; line-height: 1.3;"><strong>SAM:</strong> $80.8B (AI Authentication)</li>
+<li style="padding: 4px 0 4px 32px; line-height: 1.3;"><strong>SOM:</strong> $8.08B (10% target)</li>
+<li style="padding: 4px 0 4px 32px; line-height: 1.3;"><strong>Break-even:</strong> 18 months</li>
+<li style="padding: 4px 0 4px 32px; line-height: 1.3;"><strong>ROI:</strong> 10x within 5 years</li>
+</ul>
+</div>
+</div>
+<div class="cta-section" style="padding: 24px 36px;">
+<div class="cta-content">
+<h3 style="margin-bottom: 6px; font-size: 30px;">Building the Future of Identity Verification Together</h3>
+<p style="margin-bottom: 14px; font-size: 19px;">NEXAUTH™ isn't just technology—it's the foundation for a trust-based digital society.</p>
+<div class="contact-info" style="gap: 28px;">
+<div class="contact-card" style="padding: 18px 36px;">
+<div class="type" style="font-size: 17px; margin-bottom: 5px;">Business Partnerships</div>
+<div class="email" style="font-size: 19px;">intrepid7@naver.com</div>
+</div>
+<div class="contact-card" style="padding: 18px 36px;">
+<div class="type" style="font-size: 17px; margin-bottom: 5px;">Technical Collaboration</div>
+<div class="email" style="font-size: 19px;">pertz7709@gmail.com</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
