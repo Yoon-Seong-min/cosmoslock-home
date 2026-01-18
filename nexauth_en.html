@@ -1238,7 +1238,11 @@
                 max-height: 600px;
             }
         }
-    </style>
+    
+/* Slightly reduce size for Relationship-Based Auth stat label */
+.rb-auth { font-size: 0.9em; }
+
+</style>
 </head>
 <body>
     <div class="container">
@@ -1329,22 +1333,20 @@
                     
                     <!-- Company text -->
                     <text x="40" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="url(#nexauthGradient)">
-                        NEXAUTH
                     </text>
                     <text x="40" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="3" fill="#94a3b8">
-                        The Nexus of Trust
                     </text>
                 </svg>
                 <div>
                     <h1 style="margin: 0; background: linear-gradient(135deg, #2563EB, #7C3AED, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">NEXAUTH™</h1>
-                    <div style="font-size: 1.2em; color: #94a3b8; margin-top: 5px;">The Nexus of Trust</div>
+                    
                 </div>
             </div>
-            <p class="tagline">Revolutionary AI-Powered Relationship-Based Identity Verification Platform</p>
-            <p class="sub-tagline">Where Trust Meets Technology | Patent-Protected Global Innovation in Digital Identity Authentication</p>
+            <p class="tagline">AI-Assisted Relationship-Context Identity Verification</p>
+            <p class="sub-tagline">Demonstration of relationship-context signals to support identity verification workflows</p>
             
             <div style="margin-top: 30px; padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3); position: relative; z-index: 10;">
-                <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.2em;">🏆 Global Patent Portfolio & Trademark Protection</h3>
+                <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.2em;">🏆 Patent Portfolio & Trademark Status</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.9em;">
                     <div class="patent-card" style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.3);">
                         <div class="wave-effect"></div>
@@ -1377,7 +1379,7 @@
                     <div style="color: #94a3b8; font-size: 0.95em;">
                         <strong>NEXAUTH™</strong> Trademark Filed | Filed: June 6, 2025 | Application No: 40-2025-0097344
                         <div style="font-size: 0.85em; margin-top: 5px; color: #64748b;">
-                            "The Nexus of Trust" - Pioneering a New Paradigm in Relationship-Based Authentication
+                            "NEXAUTH" - Pioneering a New Paradigm in Relationship-Based Authentication
                         </div>
                     </div>
                 </div>
@@ -1447,8 +1449,8 @@
                 
                 <div class="stage-container" id="stage3">
                     <div class="stage-header">
-                        <h3>Step 3: AI Big Data Analysis</h3>
-                        <p>Analyzing communication patterns to verify identity consistency</p>
+                        <h3>Step 3: Pattern Analysis (Demo)</h3>
+                        <p>Analyzing sample communication patterns to assess consistency signals</p>
                     </div>
                     <div class="ai-analysis-container">
                         <div class="analysis-panel">
@@ -1478,11 +1480,11 @@
                     <div class="verification-result success show">
                         <div class="result-icon">✅</div>
                         <div class="result-text success rotating">Authentication Successful</div>
-                        <div class="trust-score success" id="demoTrustScore">Trust Score: 100%</div>
+                        <div class="trust-score success" id="demoTrustScore">Demo Trust Score (illustrative): 100%</div>
                         <p style="color: #94a3b8;" id="demoResultDetails">
                             11 relationship contacts verified (Family 3, Work 2, Friends 2, Alumni 2, Hobbies 2)<br>
-                            Communication pattern match: 100%<br>
-                            Big data consistency: 100%
+                            Communication pattern match (sample): 100%<br>
+                            Consistency indicators (sample): 100%
                         </p>
                     </div>
                 </div>
@@ -1548,16 +1550,16 @@
                             <div class="step-icon">🤖</div>
                             <div class="step-title">Step 4</div>
                             <div class="step-desc">AI Analysis</div>
-                            <div class="step-status" id="status-4">✅ Analysis Complete (100%)</div>
+                            <div class="step-status" id="status-4">✅ Analysis Complete (demo)</div>
                         </button>
                         <button class="step-tab-btn" onclick="executeStep(5)" data-step="5">
                             <div class="step-icon">🔍</div>
                             <div class="step-title">Step 5</div>
                             <div class="step-desc">Identity Verification</div>
-                            <div class="step-status" id="status-5">✅ Verified (100%)</div>
+                            <div class="step-status" id="status-5">✅ Verified (demo)</div>
                         </button>
                         <button class="step-tab-btn" onclick="executeStep(6)" data-step="6">
-                            <div class="step-icon">🎉</div>
+                            <div class="step-icon"></div>
                             <div class="step-title">Step 6</div>
                             <div class="step-desc">Authentication</div>
                             <div class="step-status" id="status-6">✅ Complete</div>
@@ -1577,16 +1579,16 @@
         </div>
         
         <div class="section enhanced-interaction">
-            <h2>💎 Investment Opportunity & Market Potential</h2>
+            <h2>📊 Market Context (High-Level)</h2>
             
             <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 50%, rgba(5, 150, 105, 0.1) 100%); border-radius: 15px; padding: 30px; margin-bottom: 30px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.2);">
-                <h3 style="background: linear-gradient(135deg, #2563EB, #7C3AED, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-size: 1.5em;">🚀 NEXAUTH Investment Highlights</h3>
+                <h3 style="background: linear-gradient(135deg, #2563EB, #7C3AED, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-size: 1.5em;">🚀 NEXAUTH Overview Highlights</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                     <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(37, 99, 235, 0.2); position: relative; overflow: hidden;">
                         <div class="wave-ripple" style="--wave-color: rgba(37, 99, 235, 0.3); animation-delay: 0s;"></div>
                         <div style="font-size: 2em; color: #2563EB; font-weight: bold; position: relative; z-index: 2;">4 Countries</div>
                         <div style="color: #94a3b8; position: relative; z-index: 2;">Global Patent Portfolio</div>
-                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">First-to-Market Technology</div>
+                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">Concept positioning</div>
                     </div>
                     <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(124, 58, 237, 0.2); position: relative; overflow: hidden;">
                         <div class="wave-ripple" style="--wave-color: rgba(124, 58, 237, 0.3); animation-delay: 1s;"></div>
@@ -1596,29 +1598,33 @@
                     </div>
                     <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.05)); padding: 20px; border-radius: 10px; border: 1px solid rgba(5, 150, 105, 0.2); position: relative; overflow: hidden;">
                         <div class="wave-ripple" style="--wave-color: rgba(5, 150, 105, 0.3); animation-delay: 2s;"></div>
-                        <div style="font-size: 2em; color: #059669; font-weight: bold; position: relative; z-index: 2;">Zero</div>
-                        <div style="color: #94a3b8; position: relative; z-index: 2;">Hardware Dependency</div>
-                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">Pure Software Solution</div>
+                        <div style="font-size: 1.4em; color: #059669; font-weight: bold; position: relative; z-index: 2;">Pure Software Solution</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">No dedicated hardware required</div>
+                      
                     </div>
                     <div class="investment-highlight-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(5, 150, 105, 0.1)); padding: 20px; border-radius: 10px; border: 1px solid rgba(37, 99, 235, 0.2); position: relative; overflow: hidden;">
                         <div class="wave-ripple" style="--wave-color: linear-gradient(90deg, rgba(37, 99, 235, 0.3), rgba(5, 150, 105, 0.3)); animation-delay: 3s;"></div>
-                        <div style="font-size: 2em; background: linear-gradient(135deg, #2563EB, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; position: relative; z-index: 2;">100%</div>
-                        <div style="color: #94a3b8; position: relative; z-index: 2;">Authentication Accuracy</div>
-                        <div style="font-size: 0.9em; color: #64748b; position: relative; z-index: 2;">The Nexus of Trust</div>
+                        <div style="font-size: 1.4em; background: linear-gradient(135deg, #2563EB, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; position: relative; z-index: 2;">Highly reliable</div>
+                        <div style="color: #94a3b8; position: relative; z-index: 2;">Accuracy is highly reliable</div>                        
                     </div>
                 </div>
-            </div>
+            
+<div style="margin-top: 15px; font-size: 0.85em; color: #64748b; text-align: center;">
+  Note: This page contains an interactive demonstration. Metrics shown as “100%” are illustrative demo values and do not represent production performance.
+</div>
+
+</div>
             
             <div class="stats-grid">
                 <div class="stat-card premium-glow">
-                    <div class="stat-number">World First</div>
-                    <div>Relationship-Based Auth</div>
-                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Revolutionary Paradigm</div>
+                    <div class="stat-number"><span class="rb-auth">Relationship-Based Auth</span></div>
+                    <div><span class="rb-auth">Concept Focus</span></div>
+                    
                 </div>
                 <div class="stat-card premium-glow">
                     <div class="stat-number">< 8 Sec</div>
                     <div>Average Processing Time</div>
-                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">100% Accurate Real-Time</div>
+                    <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Near real-time in demo</div>
                 </div>
                 <div class="stat-card premium-glow">
                     <div class="stat-number">AI/ML</div>
@@ -1627,7 +1633,7 @@
                 </div>
                 <div class="stat-card premium-glow">
                     <div class="stat-number">B2B/B2C</div>
-                    <div>Unlimited Scalability</div>
+                    <div>Scalability depends on deployment</div>
                     <div style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Cross-Industry Ready</div>
                 </div>
             </div>
@@ -1637,15 +1643,15 @@
                 <ul style="list-style: none; padding: 0;">
                     <li style="margin: 10px 0; padding-left: 20px; position: relative;">
                         <span style="position: absolute; left: 0; color: #10b981;">✓</span>
-                        <strong>Global Digital Identity Authentication Market:</strong> $120B (2025) → $808B (2034) | 23.6% CAGR explosive growth
+                        <strong>Global Digital Identity Authentication Market:</strong> $120B (2025) → $808B (2034) | CAGR figures vary by report
                     </li>
                     <li style="margin: 10px 0; padding-left: 20px; position: relative;">
                         <span style="position: absolute; left: 0; color: #10b981;">✓</span>
-                        <strong>Current Solution Limitations:</strong> Hardware dependency, high costs, low accuracy, security vulnerabilities
+                        <strong>Current solution tradeoffs:</strong> Hardware dependencies, cost, usability friction, and evolving threat models
                     </li>
                     <li style="margin: 10px 0; padding-left: 20px; position: relative;">
                         <span style="position: absolute; left: 0; color: #059669;">✓</span>
-                        <strong style="background: linear-gradient(135deg, #2563EB, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">NEXAUTH Competitive Edge:</strong> Software-based, zero hardware costs, 96% accuracy (The Nexus of Trust)
+                        <strong style="background: linear-gradient(135deg, #2563EB, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">NEXAUTH positioning:</strong> Software-based approach; aims to reduce reliance on single-factor credentials (demo)
                     </li>
                     <li style="margin: 10px 0; padding-left: 20px; position: relative;">
                         <span style="position: absolute; left: 0; color: #10b981;">✓</span>
@@ -1657,7 +1663,7 @@
                     </li>
                     <li style="margin: 10px 0; padding-left: 20px; position: relative;">
                         <span style="position: absolute; left: 0; color: #10b981;">✓</span>
-                        <strong>Regulatory Advantages:</strong> GDPR compliant, SOC 2 ready, KYC/AML compatible, privacy-by-design architecture
+                        <strong>Compliance posture:</strong> privacy-by-design principles; supports KYC/AML workflows; compliance requires deployment-specific assessment
                     </li>
                 </ul>
             </div>
@@ -1667,9 +1673,9 @@
             <h2>📧 Business Inquiries & Partnership</h2>
             
             <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 15px; padding: 30px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.3);">
-                <h3 style="color: #3b82f6; margin-bottom: 20px; font-size: 1.3em;">🤝 Ready to Transform Digital Identity Verification?</h3>
+                <h3 style="color: #3b82f6; margin-bottom: 20px; font-size: 1.3em;">🤝 Interested in Technical Review or Partnership?</h3>
                 <p style="color: #94a3b8; margin-bottom: 25px; font-size: 1.1em;">
-                    Contact us for investment opportunities, partnerships, licensing, and technical integration
+                    Contact us for partnership discussions, licensing inquiries, and technical integration scoping
                 </p>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -1694,10 +1700,10 @@
                 
                 <div style="margin-top: 25px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
                     <p style="color: #e2e8f0; font-size: 1em; margin-bottom: 10px;">
-                        <strong>🌟 NEXAUTH™</strong> - Revolutionizing Digital Identity with <strong>The Nexus of Trust</strong>
+                        <strong>🌟 NEXAUTH™</strong> - Revolutionizing Digital Identity with 
                     </p>
                     <p style="color: #94a3b8; font-size: 0.9em;">
-                        Patent-protected • 100% Accuracy • Zero Hardware Dependency • Global Scalability
+                        Patent-protected • Demo metrics shown for illustration • No dedicated hardware required (concept) • Scalability depends on deployment
                     </p>
                 </div>
             </div>
@@ -1705,7 +1711,7 @@
     </div>
     
     <div class="popup" id="alertPopup">
-        <h3 id="popupTitle">⚠️ Notice</h3>
+        <h3 id="popupTitle"> Notice</h3>
         <p id="popupMessage"></p>
         <button onclick="closePopup()">OK</button>
     </div>
@@ -2261,7 +2267,7 @@
                     title.textContent = '❌ Error';
                 } else {
                     popup.classList.remove('error');
-                    title.textContent = '⚠️ Notice';
+                    title.textContent = ' Notice';
                 }
                 
                 messageElement.textContent = message;
@@ -2664,7 +2670,7 @@
                                     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
                                 ">
                                     🎯 AI Analysis Complete!<br>
-                                    <span style="font-size: 0.9em; margin-top: 8px; display: block;">Overall Trust Score: 100%</span>
+                                    <span style="font-size: 0.9em; margin-top: 8px; display: block;">Overall Demo Trust Score (illustrative): 100%</span>
                                     <span style="font-size: 0.8em; margin-top: 5px; display: block; opacity: 0.8;">
                                         Identity Match Probability: Perfect Match (5 relationship groups analyzed)
                                     </span>
@@ -2970,7 +2976,7 @@
                             ${userName} Authentication Successful
                         </div>
                         <div style="font-size: 1.5em; color: #94a3b8;">
-                            Trust Score: 100%<br>
+                            Demo Trust Score (illustrative): 100%<br>
                             Processing Time: 8.3 seconds<br>
                             Contacts: 11 verified
                         </div>
@@ -3090,7 +3096,7 @@
                         if (testBtn) testBtn.disabled = false;
                         if (testBtnText) testBtnText.textContent = 'Run Complete Process';
                         
-                        showPopup('🎉 NEXAUTH complete authentication process has been successfully completed! ✨ The Nexus of Trust has securely verified your identity with 100% accuracy. 🔒 Experience the world\'s most advanced and innovative relationship-based authentication system!', false);
+                        showPopup(' NEXAUTH demo authentication process has completed.  The demo indicates a high-confidence verification outcome under this sample scenario.  Experience the world\'s most advanced and relationship-context authentication approach (demo).', false);
                     }
                 }
                 
@@ -3209,12 +3215,12 @@
                 
                 if (demoUserName) demoUserName.textContent = 'John Smith';
                 if (demoUserPhone) demoUserPhone.textContent = '+1 (555) 123-4567';
-                if (demoTrustScore) demoTrustScore.textContent = 'Trust Score: 100%';
+                if (demoTrustScore) demoTrustScore.textContent = 'Demo Trust Score (illustrative): 100%';
                 if (demoResultDetails) {
                     demoResultDetails.innerHTML = `
                         11 relationship contacts verified (Family 3, Work 2, Friends 2, Alumni 2, Hobbies 2)<br>
-                        Communication pattern match: 100%<br>
-                        Big data consistency: 100%
+                        Communication pattern match (sample): 100%<br>
+                        Consistency indicators (sample): 100%
                     `;
                 }
                 

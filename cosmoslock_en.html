@@ -1799,7 +1799,29 @@
                 transform: scale(1);
             }
         }
-    </style>
+    
+/* Legal-safe card text sizing override */
+.card .metric,
+.card .metric-value,
+.card .card-metric,
+.card .card-value,
+.card .highlight,
+.card h3,
+.card p {
+  font-size: clamp(12px, 1.2vw, 16px);
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+
+/* Reduce size for specific card phrase */
+.non-reconstructable {
+  font-size: 60%;
+  line-height: 1.25;
+  display: inline-block;
+}
+
+</style>
 </head>
 <body>
     <!-- Reset button -->
@@ -1812,7 +1834,7 @@
                 <span class="main-title">🌌 COSMOS LOCK 🌌</span><br>
                 <span class="sub-title">Next-Generation Distributed Security System</span>
             </h1>
-            <p class="subtitle">Coordinate-based physical distribution technology and relationship-based identity verification<br>Achieving complete security impossible to hack</p>
+            <p class="subtitle">Coordinate-based physical distribution technology and relationship-based identity verification<br>Designed to structurally reduce data reconstructability and breach impact</p>
             
             <!-- Enhanced patent badges -->
             <div class="patent-badges">
@@ -1896,7 +1918,7 @@
             // Reset auto data display
             const autoDataDisplay = document.getElementById('autoDataDisplay');
             if (autoDataDisplay) {
-                autoDataDisplay.innerHTML = '🌌 Generated Data: "COSMOS LOCK Revolutionary Security Tech"';
+                autoDataDisplay.innerHTML = '🌌 Generated Data: "COSMOS LOCK Structure-Based Security Mechanism"';
                 autoDataDisplay.style.color = '';
                 autoDataDisplay.style.fontWeight = '';
             }
@@ -1994,7 +2016,7 @@
             if (isProcessing) return;
             
             if (currentMode === 'auto') {
-                originalText = "COSMOS LOCK Revolutionary Security Tech";
+                originalText = "COSMOS LOCK Structure-Based Security Mechanism";
             } else {
                 originalText = document.getElementById('originalData').value.trim();
                 if (!originalText) {
@@ -2383,7 +2405,7 @@
             if (currentMode === 'auto') {
                 const autoDataDisplay = document.getElementById('autoDataDisplay');
                 if (autoDataDisplay) {
-                    deleteTextContent(autoDataDisplay, '🌌 Generated Data: "COSMOS LOCK Revolutionary Security Tech"', () => {
+                    deleteTextContent(autoDataDisplay, '🌌 Generated Data: "COSMOS LOCK Structure-Based Security Mechanism"', () => {
                         autoDataDisplay.innerHTML = '<span style="color: #ff6b6b;">🗑️ Original data completely deleted</span>';
                     });
                 }
@@ -2793,8 +2815,8 @@
                     <p>Annual 16.6% Growth<br>High Value-Add</p>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">100%</div>
-                    <p>Even When Hacked<br>Unrecoverable</p>
+                    <div class="stat-value"><span class="non-reconstructable">Designed to remain non-reconstructable</span></div>
+                    <p>even after compromise</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">Patents</div>
@@ -2858,7 +2880,7 @@
                         0 4px 15px rgba(0,0,0,0.05),
                         inset 0 1px 0 rgba(255,255,255,0.8);
                     margin-bottom: 20px;
-                ">🌌 Generated Data: "COSMOS LOCK Revolutionary Security Tech"</div>
+                ">🌌 Generated Data: "COSMOS LOCK Structure-Based Security Mechanism"</div>
                 
                 <!-- Speed control bar -->
                 <div class="speed-control">
@@ -3012,9 +3034,9 @@
                         <h3>Cosmic Distribution Principle</h3>
                         <div class="feature-keywords">
                             <span class="keyword">Coordinate Info</span>
-                            <span class="keyword">Infinite Distribution</span>
+                            <span class="keyword">Distributed Logical Fragmentation</span>
                             <span class="keyword">Cosmic Order</span>
-                            <span class="keyword">Absolute Security</span>
+                            <span class="keyword">Breach-Resilient Security</span>
                         </div>
                     </div>
                     
