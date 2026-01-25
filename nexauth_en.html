@@ -2977,7 +2977,7 @@
                         </div>
                         <div style="font-size: 1.5em; color: #94a3b8;">
                             Demo Trust Score (illustrative): 100%<br>
-                            Processing Time: 8.3 seconds<br>
+                            Processing Time: 3 seconds<br>
                             Contacts: 11 verified
                         </div>
                     </div>
@@ -3088,7 +3088,7 @@
                         
                         currentStepIndex++;
                         
-                        // Step 6 delay reduced by 50% (9 seconds -> 3 seconds)
+                        // Step 6 delay reduced by 50% (6 seconds -> 3 seconds)
                         const delay = stepNumber === 6 ? 3000 : stepNumber >= 3 ? 9000 : 5000;
                         setTimer(executeNextStep, delay);
                     } else {
